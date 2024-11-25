@@ -1,0 +1,31 @@
+.matchName-box{
+    background-color: #FBEEEE;
+    color: #E10000;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding: 0px 4px;
+    clip-path:polygon(0% 0% , 100% 0%, 90% 100% , 0% 100%);
+}
+
+.top-player-box{
+    border-radius: 5px;
+}
+
+.lineups-box{
+    background: linear-gradient(to right , #fff , #fff , #00ff4884);
+    display: flex;
+    align-items: right;
+    text-align: right;
+    color: #109E38;
+    height: 100%;
+}
+
+.top-player-box{
+    background-color: #EFF4FF;
+    color: #00309B;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 4px;
+}

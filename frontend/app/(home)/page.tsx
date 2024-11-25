@@ -1,9 +1,23 @@
-import { TopCarousel } from "./(home)/_components/topCarousel";
-import { data , data2} from "./(home)/data";
-import filter from './(home)/assets/filter.svg'
-import down from './(home)/assets/down.svg'
-import Button from "./(home)/_components/button";
-import { MatchCard } from "./(home)/_components/matchCard";
+import { StaticImageData } from "next/image";
+import { TopCarousel } from "./_components/topCarousel";
+import { data , data2} from "./data";
+import filter from './assets/filter.svg'
+import down from './assets/down.svg'
+import Button from "./_components/button";
+import { MatchCard } from "./_components/matchCard";
+
+export interface Match {
+  date:string, //assuming the string is in the format - DD/MM/YYYY
+  time:string, //assuming the string is in the format - HH:MM:SS
+  homeTeam : string,
+  awayTeam : string,
+  homeTeamLogo : StaticImageData , //can be subject to change to string
+  awayTeamLogo : StaticImageData, //can be subject to change to string
+  homePlayer : string,
+  awayPlayer: string,
+  matchName : string ,
+  lineupsRelease : boolean
+}
 
 export default function Home() {
   return (
