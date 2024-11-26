@@ -5,6 +5,9 @@ import filter from "./assets/filter.svg";
 import down from "./assets/down.svg";
 import Button from "./_components/button";
 import { MatchCard } from "./_components/matchCard";
+import Trivia from "./_components/Trivia";
+import Leaderboard from "./_components/Leaderboard";
+import NewsCard from "./_components/NewsCard";
 
 export interface Match {
   date: string; //assuming the string is in the format - DD/MM/YYYY
@@ -21,24 +24,28 @@ export interface Match {
 
 export default function Home() {
   return (
-    <div>
-      <TopCarousel images={data2} />
-      <div className="flex flex-col" style={{ margin: "40px 0px" }}>
-        <div
-          className="matches-header flex justify-between items-center"
-          style={{ width: "50vw", margin: "10px 0px 0px 0px" }}
-        >
-          <p style={{ fontSize: "1.5rem" }}>Upcoming Matches</p>
-          <div className="flex gap-4">
-            <Button img={down} text="Sort By" />
-            <Button img={filter} text="Filter" />
+    <div className="flex w-full">
+      <div className="flex-col mx-8">
+        <TopCarousel images={data2} />
+        <div className="flex-col mt-6">
+          <div className="matches-header flex justify-between items-center">
+            <p className="text-lg">Upcoming Matches</p>
+            <div className="flex gap-4">
+              <Button img={down} text="Sort By" />
+              <Button img={filter} text="Filter" />
+            </div>
+          </div>
+          <div>
+            {data.map((match) => {
+              return <MatchCard key={match.time} match={match}></MatchCard>;
+            })}
           </div>
         </div>
-        <div style={{ marginBottom: "10px" }}>
-          {data.map((match) => {
-            return <MatchCard key={index} match={match}></MatchCard>;
-          })}
-        </div>
+      </div>
+      <div className="flex-col space-y-4 grow shrink mx-2">
+        <Trivia />
+        <Leaderboard />
+        <NewsCard />
       </div>
     </div>
   );
