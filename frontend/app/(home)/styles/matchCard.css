@@ -1,31 +1,118 @@
-.matchName-box{
-    background-color: #FBEEEE;
-    color: #E10000;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    padding: 0px 4px;
-    clip-path:polygon(0% 0% , 100% 0%, 90% 100% , 0% 100%);
+.matchName-box {
+  background-color: #fbeeee;
+  color: #e10000;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  padding: 0px 4px;
+  clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 0% 100%);
+  padding: 10px 20px;
 }
 
-.top-player-box{
-    border-radius: 5px;
+.top-player-box {
+  border-radius: 5px;
+}
+.match-name {
+  font-size: 1.25rem;
+}
+.match-logo-name {
+  font-size: 1rem;
+}
+.lineups-box {
+  background: linear-gradient(to right, #fff, #fff, #00ff4884);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: right;
+  color: #109e38;
+  height: 100%;
+  width: 30%;
+  padding: 10px 0px;
 }
 
-.lineups-box{
-    background: linear-gradient(to right , #fff , #fff , #00ff4884);
-    display: flex;
-    align-items: right;
-    text-align: right;
-    color: #109E38;
-    height: 100%;
+.top-player-box {
+  background-color: #eff4ff;
+  color: #00309b;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 4px;
 }
-
-.top-player-box{
-    background-color: #EFF4FF;
-    color: #00309B;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 4px;
+.custom-btn {
+  width: 100px;
+}
+.match-details {
+  gap: 20px;
+}
+.match-card {
+  width: 50vw;
+}
+.timer-match-card {
+  font-size: 0.7rem;
+}
+.play-btn {
+  font-size: 1.2rem;
+  padding: 10px 50px;
+}
+@media screen and (max-width: 1200px) {
+  .play-btn {
+    font-size: 1rem;
+    padding: 10px 2vw;
+  }
+  .lineups-box {
+    font-size: 0.9rem;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .lineups-box {
+    padding: 5px 0px;
+    width: 40%;
+  }
+  .match-details {
+    gap: 1vw;
+  }
+  .match-logo {
+    width: 50px;
+  }
+  .match-name {
+    font-size: 1rem;
+  }
+  .matchName-box {
+    padding: 5px 10px;
+  }
+  .play-btn {
+    padding: 5px 2vw;
+  }
+  .time-match-card {
+    font-size: 0.8rem;
+  }
+  .timer-match-card {
+    font-size: 0.6rem;
+  }
+  .match-logo-name {
+    font-size: 0.9rem;
+  }
+  .top-player-box {
+    font-size: 0.9rem;
+  }
+}
+@media screen and (max-width: 900px) {
+  .matchName-box {
+    padding: 5px;
+    font-size: 0.9rem;
+  }
+  .lineups-box {
+    font-size: 0.85rem;
+  }
+  .top-player-box {
+    font-size: 0.8rem;
+  }
+}
+@media screen and (max-width: 800px) {
+  .match-logo-name {
+    font-size: 0.8rem;
+  }
+  .match-name {
+    font-size: 0.85rem;
+  }
 }

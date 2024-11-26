@@ -1,8 +1,4 @@
-const FilterDialogBox = ()=>{
-    return(
-        <div>
-            
-        </div>
-    )
-}
-export default FilterDialogBox
+const FilterDialogBox = () => {
+  return <div></div>;
+};
+export default FilterDialogBox;

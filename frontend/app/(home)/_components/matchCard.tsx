@@ -69,35 +69,35 @@ export const MatchCard:React.FC<Props> = ({match})=>{
   }, [match.time]);
 
     return(
-        <div style={{width:'50vw',height:'28vh', borderRadius:'10px', paddingBottom:'10px',margin:'20px 0px',boxShadow:'0px 0px 10px rgb(0,0,0,0.5)'}}
-        className="flex flex-col justify-between bg-white">
+        <div style={{ borderRadius:'10px', paddingBottom:'10px',margin:'20px 0px',boxShadow:'0px 0px 10px rgb(0,0,0,0.5)'}}
+        className="flex flex-col justify-between bg-white match-card">
 
             {/* top portion */}
             <div className="flex justify-between" style={{width:'100%'}}>
-                <div style={{width:'50%',padding:'10px 20px',borderTopLeftRadius:'10px'}} className="matchName-box">{match.matchName}</div>
-                <div style={{width:'30%',padding:'10px 0px',borderTopRightRadius:'10px',textAlign:'right'}} className="lineups-box">{match.lineupsRelease? 
+                <div style={{width:'50%',borderTopLeftRadius:'10px'}} className="matchName-box">{match.matchName}</div>
+                <div style={{borderTopRightRadius:'10px',textAlign:'right'}} className="lineups-box">{match.lineupsRelease? 
                 (<><img src={megaphone.src} alt=""/>Lineups Released</>)
                 :''}</div>
             </div>
 
            {/* middle portion */}
-            <div className="flex justify-between items-center" style={{width:`calc(100 - 40/window.innerWidth)vw`,margin:'0px 20px'}}>
-                <div className="flex justify-between items-center gap-5">
-                    <div className="flex flex-col justify-between items-center"><img src={match.homeTeamLogo.src}/><p style={{color:'gray'}}>{match.homeTeam}</p></div>
-                    <div style={{marginTop:'-8px',fontSize:'1.2rem'}}>{(match.homeTeam).slice(0,3)}</div>
+            <div className="flex justify-between items-center" style={{width:`calc(100 - 40/window.innerWidth)vw`,margin:'10px 20px'}}>
+                <div className="match-details flex justify-between items-center">
+                    <div className="match-logo flex flex-col justify-between items-center"><img src={match.homeTeamLogo.src}/><p className="match-logo-name" style={{color:'gray'}}>{match.homeTeam}</p></div>
+                    <div className="match-name" style={{marginTop:'-8px'}}>{(match.homeTeam).slice(0,3)}</div>
                     <div style={{marginTop:'-8px'}}><img src={vs.src}/></div>
-                    <div style={{marginTop:'-8px',fontSize:'1.2rem'}}>{(match.awayTeam).slice(0,3)}</div>
-                    <div className="flex flex-col justify-between items-center"><img src={match.awayTeamLogo.src}/><p style={{color:'gray'}}>{match.awayTeam}</p></div>
+                    <div className="match-name" style={{marginTop:'-8px'}}>{(match.awayTeam).slice(0,3)}</div>
+                    <div className="match-logo flex flex-col justify-between items-center"><img src={match.awayTeamLogo.src}/><p className="match-logo-name" style={{color:'gray'}}>{match.awayTeam}</p></div>
                 </div>
 
                 <div className="flex flex-col justify-center items-center">
-                    <div style={{fontSize:'0.7rem',fontWeight:'bold',padding:'5px',color:'red',backgroundColor:'#FFF6F7',borderRadius:'5px'}}>{hoursLeft!==0?`${hoursLeft}h:`:``}{minLeft}m:{secLeft}s</div>
-                    <div style={{color:'gray'}}>{(match.time).slice(0,4)}</div>
+                    <div className="timer-match-card" style={{fontWeight:'bold',padding:'5px',color:'red',backgroundColor:'#FFF6F7',borderRadius:'5px'}}>{hoursLeft!==0?`${hoursLeft}h:`:``}{minLeft}m:{secLeft}s</div>
+                    <div className="time-match-card" style={{color:'gray'}}>{(match.time).slice(0,4)}</div>
                 </div>
 
                 <div>
-                    <button className="bg-red-500" 
-                    style={{borderRadius:'5px' , color:'white' , fontSize:'1.2rem' , padding:'10px 50px'}}>Play</button>    
+                    <button className="bg-red-500 play-btn" 
+                    style={{borderRadius:'5px' , color:'white'}}>Play</button>    
                 </div>
             </div>
 
