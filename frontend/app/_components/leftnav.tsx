@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 export default function Leftnav() {
   const pathName = usePathname();
   return (
-    <div className="flex-col flex h-screen pb-8 justify-between bg-white-100 ">
+    <div className="flex-col flex h-full pb-8 justify-between bg-white-100 ">
       <div>
         <div className="text-2xl px-6 py-5 font-bold">Dream Team</div>
 
@@ -190,37 +190,38 @@ export default function Leftnav() {
         </div>
       </div>
       <div>
-        <button className="ml-5 flex gap-1 text-white bg-red-600 pl-12 pr-12 pt-2 pb-2  border rounded-md">
+        <button className="ml-5 flex gap-1 text-white bg-red-600 px-4 py-2 border rounded-md items-center max-w-md:px-6 max-w-md:py-3">
           <svg
             width="18"
             height="18"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            className="w-4 h-4 max-w-md:w-5 max-w-md:h-5"
           >
             <path
               d="M23.2247 13H14.558"
               stroke="white"
-              // // stroke-width="1.73333"
-              // stroke-linecap="round"
-              // stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M19.9746 16.25L23.1304 13.0943C23.1824 13.0423 23.1824 12.9578 23.1304 12.9058L19.9746 9.75"
               stroke="white"
-              // // stroke-width="1.73333"
-              // stroke-linecap="round"
-              // stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M17.8079 5.41667V4.875C17.8079 3.97753 17.0804 3.25 16.1829 3.25H5.89128C4.69466 3.25 3.72461 4.22005 3.72461 5.41667V20.5833C3.72461 21.78 4.69466 22.75 5.89128 22.75H16.1829C17.0804 22.75 17.8079 22.0224 17.8079 21.125V20.5833"
               stroke="white"
-              // // stroke-width="1.73333"
-              // stroke-linecap="round"
-              // stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
-          <div> Logout</div>
+          <div className="text-sm max-w-md:text-base">Logout</div>
         </button>
       </div>
     </div>

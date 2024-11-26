@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "700"], // Specify desired font weights
-  variable: "--font-poppins", // Using as a CSS variable
+  weight: ["400", "700"],
+  variable: "--font-poppins",
 });
 
 export default function RootLayout({
@@ -25,21 +25,16 @@ export default function RootLayout({
     <html lang="en" className={poppins.variable}>
       <body className="bg-primary-white min-h-screen font-sans">
         <div className="flex flex-col min-h-screen">
-          {/* Layout structure */}
           <div className="flex flex-grow">
-            {/* Left Navigation */}
             <aside className="w-1/6 bg-white h-screen fixed">
               <LeftNav />
             </aside>
 
-            {/* Main Content */}
             <main className="flex flex-col w-5/6 ml-[16.666%] bg-gray-100 min-h-screen">
-              {/* Top Navigation */}
               <div>
                 <Topnav />
               </div>
 
-              {/* Dynamic Children */}
               <div className="flex-grow p-4">{children}</div>
             </main>
           </div>
