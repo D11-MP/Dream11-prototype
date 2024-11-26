@@ -11,6 +11,12 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        redGradient: "#CF6868",
+        redGradient2: "#FFB2B2",
+        yellowGradient: "#F4BF43",
+        yellowGradient2: "#FFE099",
+        grayGradient: "#E5E5E5",
+        grayGradient2: "#AAAAAA",
       },
     },
   },
