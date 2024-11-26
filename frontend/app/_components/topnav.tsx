@@ -1,0 +1,39 @@
+export default function Topnav() {
+  return (
+    <div className="flex items-center justify-between bg-gray-100 h-16 px-6">
+      <div className="flex-grow ml-auto max-w-48">
+        <input
+          type="text"
+          placeholder="Search..."
+          className="w-full px-1 py-1 text-black text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
+        />
+      </div>
+      <div className="ml-6 flex items-center">
+        {/* Notification Bell Icon */}
+        <div className="relative cursor-pointer mx-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 21 21"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6 mr-4 text-gray-700 hover:text-black"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15 17h5l-1.405-1.405C18.279 14.219 18 13.358 18 12.5V10c0-3.314-2.686-6-6-6S6 6.686 6 10v2.5c0 .858-.279 1.719-.595 2.095L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+            />
+          </svg>
+          {/* Notification Dot */}
+        </div>
+        {/* Profile Image */}
+        <img
+          src="/profile.png" // Replace with your profile image URL
+          alt="Profile"
+          className="w-10 h-10 rounded-full object-cover cursor-pointer"
+        />
+      </div>
+    </div>
+  );
+}
