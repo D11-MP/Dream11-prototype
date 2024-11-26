@@ -8,7 +8,7 @@ interface Props {
 
 const Button : React.FC<Props> = ({img , text})=>{
     return(
-        <div className="flex justify-evenly px-2 py-2" style={{borderRadius:'10px',border:'1px solid gray',backgroundColor:'white',color:'gray',width:'100px'}}>
+        <div className="flex justify-evenly px-2 py-2 custom-btn" style={{borderRadius:'10px',border:'1px solid gray',backgroundColor:'white',color:'gray'}}>
             {text} <img src={img.src} alt=""/>
         </div>
     )
