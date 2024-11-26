@@ -36,7 +36,7 @@ export default function Home() {
         </div>
         <div style={{ marginBottom: "10px" }}>
           {data.map((match) => {
-            return <MatchCard match={match}></MatchCard>;
+            return <MatchCard key={index} match={match}></MatchCard>;
           })}
         </div>
       </div>
