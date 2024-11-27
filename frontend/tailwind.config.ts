@@ -19,7 +19,23 @@ export default {
         grayGradient2: "#AAAAAA", // Custom secondary gray gradient color
         page_bg_color: "#F6F6F9",
         font_color: "#131927",
-        play_btn_clr: "#E10000"
+        play_btn_clr: "#E10000",
+        authBG: "#D5DBE1",
+        authGradient1: "#AB252C",
+        authGradient2: "#7F181C",
+        authButton: "#E10000",
+      },
+      spacing: {
+        "1/2": "50%",
+        "1/8": "12.5%",
+        "1/4": "25%",
+        "3/4": "75%",
+        "1/10": "10%",
+        "3/5": "60%",
+        "2/5": "40%",
+        "1/20": "5%",
+        "1/15": "6.6666667%",
+        "1/12": "8.3333333%",
       },
       fontFamily: {
         sans: ["var(--font-poppins)", "sans-serif"], // Global Poppins font

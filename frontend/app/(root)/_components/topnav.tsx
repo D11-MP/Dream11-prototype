@@ -13,7 +13,7 @@ export default function Topnav() {
       <div className="flex flex-row gap-[60px]">
             <Link
               href="/"
-              className={`text-gray-700 font-semibold ${
+              className={`text-gray-700 font-medium ${
                 pathName === "/"
                   ? "text-red-600"
                   : "text-black"
@@ -29,7 +29,7 @@ export default function Topnav() {
             </Link>
             <Link
               href="/matches"
-              className={`text-gray-700 font-semibold ${
+              className={`text-gray-700 font-medium ${
                 pathName === "/matches"
                   ? "text-red-600"
                   : "text-black"
@@ -45,7 +45,7 @@ export default function Topnav() {
             </Link>
             <Link
               href="/news"
-              className={`text-gray-700 font-semibold ${
+              className={`text-gray-700 font-medium ${
                 pathName === "/news"
                   ? "text-red-600"
                   : "text-black"
@@ -61,7 +61,7 @@ export default function Topnav() {
             </Link>
             <Link
               href="/help"
-              className={`text-gray-700 font-semibold ${
+              className={`text-gray-700 font-medium ${
                 pathName === "/help"
                   ? "text-red-600"
                   : "text-black"
@@ -77,7 +77,7 @@ export default function Topnav() {
             </Link>
             <Link
               href="/settings"
-              className={`text-gray-700 font-semibold ${
+              className={`text-gray-700 font-medium ${
                 pathName === "/settings"
                   ? "text-red-600"
                   : "text-black"
