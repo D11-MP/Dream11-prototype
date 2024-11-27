@@ -1,38 +1,134 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+
+
 export default function Topnav() {
+  const pathName = usePathname();
   return (
-    <div className="flex items-center justify-between bg-gray-100 h-16 px-6">
-      <div className="flex-grow ml-auto max-w-48">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="w-full px-1 py-1 text-black text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
-        />
+    <div className="flex items-center justify-between bg-white h-[96px] px-[32px]">
+      <h2 className="text-font_color font-bold text-2xl">DreamTeam</h2>
+      <div className="flex flex-row gap-[60px]">
+            <Link
+              href="/"
+              className={`text-gray-700 font-semibold ${
+                pathName === "/"
+                  ? "text-red-600"
+                  : "text-black"
+              }`}
+            >
+              <div
+                className={
+                  "flex items-center space-x-2 cursor-pointer p-2 rounded"
+                }
+              >
+                Home
+              </div>
+            </Link>
+            <Link
+              href="/matches"
+              className={`text-gray-700 font-semibold ${
+                pathName === "/matches"
+                  ? "text-red-600"
+                  : "text-black"
+              }`}
+            >
+              <div
+                className={
+                  "flex items-center space-x-2 cursor-pointer p-2 rounded"
+                }
+              >
+                My Matches
+              </div>
+            </Link>
+            <Link
+              href="/news"
+              className={`text-gray-700 font-semibold ${
+                pathName === "/news"
+                  ? "text-red-600"
+                  : "text-black"
+              }`}
+            >
+              <div
+                className={
+                  "flex items-center space-x-2 cursor-pointer p-2 rounded"
+                }
+              >
+                News
+              </div>
+            </Link>
+            <Link
+              href="/help"
+              className={`text-gray-700 font-semibold ${
+                pathName === "/help"
+                  ? "text-red-600"
+                  : "text-black"
+              }`}
+            >
+              <div
+                className={
+                  "flex items-center space-x-2 cursor-pointer p-2 rounded"
+                }
+              >
+                Help
+              </div>
+            </Link>
+            <Link
+              href="/settings"
+              className={`text-gray-700 font-semibold ${
+                pathName === "/settings"
+                  ? "text-red-600"
+                  : "text-black"
+              }`}
+            >
+              <div
+                className={
+                  "flex items-center space-x-2 cursor-pointer p-2 rounded"
+                }
+              >
+                Settings
+              </div>
+            </Link>
       </div>
-      <div className="ml-6 flex items-center">
-        {/* Notification Bell Icon */}
-        <div className="relative cursor-pointer mx-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 21 21"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6 mr-4 text-gray-700 hover:text-black"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15 17h5l-1.405-1.405C18.279 14.219 18 13.358 18 12.5V10c0-3.314-2.686-6-6-6S6 6.686 6 10v2.5c0 .858-.279 1.719-.595 2.095L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+
+      <div className="flex justify-center items-center">
+        {/* <div className="flex-grow max-w-48">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="w-full px-1 py-1 text-black text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
             />
-          </svg>
-          {/* Notification Dot */}
+        </div> */}
+
+
+        <div className="flex items-center">
+          {/* Notification Bell Icon */}
+          <div className="relative cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 21 21"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6 mr-7 text-gray-700 hover:text-black"
+              >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15 17h5l-1.405-1.405C18.279 14.219 18 13.358 18 12.5V10c0-3.314-2.686-6-6-6S6 6.686 6 10v2.5c0 .858-.279 1.719-.595 2.095L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                />
+            </svg>
+            {/* Notification Dot */}
+          </div>
+          {/* Profile Image */}
+          <img
+            src="/profile.png" // Replace with your profile image URL
+            alt="Profile"
+            className="w-10 h-10 rounded-full object-cover cursor-pointer"
+            />
         </div>
-        {/* Profile Image */}
-        <img
-          src="/profile.png" // Replace with your profile image URL
-          alt="Profile"
-          className="w-10 h-10 rounded-full object-cover cursor-pointer"
-        />
       </div>
     </div>
   );

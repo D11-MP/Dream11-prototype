@@ -69,7 +69,7 @@ export const MatchCard:React.FC<Props> = ({match})=>{
   }, [match.time]);
 
     return(
-        <div style={{ borderRadius:'10px', paddingBottom:'10px',margin:'20px 0px',boxShadow:'0px 0px 10px rgb(0,0,0,0.5)'}}
+        <div style={{ borderRadius:'10px', paddingBottom:'10px',margin:'20px 0px',boxShadow:'0px 0px 4px rgb(0,0,0,0.5)'}}
         className="flex flex-col justify-between bg-white match-card">
 
             {/* top portion */}
@@ -96,7 +96,7 @@ export const MatchCard:React.FC<Props> = ({match})=>{
                 </div>
 
                 <div>
-                    <button className="bg-red-500 play-btn" 
+                    <button className="bg-play_btn_clr play-btn w-[144px] h-[44px] flex items-center justify-center" 
                     style={{borderRadius:'5px' , color:'white'}}>Play</button>    
                 </div>
             </div>

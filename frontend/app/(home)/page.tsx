@@ -29,15 +29,15 @@ export default function Home() {
         <TopCarousel images={data2} />
         <div className="flex-col mt-6">
           <div className="matches-header flex justify-between items-center">
-            <p className="text-lg">Upcoming Matches</p>
-            <div className="flex gap-4">
+            <p className="text-lg font-semibold">Upcoming Matches</p>
+            <div className="flex flex-row gap-2.5">
               <Button img={down} text="Sort By" />
               <Button img={filter} text="Filter" />
             </div>
           </div>
           <div>
-            {data.map((match) => {
-              return <MatchCard key={match.time} match={match}></MatchCard>;
+            {data.map((match, index) => {
+              return <MatchCard key={index} match={match}></MatchCard>;
             })}
           </div>
         </div>

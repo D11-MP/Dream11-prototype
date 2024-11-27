@@ -29,8 +29,16 @@ export default function Trivia() {
     percentage: parseFloat(((option.votes / totalVotes) * 100).toFixed(2)),
   }));
 
-  const handleVote = (id) => {
-    if (hasVoted) return;
+  const handleVote = (id: any) => {
+    // if (hasVoted) return;
+    if(hasVoted){
+      setPoll((prevPoll) => ({
+        ...prevPoll,
+        options: prevPoll.options.map((option) =>
+          option.id !== id ? { ...option, votes: option.votes - 1 } : option
+        ),
+      }));  
+    }
 
     setPoll((prevPoll) => ({
       ...prevPoll,
@@ -56,9 +64,9 @@ export default function Trivia() {
                 id={option.id}
                 value={option.id}
                 name="player"
-                className="w-4 h-4"
+                className="w-4 h-4 accent-play_btn_clr"
                 onChange={() => handleVote(option.id)}
-                disabled={hasVoted}
+                // disabled={hasVoted}
               />
               <div className="flex-1">
                 <div className="flex justify-between">
@@ -74,7 +82,7 @@ export default function Trivia() {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2.5">
                   <div
-                    className="bg-red-600 h-2.5 rounded-full"
+                    className="bg-play_btn_clr h-2 rounded-full"
                     style={{ width: `${option.percentage}%` }}
                   ></div>
                 </div>
