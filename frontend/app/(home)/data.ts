@@ -57,13 +57,13 @@ export const data = [
     {
         date : '26/11/2024',
         time : '1:00:00',
-        homeTeam : 'INDIA',
-        awayTeam : 'AUSTRALIA',
+        homeTeam : 'BANGLADESH',
+        awayTeam : 'SRI LANKA',
         homeTeamLogo:ind,
         awayTeamLogo:aus,
         homePlayer: 'Virat Kohli',
         awayPlayer: 'Steven Smith',
-        matchName : 'India Tour Australia Test 1',
+        matchName : 'Bangladesh Tour Sri Lanka Test 1',
         lineupsRelease : true
     },
 ]
