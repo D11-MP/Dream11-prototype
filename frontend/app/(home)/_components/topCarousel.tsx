@@ -1,6 +1,8 @@
 "use client";
 
 import { StaticImageData } from "next/image";
+import Image from 'next/image'
+import { relative } from "path";
 import React, { useEffect, useState } from "react";
 
 export interface Props {
@@ -39,19 +41,18 @@ export const TopCarousel: React.FC<Props> = ({ images }) => {
     >
       <div
         className="home-top-carousel flex"
-        style={{
+        style={{ height:'100%',
           transform: `translateX(-${current * 50}vw)`,
           transition: "0.5s",
           width: "max-content",
         }}
       >
         {images.map((image, index) => {
+          console.log(index)
           return (
-            <img
-              key={index}
-              src={image.src}
-              style={{ width: "50vw", height: "auto" }}
-            />
+            <div key={index} style={{ width: "50vw", height: "auto" , position:'relative'}}>
+            <Image  alt="" src={image.src} layout="fill" objectFit="cover"/>
+            </div>
           );
         })}
       </div>

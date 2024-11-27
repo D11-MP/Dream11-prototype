@@ -1,8 +1,8 @@
-import dbConnect from "@/lib/dbConnect"
-import UserModel from "@/models/user"
+import UserModel from "../../models/user";
+import dbConnect from "../dbConnect";
 import bcrypt from 'bcryptjs'
 
-export async function POST(request:Request) {
+export async function signup(request:Request) {
     try {
         const { name , password , email} = await request.json();
         await dbConnect();

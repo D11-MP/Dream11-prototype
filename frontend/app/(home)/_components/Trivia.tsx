@@ -1,9 +1,10 @@
 "use client";
 
+import { Poll, PollOptions } from "@/types";
 import { useEffect, useState } from "react";
 
 export default function Trivia() {
-  const [poll, setPoll] = useState({
+  const [poll, setPoll] = useState<Poll>({
     id: "snajdn",
     question: "Who will score a century?",
     options: [
@@ -12,8 +13,8 @@ export default function Trivia() {
     ],
   });
 
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [hasVoted, setHasVoted] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<PollOptions>();
+  const [hasVoted, setHasVoted] = useState<boolean>(false);
 
   useEffect(() => {
     const savedVote = selectedOption;
@@ -29,7 +30,7 @@ export default function Trivia() {
     percentage: parseFloat(((option.votes / totalVotes) * 100).toFixed(2)),
   }));
 
-  const handleVote = (id) => {
+  const handleVote = (id:any) => {
     if (hasVoted) return;
 
     setPoll((prevPoll) => ({
