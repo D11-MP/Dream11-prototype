@@ -19,7 +19,7 @@
   font-size: 1rem;
 }
 .lineups-box {
-  background: linear-gradient(to right, #fff, #fff, #00ff4884);
+  background: linear-gradient(to right, #fff 30%, #00ff4836);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -32,8 +32,8 @@ export default function Home() {
         <TopCarousel images={data2} />
         <div className="flex-col mt-6">
           <div className="matches-header flex justify-between items-center">
-            <p className="text-lg">Upcoming Matches</p>
-            <div className="flex gap-4">
+            <p className="text-lg font-semibold">Upcoming Matches</p>
+            <div className="flex flex-row gap-2.5">
                 <input
                     type="text"
                     placeholder="Search"
@@ -51,8 +51,8 @@ export default function Home() {
             </div>
           </div>
           <div>
-            {matches.map((match) => {
-              return <MatchCard key={match.time} match={match}></MatchCard>;
+            {matches.map((match, index) => {
+              return <MatchCard key={index} match={match}></MatchCard>;
             })}
           </div>
         </div>

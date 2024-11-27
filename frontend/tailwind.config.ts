@@ -17,6 +17,9 @@ export default {
         yellowGradient2: "#FFE099", // Custom secondary yellow gradient color
         grayGradient: "#E5E5E5", // Custom gray gradient color
         grayGradient2: "#AAAAAA", // Custom secondary gray gradient color
+        page_bg_color: "#F6F6F9",
+        font_color: "#131927",
+        play_btn_clr: "#E10000"
       },
       fontFamily: {
         sans: ["var(--font-poppins)", "sans-serif"], // Global Poppins font

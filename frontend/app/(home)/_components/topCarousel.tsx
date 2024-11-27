@@ -33,7 +33,7 @@ export const TopCarousel: React.FC<Props> = ({ images }) => {
   return (
     <div
       className="home-top-carousel-wrapper overflow-hidden"
-      style={{ width: "50vw", height: "20vh", borderRadius: "10px" }}
+      style={{ width: "50vw", height: "163px", borderRadius: "10px" }}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >
