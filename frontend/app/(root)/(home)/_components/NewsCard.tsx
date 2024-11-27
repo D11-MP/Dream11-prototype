@@ -4,8 +4,7 @@ import Link from "next/link";
 export default function NewsCard() {
   return (
     <div className="bg-white rounded-lg shadow-md max-w-sm">
-      <Image
-        src="/ipl.png"
+      <Image src="/ipl.png"
         alt="Description of image"
         width={500}
         height={200}

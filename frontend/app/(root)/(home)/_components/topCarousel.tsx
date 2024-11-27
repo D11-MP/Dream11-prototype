@@ -49,12 +49,16 @@ export const TopCarousel: React.FC<Props> = ({ images }) => {
       >
         {images.map((image, index) => {
           return (
-            <Image
-                alt=""
+            // <div key={index} style={{ width: "50vw", height: "auto", position: "relative" }}>
+                <Image alt=""
                 key={index}
-                src={image.src}
-                style={{ width: "50vw", height: "auto" }}
-            />
+                    // layout="fill"
+                    // objectFit="cover"
+                    src={image.src}
+                    width={500}
+                    height={200}
+                />
+            // </div>
           );
         })}
       </div>

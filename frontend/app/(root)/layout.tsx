@@ -1,5 +1,4 @@
 import Topnav from "./_components/topnav";
-import LeftNav from "./_components/leftnav";
 
 export default function RootLayout({
   children,
@@ -9,18 +8,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-primary-white min-h-screen font-sans">
-        <div className="flex flex-col min-h-screen">
-          <div className="flex flex-grow">
-            <aside className="w-1/6 bg-white h-screen fixed">
+        <div  className="w-full">
+          <Topnav />
+        </div>
+        <div className="min-h-screen min-w-[1222px] bg-page_bg_color my-0 flex justify-center">
+          {/* <div className="flex flex-grow"> */}
+            {/* <aside className="w-1/6 bg-white h-screen fixed">
               <LeftNav />
-            </aside>
-            <main className="flex flex-col w-5/6 ml-[16.666%] bg-gray-100 min-h-screen">
-              <div>
-                <Topnav />
-              </div>
+            </aside> */}
+
+            <main className="flex flex-col  min-h-screen">
               <div className="flex-grow p-4">{children}</div>
             </main>
-          </div>
+
+          {/* </div> */}
         </div>
       </body>
     </html>
