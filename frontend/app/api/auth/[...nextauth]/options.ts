@@ -1,6 +1,8 @@
+import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/user";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from 'bcryptjs'
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -14,10 +16,11 @@ export const authOptions: NextAuthOptions = {
         if (!credentials?.email || !credentials?.password) throw new Error("Email and password are required")
 
         try {
-          const user = await UserModel.findOne({email:credentials.email});
+          await dbConnect();
+          const user = await UserModel.findOne({email:credentials.email}).select('+password');
           if(!user) throw new Error('No User found');
 
-          const isPasswordCorrect = user.password === credentials.password;
+          const isPasswordCorrect = await bcrypt.compare(credentials.password , user?.password);
           if(!isPasswordCorrect) throw new Error('Password not Correct');
            
           return user;
