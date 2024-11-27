@@ -10,13 +10,19 @@ import Trivia from "./_components/Trivia";
 import Leaderboard from "./_components/Leaderboard";
 import NewsCard from "./_components/NewsCard";
 import { useState } from "react";
-
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
     const [matches, setMatches] = useState(data);
+    const session = useSession();
+    const router = useRouter();
   return (
     <div className="flex w-full">
-    <div className="flex-col mx-8">
+    <div className="flex-col mx-8" onClick={()=>{
+      console.log(session)
+      if(session.status !== 'authenticated') router.replace('/login');
+    }}>
       <TopCarousel images={data2} />
       <div className="flex-col mt-6">
         <div className="matches-header flex justify-between items-center">

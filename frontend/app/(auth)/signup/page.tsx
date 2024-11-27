@@ -4,10 +4,12 @@ import { Form } from "@/types";
 import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Signup() {
 
   const [formData, setFormData] = useState<Form>({});
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]:e.target.value });
@@ -18,6 +20,7 @@ export default function Signup() {
     try {
       const reponse = await axios.post('/api/auth/signup', formData);
       if(reponse.status !== 201) throw new Error(reponse.data.message);
+      router.replace('/login');
       console.log('SignUp Successful');
     } catch (error) {
       console.log('Could not SignUp due to some error');
