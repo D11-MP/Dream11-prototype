@@ -2,14 +2,13 @@ import Link from "next/link";
 
 export default function Signup() {
   return (
-    <div className="max-w-xl mx-auto mt-10 p-10 bg-white rounded">
+    <div className="bg-white rounded">
       <h1 className="font-semibold text-2xl mb-4">Create Account</h1>
       <p className="text-sm text-gray-500 mb-6">
         Welcome! Create your account here
       </p>
 
       <form>
-        {/* Name Field */}
         <div className="relative mb-4">
           <label className="block text-sm font-medium text-gray-700">
             Name
@@ -19,7 +18,7 @@ export default function Signup() {
               type="text"
               placeholder="Enter name"
               required
-              className="mt-1 w-full text-sm pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-gray-400"
+              className="mt-1 w-full text-sm pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-red-400"
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +37,6 @@ export default function Signup() {
           </div>
         </div>
 
-        {/* Email Field */}
         <div className="relative mb-4">
           <label className="block text-sm font-medium text-gray-700">
             Email
@@ -48,7 +46,7 @@ export default function Signup() {
               type="email"
               placeholder="Enter email"
               required
-              className="mt-1 w-full text-sm pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-gray-400"
+              className="mt-1 w-full text-sm pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-red-400"
             />
             <svg
               width="21"
@@ -68,7 +66,6 @@ export default function Signup() {
           </div>
         </div>
 
-        {/* Password Field */}
         <div className="relative mb-4">
           <label className="block text-sm font-medium text-gray-700">
             Password
@@ -78,7 +75,7 @@ export default function Signup() {
               type="password"
               placeholder="Enter your password"
               required
-              className="mt-1 w-full text-sm pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-gray-400"
+              className="mt-1 w-full text-sm pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-red-400"
             />
             <svg
               width="21"
@@ -98,7 +95,6 @@ export default function Signup() {
           </div>
         </div>
 
-        {/* Remember Me Checkbox */}
         <div className="flex items-center justify-between mb-12">
           <label className="flex items-center text-sm">
             <input
@@ -109,17 +105,15 @@ export default function Signup() {
           </label>
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-red-600 text-sm text-white py-2 px-4 rounded-md hover:bg-red-700"
+          className="w-full bg-authButton text-sm text-white py-2 px-4 rounded-md hover:bg-red-600"
         >
           Create Account
         </button>
         <div className="text-xs pt-4">
-          Already have an account?
-          <Link href="/login" className="text-red-500">
-            {" "}
+          Already have an account?{" "}
+          <Link href="/login" className="text-authButton hover:underline">
             Login
           </Link>
         </div>
