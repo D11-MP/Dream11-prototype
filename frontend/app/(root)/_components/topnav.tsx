@@ -10,9 +10,7 @@ export default function Topnav() {
   const router = useRouter();
 
   async function handleLogout() {
-      console.log(session.status);
-      if(session.status !== 'authenticated') return;
-      await signOut({redirect:false});
+      if(session.status !== 'authenticated') await signOut({redirect:false});
       router.replace('/login');
   }
   const pathName = usePathname();
