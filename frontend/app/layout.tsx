@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import LeftNav from "./_components/leftnav";
-import Topnav from "./_components/topnav";
+import AuthProvider from "@/context/authProvider";
 
 export const metadata: Metadata = {
   title: "Dream 11",
@@ -23,23 +22,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={poppins.variable}>
-      <body className="bg-primary-white min-h-screen font-sans">
-        <div  className="w-full">
-          <Topnav />
-        </div>
-        <div className="min-h-screen min-w-[1222px] bg-page_bg_color my-0 flex justify-center">
-          {/* <div className="flex flex-grow"> */}
-            {/* <aside className="w-1/6 bg-white h-screen fixed">
-              <LeftNav />
-            </aside> */}
-
-            <main className="flex flex-col  min-h-screen">
-              <div className="flex-grow p-4">{children}</div>
-            </main>
-
-          {/* </div> */}
-        </div>
-      </body>
+      <AuthProvider>
+        <body>
+            {children}
+        </body>
+      </AuthProvider>
     </html>
   );
 }

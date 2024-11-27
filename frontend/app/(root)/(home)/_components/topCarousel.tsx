@@ -2,6 +2,7 @@
 
 import { StaticImageData } from "next/image";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 export interface Props {
   images: StaticImageData[]; //is subject to change to string.
@@ -43,14 +44,16 @@ export const TopCarousel: React.FC<Props> = ({ images }) => {
           transform: `translateX(-${current * 50}vw)`,
           transition: "0.5s",
           width: "max-content",
+          height: "100%",
         }}
       >
         {images.map((image, index) => {
           return (
-            <img
-              key={index}
-              src={image.src}
-              style={{ width: "50vw", height: "auto" }}
+            <Image
+                alt=""
+                key={index}
+                src={image.src}
+                style={{ width: "50vw", height: "auto" }}
             />
           );
         })}

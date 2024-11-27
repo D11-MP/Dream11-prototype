@@ -1,12 +1,13 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { Match } from "../page"
+import { Match } from "@/types"
 import '../styles/matchCard.css'
 import megaphone from '../assets/megaphone.svg'
 import bell from '../assets/bell.svg'
 import vs from '../assets/vs.png'
 import star from '../assets/star.svg'
+import Image from "next/image"
 
 interface Props{
     match:Match
@@ -76,18 +77,18 @@ export const MatchCard:React.FC<Props> = ({match})=>{
             <div className="flex justify-between" style={{width:'100%'}}>
                 <div style={{width:'50%',borderTopLeftRadius:'10px'}} className="matchName-box">{match.matchName}</div>
                 <div style={{borderTopRightRadius:'10px',textAlign:'right'}} className="lineups-box">{match.lineupsRelease? 
-                (<><img src={megaphone.src} alt=""/>Lineups Released</>)
+                (<><Image width={27} height={27} src={megaphone.src} alt=""/>Lineups Released</>)
                 :''}</div>
             </div>
 
            {/* middle portion */}
             <div className="flex justify-between items-center" style={{width:`calc(100 - 40/window.innerWidth)vw`,margin:'10px 20px'}}>
                 <div className="match-details flex justify-between items-center">
-                    <div className="match-logo flex flex-col justify-between items-center"><img src={match.homeTeamLogo.src}/><p className="match-logo-name" style={{color:'gray'}}>{match.homeTeam}</p></div>
+                    <div className="match-logo flex flex-col justify-between items-center"><Image alt="" height={50} width={50} src={match.homeTeamLogo.src}/><p className="match-logo-name" style={{color:'gray'}}>{match.homeTeam}</p></div>
                     <div className="match-name" style={{marginTop:'-8px'}}>{(match.homeTeam).slice(0,3)}</div>
-                    <div style={{marginTop:'-8px'}}><img src={vs.src}/></div>
+                    <div style={{marginTop:'-8px'}}><Image width={20} height={20} alt="" src={vs.src}/></div>
                     <div className="match-name" style={{marginTop:'-8px'}}>{(match.awayTeam).slice(0,3)}</div>
-                    <div className="match-logo flex flex-col justify-between items-center"><img src={match.awayTeamLogo.src}/><p className="match-logo-name" style={{color:'gray'}}>{match.awayTeam}</p></div>
+                    <div className="match-logo flex flex-col justify-between items-center"><Image alt="" height={50} width={50} src={match.awayTeamLogo.src}/><p className="match-logo-name" style={{color:'gray'}}>{match.awayTeam}</p></div>
                 </div>
 
                 <div className="flex flex-col justify-center items-center">
@@ -105,8 +106,8 @@ export const MatchCard:React.FC<Props> = ({match})=>{
 
             {/* bottom portion */}
             <div className="flex justify-between items-center" style={{width:`calc(100 - 40/window.innerWidth)vw`,margin:'0px 20px'}}>
-                <div className="top-player-box flex items-center gap-4"><img src={star.src}/>{match.homePlayer} , {match.awayPlayer}</div>
-                <div><img src={bell.src} alt=""/></div>
+                <div className="top-player-box flex items-center gap-4"><Image alt="" height={20} width={20} src={star.src}/>{match.homePlayer} , {match.awayPlayer}</div>
+                <div><Image height={25} width={25} src={bell.src} alt=""/></div>
             </div>
 
         </div>
