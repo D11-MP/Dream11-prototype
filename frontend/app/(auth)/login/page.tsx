@@ -3,7 +3,8 @@
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
-import {ChangeEvent, useState } from "react";
+import React, {ChangeEvent, useState } from "react";
+
 
 export default function Login() {
 
@@ -11,18 +12,21 @@ export default function Login() {
   const [password , setPassword] = useState<string>('');
   const router =  useRouter();
 
-  async function handleLogin() {
+  async function handleLogin(e:React.FormEvent) {
+    e.preventDefault();
+    if(email.trim() === '' || password.trim() === '') return;
       try {
-        const response = await signIn('credentials',{
+        const result = await signIn('credentials',{
           redirect:false,
-          identifier:email.trim(),
-          password:password.trim()
-        })
-        console.log(response);
-        if(response?.error) throw new Error('Could not LogIn');
-        if(response?.url) router.replace('/');
+          identifier:email,
+          password:password
+        });
+        console.log(result);
+        console.log('Error');
+        if(result?.error) throw new Error('Could not LogIn');
+        if(result?.url) router.replace('/');
       } catch (error) {
-        console.log('Could not LogIn')
+        console.log('Could not LogIn');
       }
   }
 
@@ -33,7 +37,7 @@ export default function Login() {
         Welcome back! Enter details to login
       </p>
 
-      <form>
+      <form onSubmit={handleLogin}>
         <div className="relative mb-4">
           <label className="block text-sm font-medium text-gray-700">
             Email
@@ -41,6 +45,7 @@ export default function Login() {
           <div className="relative">
             <input
               type="email"
+              name="identifier"
               placeholder="Enter email"
               required
               onChange={(e:ChangeEvent<HTMLInputElement>)=>{setEmail(e.target.value)}}
@@ -71,6 +76,7 @@ export default function Login() {
           <div className="relative">
             <input
               type="password"
+              name="password"
               placeholder="Enter your password"
               required
               onChange={(e:ChangeEvent<HTMLInputElement>)=>{setPassword(e.target.value)}}
@@ -106,7 +112,6 @@ export default function Login() {
 
         <button
           type="submit"
-          onClick={handleLogin}
           className="w-full bg-authButton text-sm text-white py-2 px-4 rounded-md hover:bg-red-600 mb-2"
         >
           Login

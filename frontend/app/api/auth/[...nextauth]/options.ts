@@ -10,11 +10,12 @@ export const authOptions: NextAuthOptions = {
       id:'credentials',
       name: "Credentials",
       credentials: {
-        email: { label: "email", type: "email", placeholder: "srinjoy.demo@gmail.com" },
+        identifier: { label: "email", type: "email", placeholder: "srinjoy.demo@gmail.com" },
         password: { label: "password", type: "password" },
       },
       async authorize(credentials:any):Promise<any> {
         try { 
+          console.log(`erorrrr`)
           if (!credentials?.identifier || !credentials?.password) throw new Error("Email and password are required")
 
           await dbConnect();
@@ -27,7 +28,7 @@ export const authOptions: NextAuthOptions = {
           return user;
         } catch (error:any) {
           console.log(`Some error Occured\n${error}`);
-          throw new Error(error);
+          return null;
         }  
       },
     }),
