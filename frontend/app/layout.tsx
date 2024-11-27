@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import AuthProvider from "@/context/authProvider";
 
 export const metadata: Metadata = {
   title: "Dream 11",
@@ -21,7 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={poppins.variable}>
-      <body>{children}</body>
+      <AuthProvider>
+        <body>{children}</body>
+      </AuthProvider>
     </html>
   );
 }

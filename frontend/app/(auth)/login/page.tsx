@@ -1,6 +1,31 @@
+"use client"
+
+import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
+import {ChangeEvent, useState } from "react";
 
 export default function Login() {
+
+  const [email , setEmail] = useState<string>('');
+  const [password , setPassword] = useState<string>('');
+  const router =  useRouter();
+
+  async function handleLogin() {
+      try {
+        const response = await signIn('credentials',{
+          redirect:false,
+          identifier:email.trim(),
+          password:password.trim()
+        })
+        console.log(response);
+        if(response?.error) throw new Error('Could not LogIn');
+        if(response?.url) router.replace('/');
+      } catch (error) {
+        console.log('Could not LogIn')
+      }
+  }
+
   return (
     <div className=" bg-white rounded">
       <h1 className="font-semibold text-2xl mb-4">Login to your Account</h1>
@@ -18,6 +43,7 @@ export default function Login() {
               type="email"
               placeholder="Enter email"
               required
+              onChange={(e:ChangeEvent<HTMLInputElement>)=>{setEmail(e.target.value)}}
               className="mt-1 w-full text-sm pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-red-400"
             />
             <svg
@@ -47,6 +73,7 @@ export default function Login() {
               type="password"
               placeholder="Enter your password"
               required
+              onChange={(e:ChangeEvent<HTMLInputElement>)=>{setPassword(e.target.value)}}
               className="mt-1 w-full text-sm pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-red-400"
             />
             <svg
@@ -79,6 +106,7 @@ export default function Login() {
 
         <button
           type="submit"
+          onClick={handleLogin}
           className="w-full bg-authButton text-sm text-white py-2 px-4 rounded-md hover:bg-red-600 mb-2"
         >
           Login

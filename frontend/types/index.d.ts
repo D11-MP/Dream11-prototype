@@ -22,3 +22,9 @@ export interface Match {
     question:string,
     options:PollOptions[]
   }
+
+  export interface Form { 
+    name?:string,
+    email?:string,
+    password?:string
+  }

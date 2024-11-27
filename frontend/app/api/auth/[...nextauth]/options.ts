@@ -7,26 +7,27 @@ import bcrypt from 'bcryptjs'
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
+      id:'credentials',
       name: "Credentials",
       credentials: {
         email: { label: "email", type: "email", placeholder: "srinjoy.demo@gmail.com" },
         password: { label: "password", type: "password" },
       },
-      async authorize(credentials:Record<"email"|"password", string>|undefined):Promise<any> {
-        if (!credentials?.email || !credentials?.password) throw new Error("Email and password are required")
+      async authorize(credentials:any):Promise<any> {
+        try { 
+          if (!credentials?.identifier || !credentials?.password) throw new Error("Email and password are required")
 
-        try {
           await dbConnect();
-          const user = await UserModel.findOne({email:credentials.email}).select('+password');
+          const user = await UserModel.findOne({email:credentials.identifier}).select('+password');
           if(!user) throw new Error('No User found');
 
           const isPasswordCorrect = await bcrypt.compare(credentials.password , user?.password);
           if(!isPasswordCorrect) throw new Error('Password not Correct');
            
           return user;
-        } catch (error) {
+        } catch (error:any) {
           console.log(`Some error Occured\n${error}`);
-          return null;
+          throw new Error(error);
         }  
       },
     }),
@@ -49,6 +50,10 @@ export const authOptions: NextAuthOptions = {
       return session;
     }
   },
+  session:{
+    strategy:'jwt',
+  },
+  secret:process.env.NEXTAUTH_SECRET,
   pages:{
     signIn : '/login'
   }

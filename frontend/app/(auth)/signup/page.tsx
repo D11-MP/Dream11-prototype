@@ -1,6 +1,29 @@
+"use client"
+
+import { Form } from "@/types";
+import axios from "axios";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Signup() {
+
+  const [formData, setFormData] = useState<Form>({});
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]:e.target.value });
+  };
+
+  async function handleSignUp(e:React.FormEvent) {
+    e.preventDefault();
+    try {
+      const reponse = await axios.post('/api/auth/signup', formData);
+      if(reponse.status !== 201) throw new Error(reponse.data.message);
+      console.log('SignUp Successful');
+    } catch (error) {
+      console.log('Could not SignUp due to some error');
+    }
+  }
+
   return (
     <div className="bg-white rounded">
       <h1 className="font-semibold text-2xl mb-4">Create Account</h1>
@@ -8,7 +31,7 @@ export default function Signup() {
         Welcome! Create your account here
       </p>
 
-      <form>
+      <form onSubmit={handleSignUp}>
         <div className="relative mb-4">
           <label className="block text-sm font-medium text-gray-700">
             Name
@@ -18,6 +41,8 @@ export default function Signup() {
               type="text"
               placeholder="Enter name"
               required
+              name="name"
+              onChange={handleChange}
               className="mt-1 w-full text-sm pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-red-400"
             />
             <svg
@@ -46,6 +71,8 @@ export default function Signup() {
               type="email"
               placeholder="Enter email"
               required
+              name="email"
+              onChange={handleChange}
               className="mt-1 w-full text-sm pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-red-400"
             />
             <svg
@@ -75,6 +102,8 @@ export default function Signup() {
               type="password"
               placeholder="Enter your password"
               required
+              name="password"
+              onChange={handleChange}
               className="mt-1 w-full text-sm pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-red-400"
             />
             <svg
