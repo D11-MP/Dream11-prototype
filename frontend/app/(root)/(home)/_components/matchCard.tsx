@@ -8,6 +8,8 @@ import bell from '../assets/bell.svg'
 import vs from '../assets/vs.png'
 import star from '../assets/star.svg'
 import Image from "next/image"
+import ind from '../assets/india.png'
+import aus from  '../assets/australia.png'
 
 interface Props{
     match:Match
@@ -18,56 +20,84 @@ export const MatchCard:React.FC<Props> = ({match})=>{
   const [hoursLeft, setHoursLeft] = useState<number>(0)
   const [minLeft, setMinLeft] = useState<number>(0)
   const [secLeft, setSecLeft] = useState<number>(0)
+  const [daysLeft, setDaysLeft] = useState(0);
+
+
+  let currentDate = new Date().toJSON().slice(0, 10);
+  console.log(currentDate); // "2022-06-17"
+
 
   useEffect(() => {
-    const calculateTimeLeft = () => {
-      const now = new Date()
-      const [targetHour, targetMinute, targetSecond] = match.time.split(":").map(Number)
-      const target = new Date()
-
-      target.setHours(targetHour, targetMinute, targetSecond, 0)
-
-      if (target < now) {
-        target.setDate(target.getDate()+1)
-      }
-
-      const difference = target.getTime()-now.getTime()
-      const totalSeconds = Math.floor(difference/1000)
-
-      return {
-        hours: Math.floor(totalSeconds/3600),
-        minutes: Math.floor((totalSeconds%3600)/60),
-        seconds: totalSeconds%60,
-      };
+    const calculateDays = () => {
+      const target = new Date(match.matchDate);
+      target.setHours(0, 0, 0, 0);
+      
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      const difference = target.getTime() - today.getTime();
+      const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
+      
+      setDaysLeft(days);
     };
 
-    const updateTimer = () => {
-      const { hours,minutes,seconds } = calculateTimeLeft()
-      setHoursLeft(hours)
-      setMinLeft(minutes)
-      setSecLeft(seconds)
-    }
+    calculateDays();
+    // Update daily at midnight
+    const timer = setInterval(calculateDays, 24 * 60 * 60 * 1000);
 
-    updateTimer()
+    return () => clearInterval(timer);
+  }, [match.matchDate]);
 
-    const interval = setInterval(() => {
-      setSecLeft((prevSec) => {
-        if (prevSec === 0) {
-          setMinLeft((prevMin) => {
-            if (prevMin === 0) {
-              setHoursLeft((prevHour) => (prevHour>0?prevHour-1:0))
-              return 59;
-            }
-            return prevMin-1
-          });
-          return 59;
-        }
-        return prevSec-1
-      });
-    }, 1000);
 
-    return () => clearInterval(interval)
-  }, [match.time]);
+  // useEffect(() => {
+  //   const calculateTimeLeft = () => {
+  //     const now = new Date()
+  //     // const [targetHour, targetMinute, targetSecond] = match.time.split(":").map(Number)
+  //     const target = new Date()
+
+  //     // target.setHours(targetHour, targetMinute, targetSecond, 0)
+
+  //     if (target < now) {
+  //       target.setDate(target.getDate()+1)
+  //     }
+
+  //     const difference = target.getTime()-now.getTime()
+  //     const totalSeconds = Math.floor(difference/1000)
+
+  //     return {
+  //       hours: Math.floor(totalSeconds/3600),
+  //       minutes: Math.floor((totalSeconds%3600)/60),
+  //       seconds: totalSeconds%60,
+  //     };
+  //   };
+
+  //   const updateTimer = () => {
+  //     const { hours,minutes,seconds } = calculateTimeLeft()
+  //     setHoursLeft(hours)
+  //     setMinLeft(minutes)
+  //     setSecLeft(seconds)
+  //   }
+
+  //   updateTimer()
+
+  //   const interval = setInterval(() => {
+  //     setSecLeft((prevSec) => {
+  //       if (prevSec === 0) {
+  //         setMinLeft((prevMin) => {
+  //           if (prevMin === 0) {
+  //             setHoursLeft((prevHour) => (prevHour>0?prevHour-1:0))
+  //             return 59;
+  //           }
+  //           return prevMin-1
+  //         });
+  //         return 59;
+  //       }
+  //       return prevSec-1
+  //     });
+  //   }, 1000);
+
+  //   return () => clearInterval(interval)
+  // }, [match.time]);
 
     return(
         <div style={{ borderRadius:'10px', paddingBottom:'10px',margin:'20px 0px',boxShadow:'0px 0px 4px rgb(0,0,0,0.5)'}}
@@ -84,16 +114,20 @@ export const MatchCard:React.FC<Props> = ({match})=>{
            {/* middle portion */}
             <div className="flex justify-between items-center" style={{width:`calc(100 - 40/window.innerWidth)vw`,margin:'10px 20px'}}>
                 <div className="match-details flex justify-between items-center">
-                    <div className="match-logo flex flex-col justify-between items-center"><Image alt="" height={50} width={50} src={match.homeTeamLogo.src}/><p className="match-logo-name" style={{color:'gray'}}>{match.homeTeam}</p></div>
-                    <div className="match-name" style={{marginTop:'-8px'}}>{(match.homeTeam).slice(0,3)}</div>
+                    <div className="match-logo flex flex-col justify-between items-center">
+                      <Image alt="" height={50} width={50} src={ind}/>
+                    <p className="match-logo-name" style={{color:'gray'}}>{match.teamA}</p></div>
+                    <div className="match-name" style={{marginTop:'-8px'}}>{(match.teamA).slice(0,3)}</div>
                     <div style={{marginTop:'-8px'}}><Image width={20} height={20} alt="" src={vs.src}/></div>
-                    <div className="match-name" style={{marginTop:'-8px'}}>{(match.awayTeam).slice(0,3)}</div>
-                    <div className="match-logo flex flex-col justify-between items-center"><Image alt="" height={50} width={50} src={match.awayTeamLogo.src}/><p className="match-logo-name" style={{color:'gray'}}>{match.awayTeam}</p></div>
+                    <div className="match-name" style={{marginTop:'-8px'}}>{(match.teamB).slice(0,3)}</div>
+                    <div className="match-logo flex flex-col justify-between items-center">
+                      <Image alt="" height={50} width={50} src={aus}/>
+                    <p className="match-logo-name" style={{color:'gray'}}>{match.teamB}</p></div>
                 </div>
 
                 <div className="flex flex-col justify-center items-center">
-                    <div className="timer-match-card" style={{fontWeight:'bold',padding:'5px',color:'red',backgroundColor:'#FFF6F7',borderRadius:'5px'}}>{hoursLeft!==0?`${hoursLeft}h:`:``}{minLeft}m:{secLeft}s</div>
-                    <div className="time-match-card" style={{color:'gray'}}>{(match.time).slice(0,4)}</div>
+                    <div className="timer-match-card" style={{fontWeight:'bold',padding:'5px',color:'red',backgroundColor:'#FFF6F7',borderRadius:'5px'}}>{daysLeft} days left</div>
+                    <div className="time-match-card" style={{color:'gray'}}>{(match.matchDate)}</div>
                 </div>
 
                 <div>
@@ -106,7 +140,7 @@ export const MatchCard:React.FC<Props> = ({match})=>{
 
             {/* bottom portion */}
             <div className="flex justify-between items-center" style={{width:`calc(100 - 40/window.innerWidth)vw`,margin:'0px 20px'}}>
-                <div className="top-player-box flex items-center gap-4"><Image alt="" height={20} width={20} src={star.src}/>{match.homePlayer} , {match.awayPlayer}</div>
+                <div className="top-player-box flex items-center gap-4"><Image alt="" height={20} width={20} src={star.src}/>{match.playerA[0]} , {match.playerB[0]}</div>
                 <div><Image height={25} width={25} src={bell.src} alt=""/></div>
             </div>
 

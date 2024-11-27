@@ -1,6 +1,7 @@
 "use client";
 import { TopCarousel } from "./_components/topCarousel";
-import { data, data2 } from "./data";
+import { data2 } from "./data";
+import data from "@/uploads/output.json"
 import filter from "./assets/filter.svg";
 import down from "./assets/down.svg";
 import Button from "./_components/button";
