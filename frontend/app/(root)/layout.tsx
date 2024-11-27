@@ -9,7 +9,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-page_bg_color min-h-screen font-sans">
         <div  className="w-full">
-          <Topnav />
+          <Topnav/>
         </div>
         <div className="min-h-screen w-[1222px] bg-page_bg_color mx-auto my-0 flex justify-center">
           {/* <div className="flex flex-grow"> */}
