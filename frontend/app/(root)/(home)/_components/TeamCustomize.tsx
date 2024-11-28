@@ -2,10 +2,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import axios from "axios";
+
 
 export default function Page() {
   const [selectedOption, setSelectedOption] = useState("Beginner");
   const [country, setCountry] = useState("India");
+
+  async function runModel(){
+    const data = await axios.get("http://localhost:3000/api/model_runner")
+    console.log(data);
+  }
 
   return (
     <div className="p-6 bg-white rounded-lg">
@@ -88,19 +95,26 @@ export default function Page() {
           </p>
         )}
       </div>
-      <Link
+      {/* <Link
         href="/contest/123/dreamteam"
         type="submit"
         className="w-full mb-5 bg-red-600 text-sm text-white py-3 px-4 rounded-md hover:bg-red-700 flex gap-2 justify-center items-center"
+      > */}
+      <Link
+        href="/contest/123/dreamteam"
+        type="submit"
+        onClick={runModel} 
+        className="w-full mb-5 bg-red-600 text-sm text-white py-3 px-4 rounded-md hover:bg-red-700 flex gap-2 justify-center items-center"  
       >
         <Image
           src="/Vector.png"
           alt="An example image"
           width={20}
           height={20}
-        />
+          />
         <div className="mt-1">Generate Team</div>
       </Link>
+      {/* </div> */}
     </div>
   );
 }
