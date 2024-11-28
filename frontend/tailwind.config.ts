@@ -1,3 +1,4 @@
+import { min } from "date-fns";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -24,6 +25,10 @@ export default {
         authGradient1: "#AB252C",
         authGradient2: "#7F181C",
         authButton: "#E10000",
+        plusButton: "#CBFFB8ED",
+        plusHover: "#BFFF8DB2",
+        minusButton: "#FFC0C0ED",
+        minusHover: "#FFA0A0B2",
       },
       spacing: {
         "1/2": "50%",
