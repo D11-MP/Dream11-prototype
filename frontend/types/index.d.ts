@@ -28,3 +28,10 @@ export interface Match {
     email?:string,
     password?:string
   }
+
+  export interface Article {
+    title: string;
+    description: string;
+    url: string;
+    urlToImage: string;
+}
