@@ -4,10 +4,14 @@ import { Form } from "@/types";
 import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { signup } from "@/lib/actions/user.actions";
 
 export default function Signup() {
 
   const [formData, setFormData] = useState<Form>({});
+  const [errorMsg , setErrorMsg] = useState<string>('');
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]:e.target.value });
@@ -16,11 +20,16 @@ export default function Signup() {
   async function handleSignUp(e:React.FormEvent) {
     e.preventDefault();
     try {
-      const reponse = await axios.post('/api/auth/signup', formData);
-      if(reponse.status !== 201) throw new Error(reponse.data.message);
+      // const reponse = await axios.post('/api/auth/signup', formData);
+      const reponse = await signup(formData);
+      if(reponse.status !== 201) throw new Error(reponse.message);
+      router.replace('/login');
       console.log('SignUp Successful');
-    } catch (error) {
-      console.log('Could not SignUp due to some error');
+    } catch (error:any) {
+      setErrorMsg(error.message);
+      setTimeout(()=>{
+        setErrorMsg('')
+      },5000)
     }
   }
 
@@ -147,6 +156,9 @@ export default function Signup() {
           </Link>
         </div>
       </form>
+      <div className="flex mt-2 text-red-500 text-sm font-bold">
+        {errorMsg}
+      </div>
     </div>
   );
 }

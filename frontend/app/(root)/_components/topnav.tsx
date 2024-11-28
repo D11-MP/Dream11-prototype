@@ -1,12 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-
+import { usePathname , useRouter } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Topnav() {
+
+  const session = useSession();
+  const router = useRouter();
+
+  async function handleLogout() {
+      await signOut({redirect:false});
+      router.replace('/login');
+  }
   const pathName = usePathname();
+
   return (
     <div className="flex items-center justify-between bg-white h-[96px] px-[32px]">
       <h2 className="text-font_color font-bold text-2xl">DreamTeam</h2>
@@ -104,6 +112,21 @@ export default function Topnav() {
 
 
         <div className="flex items-center">
+          
+            <div className="relative cursor-pointer flex items-center">
+            {session.status === 'authenticated'?
+            (<svg xmlns="http://www.w3.org/2000/svg" onClick={handleLogout}
+            fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 mr-7 w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+            </svg>):
+            (
+              <svg xmlns="http://www.w3.org/2000/svg" onClick={()=>{router.replace('/login')}}
+              fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 mr-7 w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
+              </svg>
+            )
+            }
+          </div>
           {/* Notification Bell Icon */}
           <div className="relative cursor-pointer">
             <svg

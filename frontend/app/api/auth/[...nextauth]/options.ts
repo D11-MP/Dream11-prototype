@@ -15,7 +15,6 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials:any):Promise<any> {
         try { 
-          console.log(`erorrrr`)
           if (!credentials?.identifier || !credentials?.password) throw new Error("Email and password are required")
 
           await dbConnect();
