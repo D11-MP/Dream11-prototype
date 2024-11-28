@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import AdvancedProps from "./AdvancedProps";
 
 export default function Page() {
   const [selectedOption, setSelectedOption] = useState("Beginner");
@@ -82,10 +83,7 @@ export default function Page() {
             </div>
           </div>
         ) : (
-          <p>
-            This is the Advanced content. Dive deeper into customization with
-            more complex options.
-          </p>
+          <AdvancedProps />
         )}
       </div>
       <Link
@@ -104,4 +102,3 @@ export default function Page() {
     </div>
   );
 }
-import { use } from "react";
