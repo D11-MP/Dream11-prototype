@@ -31,7 +31,7 @@ export default function Home() {
               <input
                   type="text"
                   placeholder="Search Matches"
-                  className="border rounded-lg px-2 py-1"
+                  className="border rounded-lg px-2 py-1 outline-none"
                   onChange={(e) => {
                       const searchTerm = e.target.value.toLowerCase();
                       const filteredMatches = data.filter((match) =>

@@ -33,7 +33,7 @@ export default function Login() {
   }
 
   return (
-    <div className=" bg-white rounded">
+    <div className=" bg-white rounded ">
       <h1 className="font-semibold text-2xl mb-4">Login to your Account</h1>
       <p className="text-sm text-gray-500 mb-6">
         Welcome back! Enter details to login
