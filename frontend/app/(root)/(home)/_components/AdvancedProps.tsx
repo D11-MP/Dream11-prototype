@@ -4,6 +4,7 @@ import Image from "next/image";
 import "../styles/toggleButton.css";
 import { useState } from "react";
 import { Slider } from "antd";
+import PlayerList from "./PlayerList";
 
 const AdvancedProps = () => {
   const [toggleOptions, setToggleOptions] = useState({
@@ -295,10 +296,8 @@ const AdvancedProps = () => {
           />
           <span className="slider round"></span>
         </label>
-        {toggleOptions.four === 1 && (
-          <div className="w-[100%] flex justify-between px-4 py-8 border-t-2"></div>
-        )}
       </div>
+      {toggleOptions.four === 1 && <PlayerList />}
     </>
   );
 };
