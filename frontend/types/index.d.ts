@@ -1,12 +1,12 @@
 export interface Match {
-    date: string; //assuming the string is in the format - DD/MM/YYYY
-    time: string; //assuming the string is in the format - HH:MM:SS
-    homeTeam: string;
-    awayTeam: string;
-    homeTeamLogo: StaticImageData; //can be subject to change to string
-    awayTeamLogo: StaticImageData; //can be subject to change to string
-    homePlayer: string;
-    awayPlayer: string;
+    matchDate: string; //assuming the string is in the format - DD/MM/YYYY
+    // time: string; //assuming the string is in the format - HH:MM:SS
+    teamA: string;
+    teamB: string;
+    // homeTeamLogo: StaticImageData; //can be subject to change to string
+    // awayTeamLogo: StaticImageData; //can be subject to change to string
+    playerA: string[];
+    playerB: string[];
     matchName: string;
     lineupsRelease: boolean;
   }

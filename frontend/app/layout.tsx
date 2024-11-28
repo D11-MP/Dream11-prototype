@@ -21,9 +21,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={poppins.variable}>
+    <html lang="en" >
       <AuthProvider>
-        <body>
+        <body className={poppins.variable}>
             {children}
         </body>
       </AuthProvider>

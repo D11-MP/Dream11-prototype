@@ -10,6 +10,7 @@ export default function Login() {
 
   const [email , setEmail] = useState<string>('');
   const [password , setPassword] = useState<string>('');
+  const [errorMsg , setErrorMsg] = useState<string>('');
   const router =  useRouter();
 
   async function handleLogin(e:React.FormEvent) {
@@ -21,12 +22,13 @@ export default function Login() {
           identifier:email,
           password:password
         });
-        console.log(result);
-        console.log('Error');
-        if(result?.error) throw new Error('Could not LogIn');
+        if(result?.error) throw new Error('Could not Login due to wrong credentials');
         if(result?.url) router.replace('/');
-      } catch (error) {
-        console.log('Could not LogIn');
+      } catch (error:any) {
+        setErrorMsg(error.message);
+        setTimeout(()=>{
+          setErrorMsg('')
+        },5000)
       }
   }
 
@@ -126,6 +128,10 @@ export default function Login() {
           </Link>
         </div>
       </form>
+      <div className="flex mt-2 text-red-500 text-sm font-bold">
+        {errorMsg}
+      </div>
     </div>
+
   );
 }

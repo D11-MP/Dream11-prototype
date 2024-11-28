@@ -3,7 +3,7 @@
 import React, { use } from "react";
 import TeamCustomize from "../../_components/TeamCustomize";
 import { MatchCard2 } from "../../_components/MatchCard2";
-import { data } from "../../data";
+import data from "@/uploads/output.json";
 
 type Params = {
   id: string;
