@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Page() {
@@ -7,19 +8,19 @@ export default function Page() {
   const [country, setCountry] = useState("India");
 
   return (
-    <div className="max-w-xl mx-auto mt-10 p-10 bg-white rounded">
-      <h1 className="font-semibold text-2xl mb-4">Customize your team</h1>
-      <p className="text-sm text-gray-500 mb-6">
+    <div className="p-6 bg-white rounded-lg">
+      <h1 className="font-medium text-2xl mb-2">Customize your team</h1>
+      <p className="text-sm text-gray-400 mb-4">
         Select inputs to help AI customize your dream team
       </p>
       <hr />
 
-      <div className="flex gap-4 mb-6">
+      <div className="flex gap-4 mb-6 border-b mt-2">
         <button
           onClick={() => setSelectedOption("Beginner")}
-          className={`px-4 py-2 text-sm ${
+          className={`px-4 py-2 pb-3 text-sm ${
             selectedOption === "Beginner"
-              ? " text-red-600 font-semibold border-b-2 border-b-red-500"
+              ? " text-red-600 font-medium border-b-2 border-b-red-500"
               : ""
           }`}
         >
@@ -27,9 +28,9 @@ export default function Page() {
         </button>
         <button
           onClick={() => setSelectedOption("Advanced")}
-          className={`px-4 py-2 text-sm ${
+          className={`px-4 py-2 pb-3 text-sm ${
             selectedOption === "Advanced"
-              ? " text-red-600 font-semibold border-b-2 border-b-red-500"
+              ? " text-red-600 font-medium border-b-2 border-b-red-500"
               : ""
           }`}
         >
@@ -87,20 +88,20 @@ export default function Page() {
           </p>
         )}
       </div>
-      <button
+      <Link
+        href="/contest/123/dreamteam"
         type="submit"
-        className="w-full mb-5 bg-red-600 text-sm text-white py-3 px-4 rounded-md hover:bg-red-700"
+        className="w-full mb-5 bg-red-600 text-sm text-white py-3 px-4 rounded-md hover:bg-red-700 flex gap-2 justify-center items-center"
       >
-        <div className="flex gap-2 justify-center">
-          <Image
-            src="/Vector.png"
-            alt="An example image"
-            width={20}
-            height={20}
-          />
-          <div className="mt-1">Generate Team</div>
-        </div>
-      </button>
+        <Image
+          src="/Vector.png"
+          alt="An example image"
+          width={20}
+          height={20}
+        />
+        <div className="mt-1">Generate Team</div>
+      </Link>
     </div>
   );
 }
+import { use } from "react";
