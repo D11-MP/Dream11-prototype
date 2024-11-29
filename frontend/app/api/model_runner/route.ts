@@ -2,7 +2,7 @@ import {spawn} from 'node:child_process';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req:NextRequest) {
-    let python = spawn('python', ['ml_model/model.py']);
+    const python = spawn('python', ['ml_model/model.py']);
     let dataToSend = '';
 
     for await (const data of python.stdout){

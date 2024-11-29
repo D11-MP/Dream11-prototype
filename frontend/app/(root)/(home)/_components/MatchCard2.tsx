@@ -1,17 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Match } from "@/types";
+import { MatchCardProps } from "@/types";
 import "../styles/matchCard.css";
 import Image from "next/image";
 import ind from "../assets/india.png";
 import aus from "../assets/australia.png";
 
-interface Props {
-  match: Match;
-}
-
-export const MatchCard2: React.FC<Props> = ({ match }) => {
+export const MatchCard2: React.FC<MatchCardProps> = ({ match }) => {
   // const [hoursLeft, setHoursLeft] = useState<number>(0);
   // const [minLeft, setMinLeft] = useState<number>(0);
   // const [secLeft, setSecLeft] = useState<number>(0);

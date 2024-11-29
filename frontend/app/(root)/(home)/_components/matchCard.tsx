@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Match } from "@/types";
 import "../styles/matchCard.css";
 import megaphone from "../assets/megaphone.svg";
 import bell from "../assets/bell.svg";
@@ -11,12 +10,9 @@ import Image from "next/image";
 import ind from "../assets/india.png";
 import aus from "../assets/australia.png";
 import Link from "next/link";
+import { MatchCardProps } from "@/types";
 
-interface Props {
-  match: Match;
-}
-
-export const MatchCard: React.FC<Props> = ({ match }) => {
+export const MatchCard: React.FC<MatchCardProps> = ({ match }) => {
   // const [hoursLeft, setHoursLeft] = useState<number>(0);
   // const [minLeft, setMinLeft] = useState<number>(0);
   // const [secLeft, setSecLeft] = useState<number>(0);
@@ -172,7 +168,7 @@ export const MatchCard: React.FC<Props> = ({ match }) => {
               borderRadius: "5px",
             }}
           >
-            {daysLeft} days left
+            {daysLeft > 0 ? `${daysLeft} days left` : `${Math.abs(daysLeft)} days ago`}
           </div>
           <div className="time-match-card" style={{ color: "gray" }}>
             {match.matchDate}

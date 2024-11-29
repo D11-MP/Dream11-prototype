@@ -1,14 +1,10 @@
 "use client";
 
-import { StaticImageData } from "next/image";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { TopCarouselProps } from "@/types";
 
-export interface Props {
-  images: StaticImageData[]; //is subject to change to string.
-}
-
-export const TopCarousel: React.FC<Props> = ({ images }) => {
+export const TopCarousel: React.FC<TopCarouselProps> = ({ images }) => {
   const [isHover, setIsHover] = useState<boolean>(false);
   const [current, setCurrent] = useState<number>(0);
 
