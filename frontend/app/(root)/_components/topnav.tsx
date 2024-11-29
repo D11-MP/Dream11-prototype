@@ -2,17 +2,17 @@
 
 import Link from "next/link";
 import { usePathname , useRouter } from "next/navigation";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 
-export default function Topnav() {
+export default function Topnav({session}:{session:any}) {
 
-  const session = useSession();
+  // const session = useSession();
   const router = useRouter();
 
   async function handleLogout() {
-      await signOut({redirect:false});
       router.replace('/login');
+      await signOut({redirect:false});
   }
   const pathName = usePathname();
 
