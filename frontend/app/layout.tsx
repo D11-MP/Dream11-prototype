@@ -1,7 +1,19 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { Session } from "next-auth";
 import AuthProvider from "@/context/authProvider";
+import { headers } from "next/headers";
+
+async function getSession(cookie: string): Promise<Session> {
+  const response = await fetch(`http:localhost:3000/api/auth/session`, {
+    headers: {
+      cookie,
+    },
+  }); 
+  const session = await response.json();
+  return Object.keys(session).length > 0 ? session : null;
+}
 
 export const metadata: Metadata = {
   title: "Dream 11",
@@ -15,15 +27,19 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const header = await headers();
+  const cookie = header.get('cookie') ?? '';
+  const session = await getSession(cookie);
+  console.log(session)
   return (
     <html lang="en" >
       <body className={poppins.variable}>
-        <AuthProvider>
+        <AuthProvider session={session}>
           {children}
         </AuthProvider>
       </body>
