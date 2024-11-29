@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Page() {
   return (
-    <div className="flex flex-col w-screen text-center">
+    <div className="flex flex-col w-full text-center pb-10">
       <div>
         <h1 className="text-3xl font-medium text-center pt-8 pb-2">
           Congratulation! We did a{" "}
@@ -13,8 +13,8 @@ export default function Page() {
           perfect Dream11 team for you.
         </p>
       </div>
-      <div className="flex min-h-fit mx-1/10 mt-8 gap-4">
-        <div className="w-3/5 h-screen bg-[url('/DreamTeam_BG.png')] bg-cover bg-center flex flex-col">
+      <div className="flex min-h-fit w-[80vw] mx-0 mt-8 gap-4">
+        <div className="w-[60%] h-screen bg-[url('/DreamTeam_BG.png')] bg-cover bg-center flex flex-col rounded-lg">
           <div className="fle items-center justify-around">
             <div className="flex flex-col items-center mt-20 mb-10">
               <Image
@@ -212,7 +212,7 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <div className="w-2/5 bg-white"></div>
+        <div className="w-[40%] rounded-lg bg-white"></div>
       </div>
     </div>
   );

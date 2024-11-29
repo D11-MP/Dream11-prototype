@@ -9,13 +9,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    // <html lang="en">
-      <div className="bg-authBG w-full h-[100vh] rounded-md flex justify-center items-center">
-        <div className="flex w-[70vw] h-fit shadow-md rounded-md">
-          <div className="w-3/5 bg-white rounded-l-md p-16 h-fit">{children}</div>
-          <div className="bg-gradient-to-r from-authGradient1 to-authGradient2 w-2/5 rounded-r-md"></div>
-        </div>
+    <div className="bg-authBG w-full h-[100vh] rounded-md flex justify-center items-center">
+      <div className="flex w-[70vw] h-fit shadow-md rounded-md">
+        <div className="w-3/5 bg-white rounded-l-md p-16 h-fit">{children}</div>
+        <div className="bg-gradient-to-r from-authGradient1 to-authGradient2 w-2/5 rounded-r-md"></div>
       </div>
-    // </html>
+    </div>
   );
 }
