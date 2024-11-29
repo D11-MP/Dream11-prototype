@@ -151,7 +151,7 @@ export default function Page() {
             <div
               key={0}
               onClick={() => handlePlayerClick(0)}
-              className="flex flex-col items-center mt-20 mb-10"
+              className="cursor-pointer flex flex-col items-center mt-20 mb-10"
             >
               <Image
                 src="/Player_Red.png"
@@ -175,7 +175,7 @@ export default function Page() {
             <div
               key={1}
               onClick={() => handlePlayerClick(1)}
-              className="flex flex-col items-center"
+              className="cursor-pointer flex flex-col items-center"
             >
               <Image
                 src="/Player_Red.png"
@@ -196,7 +196,7 @@ export default function Page() {
             <div
               key={2}
               onClick={() => handlePlayerClick(2)}
-              className="flex flex-col items-center"
+              className="cursor-pointer flex flex-col items-center"
             >
               <Image
                 src="/Player_Red.png"
@@ -217,7 +217,7 @@ export default function Page() {
             <div
               key={3}
               onClick={() => handlePlayerClick(3)}
-              className="flex flex-col items-center"
+              className="cursor-pointer flex flex-col items-center"
             >
               <Image
                 src="/Player_Red.png"
@@ -238,7 +238,7 @@ export default function Page() {
             <div
               key={4}
               onClick={() => handlePlayerClick(4)}
-              className="flex flex-col items-center"
+              className="cursor-pointer flex flex-col items-center"
             >
               <Image
                 src="/Player_Red.png"
@@ -261,7 +261,7 @@ export default function Page() {
             <div
               key={5}
               onClick={() => handlePlayerClick(5)}
-              className="flex flex-col items-center"
+              className="cursor-pointer flex flex-col items-center"
             >
               <Image
                 src="/Player_Red.png"
@@ -282,7 +282,7 @@ export default function Page() {
             <div
               key={6}
               onClick={() => handlePlayerClick(6)}
-              className="flex flex-col items-center"
+              className="cursor-pointer flex flex-col items-center"
             >
               <Image
                 src="/Player_Red.png"
@@ -305,7 +305,7 @@ export default function Page() {
             <div
               key={7}
               onClick={() => handlePlayerClick(7)}
-              className="flex flex-col items-center"
+              className="cursor-pointer flex flex-col items-center"
             >
               <Image
                 src="/Player_Red.png"
@@ -326,7 +326,7 @@ export default function Page() {
             <div
               key={8}
               onClick={() => handlePlayerClick(8)}
-              className="flex flex-col items-center"
+              className="cursor-pointer flex flex-col items-center"
             >
               <Image
                 src="/Player_Red.png"
@@ -347,7 +347,7 @@ export default function Page() {
             <div
               key={9}
               onClick={() => handlePlayerClick(9)}
-              className="flex flex-col items-center"
+              className="cursor-pointer flex flex-col items-center"
             >
               <Image
                 src="/Player_Red.png"
@@ -368,7 +368,7 @@ export default function Page() {
             <div
               key={10}
               onClick={() => handlePlayerClick(10)}
-              className="flex flex-col items-center"
+              className="cursor-pointer flex flex-col items-center"
             >
               <Image
                 src="/Player_Red.png"

@@ -1,19 +1,7 @@
+import { FeedProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
-
-interface Article {
-  title: string;
-  description: string;
-  url: string;
-  urlToImage: string;
-}
-
-interface FeedProps {
-    alignment: 'left' | 'right'; 
-    index: number;
-    articles: Article[];
-}
 
 const Feed = ({ alignment, index, articles }: FeedProps) => {
   const alignmentClass = alignment === 'left' ? 'w-[45%] my-5' : 'w-[45%] my-5';

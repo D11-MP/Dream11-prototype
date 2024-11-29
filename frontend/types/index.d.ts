@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface Match {
     matchDate: string; //assuming the string is in the format - DD/MM/YYYY
     // time: string; //assuming the string is in the format - HH:MM:SS
@@ -35,3 +37,22 @@ export interface Match {
     url: string;
     urlToImage: string;
 }
+
+export interface FeedProps {
+    alignment: 'left' | 'right'; 
+    index: number;
+    articles: Article[];
+}
+
+export interface ButtonProps {
+    img : StaticImageData,
+    text:string
+}
+
+export interface MatchCardProps {
+    match: Match;
+  }
+
+  export interface TopCarouselProps {
+    images: StaticImageData[]; //is subject to change to string.
+  }
