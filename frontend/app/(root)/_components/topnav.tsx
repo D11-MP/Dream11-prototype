@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname , useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function Topnav() {
 
@@ -139,11 +140,13 @@ export default function Topnav() {
     {/* Notification Dot */}
   </div>
   {/* Profile Image */}
-  <img
+  <Image
     src="/profile.png" // Replace with your profile image URL
     alt="Profile"
-    className="w-10 h-10 rounded-full object-cover cursor-pointer"
-    />
+    width={40}
+    height={40}
+    className="rounded-full object-cover cursor-pointer"
+  />
 </div>):(
   <div className="flex items-center">
     <button className="flex items-center justify-evenly px-4 py-2 text-white rounded bg-red-500" onClick={()=>{router.replace('/login')}}>

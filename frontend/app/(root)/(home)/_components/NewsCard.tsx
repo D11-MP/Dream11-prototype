@@ -11,7 +11,6 @@ export default function NewsCard() {
     const getNews = async () => {
       const news = await fetchNews();
       setArticles(news);
-      console.log(news);
     };
 
     getNews();
@@ -21,7 +20,7 @@ export default function NewsCard() {
   
   return (
     <div className="bg-white rounded-lg shadow-md max-w-sm">
-      <Image src= {articles[0].urlToImage} 
+      <Image src= {articles[0].urlToImage !== "" ? articles[0].urlToImage : "/ipl.png" } 
         alt="Description of image"
         width={500}
         height={200}

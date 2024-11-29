@@ -17,7 +17,6 @@ export const TopCarousel: React.FC<Props> = ({ images }) => {
       setCurrent((prevCurrent) => {
         const nextIndex =
           prevCurrent === images.length - 1 ? 0 : prevCurrent + 1;
-        console.log(nextIndex);
         return nextIndex;
       });
     };
@@ -51,12 +50,9 @@ export const TopCarousel: React.FC<Props> = ({ images }) => {
           return (
             <div key={index} style={{ width: "50vw", height: "auto", position: "relative" }}>
                 <Image alt=""
-                // key={index}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    style={{"objectFit": "cover"}}
                     src={image.src}
-                    // width={500}
-                    // height={200}
                 />
             </div>
           );

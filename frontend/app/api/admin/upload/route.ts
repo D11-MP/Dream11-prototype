@@ -1,4 +1,3 @@
-// app/api/admin/upload/route.ts
 import { writeFile } from 'fs/promises'
 import { mkdir } from 'fs/promises'
 import { NextRequest, NextResponse } from 'next/server'
@@ -8,14 +7,7 @@ import fs from "fs";
 
 
 export async function POST(request: NextRequest) {
-
-
-  
-
-
   try {
-
-
     const extractData = async (filePath:any) => {
       console.log(filePath)
       const csv = fs.readFileSync(filePath)
