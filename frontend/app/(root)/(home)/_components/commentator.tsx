@@ -1,0 +1,130 @@
+"use client"
+
+import Image, { StaticImageData } from "next/image";
+import soft from '../assets/soft.webp'
+import dry from '../assets/sunny.webp'
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import c1 from '../assets/1.png'
+import c4 from '../assets/4.png'
+import c3 from '../assets/3.png'
+
+export default function Commentator({close,open}:{close:(value:boolean)=>void,open:boolean}){
+    
+  const [mascot , setMascot] = useState<number>(0);
+  const [commentary , setCommentary] = useState<string>('');
+  const [speech , setSpeech ]= useState<string>('');
+  const [index , setIndex] = useState<number>(0);
+  const [talking , setTalking] = useState<boolean>(false);
+  const firstRender = useRef(true);
+  const textRef = useRef<HTMLDivElement | null>(null);
+  const firstRef = useRef(true);
+  const mascotImg:StaticImageData[] = [c1  , c3 , c4];
+  
+  const pitchMap:any = {
+    //this mapping will change based on the response received from the api
+  'dry':dry,
+  'soft':soft
+  }
+
+  const demo = {
+    //this is the demo of the api response for the weather
+  weather:'wet',
+  condition:'soft'
+  }
+
+  useEffect(()=>{
+    const Interval = setInterval(()=>{
+      if(talking){
+        const newMascot = mascot===mascotImg.length-1 ? 0 : mascot+1;
+        setMascot(newMascot);
+      }
+    },1000);
+    return (()=>{
+      clearInterval(Interval)
+    })
+  },[mascot,talking])
+
+  useEffect(()=>{
+    async function getGenText() {
+      const response = await axios.post('http://localhost:3000/api/ai' , { weather: demo.weather,condition: demo.condition,},
+        {
+            headers: {
+              'Content-Type': 'application/json',
+            }
+        }
+      )
+      setCommentary(response.data.data);
+      setTalking(true);
+      console.log(Date.now())
+    }
+    if(firstRef.current){ 
+      firstRef.current = false;
+      return;
+    }
+    getGenText();
+  },[])
+
+  useEffect(()=>{
+    const Interval = setInterval(()=>{
+      if(commentary[index]!==undefined){
+        setSpeech((speech)=>speech+commentary[index])
+        setIndex((index)=>index+1)
+      }
+    },60)
+    return ()=>{
+      clearInterval(Interval)
+    }
+  },[speech , index , commentary])
+
+  useEffect(()=>{
+      if ("speechSynthesis" in window) {    
+        var speak = new SpeechSynthesisUtterance(commentary);
+        speak.onend = function(){
+          if(firstRender.current){
+              firstRender.current = false;
+              return;
+          }
+          setTalking(false);
+        }
+        speechSynthesis.speak(speak);
+      } else {
+        alert("Your browser does not support Text-to-Speech.");
+      }
+  },[commentary])
+
+  useEffect(()=>{
+    if (textRef.current) textRef.current.scrollTop = textRef.current.scrollHeight;
+  },[speech])
+
+return (
+    <>
+
+      <div className="fixed glassmorphism z-[-1]"
+      style={{width:'100vw',height:'100vh',pointerEvents:'none'}}></div>  
+
+      <div style={{width:'60vw' , height:'60vh' , boxShadow:'0px 0px 15px black'}} className="relative rounded-lg">
+
+        <button className="absolute right-0 top-0 bg-red-500 px-4 py-2 text-white" 
+        style={{zIndex:'100',borderTopRightRadius:'0.5rem',borderBottomLeftRadius:'0.5rem'}} onClick={()=>{
+          if("speechSynthesis" in window) speechSynthesis.cancel();
+          close(false)}}>Close</button>
+
+        <div className="mascot-box absolute flex items-center w-full justify-center" style={{bottom:'0px',zIndex:'2'}}>
+            {mascotImg.length>0 && mascotImg[mascot] && <img src={mascotImg[mascot].src} alt="" style={{width:'40vw'}}/>}
+
+            <div ref={textRef} className="commentary-box w-1/2 p-3 border-2 rounded-lg border-white text-black mr-20 overflow-y-auto"
+            style={{height:'fit-content' , background:'#ffc6a0' , maxHeight:'15vh'}}>  
+                {commentary===''?'...':speech}
+            </div>
+        </div>
+
+        <div className="bg-pitch-image z-0 rounded-lg" style={{width:'60vw',height:'60vh'}}>
+            <img src={pitchMap[demo.condition].src} alt="" style={{width:'100%',height:'100%'}} className="rounded-lg"/>
+        </div>
+      </div>
+
+    </>
+  );
+
+}
