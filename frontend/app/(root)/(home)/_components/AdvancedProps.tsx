@@ -252,11 +252,11 @@ const AdvancedProps = () => {
             type="checkbox"
             value={toggleOptions.three}
             onChange={() =>
-                setToggleOptions((prev) => ({
-                  ...prev,
-                  three: toggleOptions.three === 0 ? 1 : 0,
-                }))
-              }
+              setToggleOptions((prev) => ({
+                ...prev,
+                three: toggleOptions.three === 0 ? 1 : 0,
+              }))
+            }
           />
           <span className="slider round"></span>
         </label>
@@ -298,11 +298,11 @@ const AdvancedProps = () => {
             type="checkbox"
             value={toggleOptions.four}
             onChange={() =>
-                setToggleOptions((prev) => ({
-                  ...prev,
-                  four: toggleOptions.four === 0 ? 1 : 0,
-                }))
-              }
+              setToggleOptions((prev) => ({
+                ...prev,
+                four: toggleOptions.four === 0 ? 1 : 0,
+              }))
+            }
           />
           <span className="slider round"></span>
         </label>
