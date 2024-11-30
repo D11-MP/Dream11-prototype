@@ -105,7 +105,7 @@ export const MatchCard2: React.FC<MatchCardProps> = ({ match }) => {
           <div className=" text-red-500 bg-red-50 px-3 py-1 rounded-md">
             {/* {hoursLeft !== 0 ? `${hoursLeft}h:` : ``}
               {minLeft}m:{secLeft}s */}
-            {daysLeft} days left
+            {daysLeft > 0 ? `${daysLeft} days left` : `${Math.abs(daysLeft)} days ago`}
           </div>
           <div className="text-gray-500">{match.matchDate}</div>
         </div>
