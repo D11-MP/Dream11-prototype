@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import final from "@/uploads/final.json"
 
 interface Data {
   name: string;
@@ -131,6 +132,7 @@ export default function Page() {
   const [selectedPlayer, setSelectedPlayer] = useState<Data | null>(null);
 
   const handlePlayerClick = (index: number) => {
+    jsonData[index].name = final[index].name
     setSelectedPlayer(jsonData[index]);
   };
   return (
@@ -166,7 +168,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{jsonData[0].name}</p>
+                <p className="">{final[0].name}</p>
               </div>
             </div>
           </div>
@@ -190,7 +192,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{jsonData[1].name}</p>
+                <p className="">{final[1].name}</p>
               </div>
             </div>
             <div
@@ -211,7 +213,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{jsonData[2].name}</p>
+                <p className="">{final[2].name}</p>
               </div>
             </div>
             <div
@@ -232,7 +234,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{jsonData[3].name}</p>
+                <p className="">{final[3].name}</p>
               </div>
             </div>
             <div
@@ -253,7 +255,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{jsonData[4].name}</p>
+                <p className="">{final[4].name}</p>
               </div>
             </div>
           </div>
@@ -276,7 +278,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{jsonData[5].name}</p>
+                <p className="">{final[5].name}</p>
               </div>
             </div>
             <div
@@ -297,7 +299,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{jsonData[6].name}</p>
+                <p className="">{final[6].name}</p>
               </div>
             </div>
           </div>
@@ -320,7 +322,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{jsonData[7].name}</p>
+                <p className="">{final[7].name}</p>
               </div>
             </div>
             <div
@@ -341,7 +343,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{jsonData[8].name}</p>
+                <p className="">{final[8].name}</p>
               </div>
             </div>
             <div
@@ -362,7 +364,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{jsonData[9].name}</p>
+                <p className="">{final[9].name}</p>
               </div>
             </div>
             <div
@@ -383,7 +385,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{jsonData[10].name}</p>
+                <p className="">{final[10].name}</p>
               </div>
             </div>
           </div>
