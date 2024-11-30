@@ -18,7 +18,7 @@ type PlayerCardProps = {
 
 export default function PlayerCard({ player }: PlayerCardProps) {
   return (
-    <div className="flex items-center gap-3 justify-between my-2">
+    <div className="flex items-center gap-2 justify-between my-2 mx-2">
       <Image alt="" height={80} width={80} src={pic} />
 
       <div className="flex flex-col items-start text-left w-full">

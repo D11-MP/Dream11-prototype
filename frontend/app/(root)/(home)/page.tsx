@@ -18,7 +18,7 @@ export default function Home() {
     const session = useSession();
     const router = useRouter();
   return (
-  <div className="flex w-full">
+  <div className="flex w-full py-3">
     <div className="flex-col mx-8" onClick={()=>{
       console.log(session)
       if(session.status !== 'authenticated') router.replace('/login');

@@ -6,6 +6,7 @@ import "../styles/matchCard.css";
 import Image from "next/image";
 import ind from "../assets/india.png";
 import aus from "../assets/australia.png";
+import PlayerList2 from "./PlayerList2";
 
 export const MatchCard2: React.FC<MatchCardProps> = ({ match }) => {
   // const [hoursLeft, setHoursLeft] = useState<number>(0);
@@ -64,34 +65,37 @@ export const MatchCard2: React.FC<MatchCardProps> = ({ match }) => {
   //   return () => clearInterval(interval);
   // }, [match.time]);
 
-  const [daysLeft, setDaysLeft] = useState(0);
+//   const [daysLeft, setDaysLeft] = useState(0);
+  const [clicked, setClicked] = useState(0);
 
-  const currentDate = new Date().toJSON().slice(0, 10);
-  console.log(currentDate); // "2022-06-17"
+//   const currentDate = new Date().toJSON().slice(0, 10);
+//   console.log(currentDate); // "2022-06-17"
 
-  useEffect(() => {
-    const calculateDays = () => {
-      const target = new Date(match.matchDate);
-      target.setHours(0, 0, 0, 0);
+//   useEffect(() => {
+//     const calculateDays = () => {
+//       const target = new Date(match.matchDate);
+//       target.setHours(0, 0, 0, 0);
 
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
+//       const today = new Date();
+//       today.setHours(0, 0, 0, 0);
 
-      const difference = target.getTime() - today.getTime();
-      const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
+//       const difference = target.getTime() - today.getTime();
+//       const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
 
-      setDaysLeft(days);
-    };
+//       setDaysLeft(days);
+//     };
 
-    calculateDays();
-    // Update daily at midnight
-    const timer = setInterval(calculateDays, 24 * 60 * 60 * 1000);
+//     calculateDays();
+//     // Update daily at midnight
+//     const timer = setInterval(calculateDays, 24 * 60 * 60 * 1000);
 
-    return () => clearInterval(timer);
-  }, [match.matchDate]);
+//     return () => clearInterval(timer);
+//   }, [match.matchDate]);
 
   return (
-    <div className="flex flex-col justify-between w-full bg-white rounded-lg shadow-md p-4">
+    <div className="flex flex-col">
+        
+    <div className="flex flex-col justify-between w-full bg-white rounded-lg shadow-md p-4 my-3">
       <div className="flex justify-between items-center my-4">
         <div className="flex gap-2">
           <div className="flex flex-col items-center">
@@ -102,12 +106,24 @@ export const MatchCard2: React.FC<MatchCardProps> = ({ match }) => {
         </div>
 
         <div className="flex flex-col items-center">
-          <div className=" text-red-500 bg-red-50 px-3 py-1 rounded-md">
-            {/* {hoursLeft !== 0 ? `${hoursLeft}h:` : ``}
-              {minLeft}m:{secLeft}s */}
-            {daysLeft > 0 ? `${daysLeft} days left` : `${Math.abs(daysLeft)} days ago`}
+          <div className="flex text-red-500 bg-red-50 px-3 py-1 rounded-md">
+            {/* {daysLeft > 0 ? `${daysLeft} days left` : `${Math.abs(daysLeft)} days ago`} */}
+            {clicked? "Hide Lineup" : "Show Lineup"} 
+            <button onClick={()=>setClicked(1-clicked)}>
+                {clicked?
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                </svg>
+                :
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+              }
+            </button>
+            
+
           </div>
-          <div className="text-gray-500">{match.matchDate}</div>
+          {/* <div className="text-gray-500">{match.matchDate}</div> */}
         </div>
 
         <div className="flex gap-2">
@@ -118,6 +134,8 @@ export const MatchCard2: React.FC<MatchCardProps> = ({ match }) => {
           <p className="font-medium mt-3">{match.teamB.slice(0, 3)}</p>
         </div>
       </div>
+    </div>
+      {clicked ? <PlayerList2/> : null}
     </div>
   );
 };
