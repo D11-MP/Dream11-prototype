@@ -1,4 +1,3 @@
-import { min } from "date-fns";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -29,6 +28,7 @@ export default {
         plusHover: "#BFFF8DB2",
         minusButton: "#FFC0C0ED",
         minusHover: "#FFA0A0B2",
+        bothead: "#FDE8E8",
       },
       spacing: {
         "1/2": "50%",
@@ -53,6 +53,11 @@ export default {
         "yellow-end": "#FFE099",
         "gray-start": "#E5E5E5",
         "gray-end": "#AAAAAA",
+        purple: "#5C5CFE",
+        pink: "#E94986",
+      },
+      fontSize: {
+        xxs: "0.625rem",
       },
     },
   },

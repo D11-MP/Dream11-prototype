@@ -16,7 +16,7 @@ export default function Page({ params }: { params: Promise<Params> }) {
   if (!id) return <p>Loading...</p>;
 
   return (
-    <div>
+    <div className="bg-[url('/bg.png')] bg-cover bg-center">
       <h1 className="text-3xl font-medium text-center pt-8 pb-2">
         Let{"'"}s Craft Your Perfect{" "}
         <span className="text-authButton">Dream</span> Squad!
