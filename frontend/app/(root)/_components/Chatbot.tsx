@@ -1,6 +1,38 @@
-import Image from "next/image";
+"use client";
 
-export default function chatbot() {
+import Image from "next/image";
+import { CreateChat, GenerateChat } from "@/lib/actions/chat.actions";
+import { useEffect, useState } from "react";
+
+export default function Chatbot() {
+  const [chatId, setChatId] = useState("");
+  const [prompt, setPrompt] = useState("");
+  const [chat, setChat] = useState({});
+
+  useEffect(() => {
+    const initializeChat = async () => {
+      try {
+        const response = await CreateChat();
+        setChatId(response.chat_id);
+      } catch {
+        console.error("Invalid");
+      }
+    };
+    initializeChat();
+  }, []);
+
+  //   useEffect(() => {
+  //     const genChat = async () => {
+  //       try {
+  //         const response = await GenerateChat({ id: chatId, prompt: prompt });
+  //         setChat(response.chat);
+  //       } catch {
+  //         console.error();
+  //       }
+  //     };
+  //     genChat()
+  //   });
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md flex flex-col p-4">
@@ -29,7 +61,7 @@ export default function chatbot() {
           {/* Added `pb-6` for gap */}
           {/* Bot Message */}
           <div className="flex justify-start">
-            <div className="flex w-fit h-fit">
+            <div className="flex w-fit">
               <Image
                 src="/bot.png"
                 alt="An example image"
@@ -50,14 +82,13 @@ export default function chatbot() {
           </div>
           {/* Bot Message */}
           <div className="flex justify-start">
-            <div className="flex">
+            <div className="flex w-fit">
               <Image
                 src="/bot.png"
                 alt="An example image"
                 width={50}
                 height={50}
                 className="p-1"
-                style={{ height: "50px", width: "50px", objectFit: "cover" }}
               />
               <div className="px-3 py-2 rounded-lg text-sm bg-gray-100 ">
                 Yes, you can change the date of your reservation upto seven days
@@ -68,15 +99,15 @@ export default function chatbot() {
         </div>
 
         {/* Input Box */}
-        <div className="flex items-center p-3 border-t mt-2">
+        <div className="flex items-center p-3 bg-gray-100 border-t mt-2">
           {" "}
           {/* Added `mt-2` for gap */}
           <input
             type="text"
-            placeholder="Type here..."
+            placeholder="Type your message..."
             className="flex-1 px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-purple-500"
           />
-          <button className="ml-2 px-4 py-2 bg-gradient-to-r from-purple to-pink text-white rounded-lg hover:bg-purple-500">
+          <button className="ml-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500">
             Send
           </button>
         </div>

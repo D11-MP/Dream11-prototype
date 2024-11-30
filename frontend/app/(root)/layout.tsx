@@ -1,7 +1,7 @@
 "use client";
 
 import Topnav from "./_components/topnav";
-//import Chatbot from "./_components/Chatbot";
+import Chatbot from "./_components/Chatbot";
 
 export default function RootLayout({
   children,
@@ -18,9 +18,9 @@ export default function RootLayout({
           <div className="min-h-screen w-[1222px] mx-auto my-0 flex justify-center">
             <div className="flex flex-col min-h-screen ">
               <div>{children}</div>
-              {/* <div className="bottom-0 right-0 fixed">
+              <div className="bottom-0 right-0 fixed">
                 <Chatbot />
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

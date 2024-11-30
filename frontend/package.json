@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "@next/font": "^14.2.15",
     "antd": "^5.22.2",
     "axios": "^1.7.8",
     "bcryptjs": "^2.4.3",
+    "gemini-api": "^2.0.4",
     "mongoose": "^8.8.3",
     "next": "^15.0.3",
     "next-auth": "^4.24.10",
