@@ -291,7 +291,7 @@ const AdvancedProps = () => {
           </div>
         </div>
       )}
-      <div className="w-[100%] flex justify-between px-4 py-8 border-t-2">
+      <div className="w-[100%] flex justify-between px-4 py-8 border-b-2">
         <p>Lock in/out players</p>
         <label className="switch">
           <input

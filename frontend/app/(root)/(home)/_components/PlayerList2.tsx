@@ -9,7 +9,7 @@ const PlayerList2 = () => {
     const team1 = players.slice(0, 10);
     const team2 = players.slice(11, 21);
   return (
-    <div className='flex flex-col bg-white rounded-lg shadow-md'>
+    <div className='flex flex-col bg-white rounded-lg shadow-md py-5'>
         <div className='flex gap-3 m-3 justify-between items-center '> 
             <div className='flex items-center gap-2 '>
                 <Image alt="Home Team Logo" height={35} width={35} src={ind} className='h-fit '/>
@@ -24,6 +24,7 @@ const PlayerList2 = () => {
                 ))}
             </div>
         </div>
+        <hr className='w-11/12 mx-auto bg-gray '/>
         <div className='flex gap-3 m-3 justify-center items-center '> 
             <div className='flex items-center gap-2 '>
                 <Image alt="Home Team Logo" height={35} width={35} src={aus} className='h-fit '/>
