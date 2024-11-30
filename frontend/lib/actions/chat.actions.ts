@@ -4,6 +4,8 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import ChatModel from "../../models/chat";
 import dbConnect from "../dbConnect";
 
+import mongoose from "mongoose";
+
 async function handleGenerate(prompt: string): Promise<string | null> {
   try {
     const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!);
@@ -30,7 +32,7 @@ export async function CreateChat() {
     return {
       message: "Chat created successfully",
       status: 201,
-      chat_id: chatCreated._id,
+      chat_id: chatCreated._id.toString(),
     };
   } catch (error) {
     console.error("Error creating chat:", error);
@@ -40,9 +42,6 @@ export async function CreateChat() {
     };
   }
 }
-
-import mongoose from "mongoose";
-
 export async function GenerateChat(request: { id: string; prompt: string }) {
   try {
     if (!request?.id || !request?.prompt) {
@@ -52,10 +51,10 @@ export async function GenerateChat(request: { id: string; prompt: string }) {
     await dbConnect();
     const { id, prompt } = request;
     const res = await handleGenerate(prompt);
-
     const objectId = new mongoose.Types.ObjectId(id);
 
     const chat = await ChatModel.findById(objectId);
+
     if (!chat) {
       return { message: "Chat not found", status: 404 };
     }
@@ -67,35 +66,15 @@ export async function GenerateChat(request: { id: string; prompt: string }) {
     });
 
     await chat.save();
-    return { message: "Chat updated successfully", status: 200, chat };
+    return {
+      message: "Chat updated successfully",
+      status: 200,
+      response: res,
+    };
   } catch (error) {
     console.error("Error generating chat:", error);
     return {
       message: "Error generating chat",
-      status: 500,
-    };
-  }
-}
-
-export async function getChat(request: { id: string }) {
-  try {
-    if (!request?.id) {
-      return { message: "Invalid request data", status: 400 };
-    }
-
-    await dbConnect();
-    const { id } = request;
-    const chat = await ChatModel.findOne({ id });
-
-    if (chat) {
-      return { chat, status: 200 };
-    }
-
-    return { message: "Chat not found", status: 404 };
-  } catch (error) {
-    console.error("Error fetching chat:", error);
-    return {
-      message: "Error fetching chat",
       status: 500,
     };
   }

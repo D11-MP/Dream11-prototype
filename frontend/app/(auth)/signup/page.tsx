@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Form } from "@/types";
 import axios from "axios";
@@ -8,28 +8,27 @@ import { useRouter } from "next/navigation";
 import { signup } from "@/lib/actions/user.actions";
 
 export default function Signup() {
-
   const [formData, setFormData] = useState<Form>({});
-  const [errorMsg , setErrorMsg] = useState<string>('');
+  const [errorMsg, setErrorMsg] = useState<string>("");
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]:e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  async function handleSignUp(e:React.FormEvent) {
+  async function handleSignUp(e: React.FormEvent) {
     e.preventDefault();
     try {
       // const reponse = await axios.post('/api/auth/signup', formData);
       const reponse = await signup(formData);
-      if(reponse.status !== 201) throw new Error(reponse.message);
-      router.replace('/login');
-      console.log('SignUp Successful');
-    } catch (error:any) {
+      if (reponse.status !== 201) throw new Error(reponse.message);
+      router.replace("/login");
+      console.log("SignUp Successful");
+    } catch (error: any) {
       setErrorMsg(error.message);
-      setTimeout(()=>{
-        setErrorMsg('')
-      },5000)
+      setTimeout(() => {
+        setErrorMsg("");
+      }, 5000);
     }
   }
 
@@ -156,9 +155,7 @@ export default function Signup() {
           </Link>
         </div>
       </form>
-      <div className="flex mt-2 text-red-500 text-sm font-bold">
-        {errorMsg}
-      </div>
+      <div className="flex mt-2 text-red-500 text-sm font-bold">{errorMsg}</div>
     </div>
   );
 }

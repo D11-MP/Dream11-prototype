@@ -1,36 +1,90 @@
 "use client";
 
 import Image from "next/image";
-import { CreateChat } from "@/lib/actions/chat.actions";
-import { useEffect, useState } from "react";
+import { CreateChat, GenerateChat } from "@/lib/actions/chat.actions";
+import { useEffect, useRef, useState } from "react";
 
-export default function Chatbot() {
+interface ChatItem {
+  prompt: string;
+  response: string;
+}
+
+export default function Chatbot({
+  setShowChatbot,
+}: {
+  setShowChatbot: (show: boolean) => void;
+}) {
   const [chatId, setChatId] = useState("");
+  const [prompt, setPrompt] = useState("");
+  const [chats, setChats] = useState<ChatItem[]>([]);
+  const [loading, setLoading] = useState(false);
+  const chatContainerRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     const initializeChat = async () => {
       try {
         const response = await CreateChat();
-        console.log(response);
         setChatId(response.chat_id);
-      } catch (error) {
-        console.error(error);
+      } catch {
+        console.error("Invalid");
       }
     };
     initializeChat();
   }, []);
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  }, [chats]);
+
+  const handleGenerate = async () => {
+    if (!prompt) return;
+    const newChats = [...chats, { prompt, response: "Thinking..." }];
+    setChats(newChats);
+    setPrompt("");
+    setLoading(true);
+
+    try {
+      const res = await GenerateChat({ id: chatId, prompt: prompt });
+      const updatedChats = [...newChats];
+      updatedChats[updatedChats.length - 1].response =
+        res.response || "I'm sorry, I couldn't process that.";
+      setChats(updatedChats);
+    } catch (error) {
+      console.error(error);
+      const updatedChats = [...newChats];
+      updatedChats[updatedChats.length - 1].response =
+        "An error occurred. Please try again.";
+      setChats(updatedChats);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-md flex flex-col p-4">
-        {/* Header */}
-        <div className="bg-bothead text-white py-2 px-4 rounded-t-lg">
+    <div className="flex items-center justify-center">
+      <div className="w-full bg-white rounded-lg shadow-md flex flex-col min-h-[600px] max-h-[600px] min-w-[350px] max-w-[350px] relative">
+        <div
+          onClick={() => setShowChatbot(false)}
+          className="absolute top-1 right-2 text-2xl mx-2 my-1 font-medium text-gray-400 cursor-pointer"
+        >
+          ×
+        </div>
+
+        <div className="bg-bothead text-white pt-3 pb-2 px-4 rounded-t-lg">
           <div className="flex">
-            <Image
-              src="/bot.png"
-              alt="An example image"
-              width={50}
-              height={50}
-              className="p-1"
-            />
+            <div className="w-12 h-12">
+              <Image
+                src="/bot.png"
+                alt="An example image"
+                width={50}
+                height={50}
+                className="p-1"
+              />
+            </div>
+
             <div>
               <div className="text-xxs mb-0 text-gray-500">Chat with</div>
               <div className="font-medium text-lg bg-clip-text text-transparent bg-gradient-to-r from-purple to-pink ">
@@ -40,59 +94,62 @@ export default function Chatbot() {
           </div>
         </div>
 
-        {/* Chat Body */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-3 pb-48">
-          {" "}
-          {/* Added `pb-6` for gap */}
-          {/* Bot Message */}
-          <div className="flex justify-start">
-            <div className="flex w-fit">
+        <div
+          ref={chatContainerRef}
+          className="flex-1 overflow-y-scroll p-4 space-y-3"
+        >
+          <div className="mr-10 flex justify-start items-start space-x-3">
+            <div className="w-12 h-12 flex-shrink-0">
               <Image
                 src="/bot.png"
-                alt="An example image"
-                width={50}
-                height={50}
-                className="p-1"
+                alt="Bot avatar"
+                width={48}
+                height={48}
+                className="object-cover rounded-full"
               />
-              <div className="px-3 py-2 rounded-lg text-sm bg-gray-100 ">
-                👋Hi there! How can I help you?
+            </div>
+            <div className="px-3 py-2 rounded-lg text-sm bg-gray-100">
+              Hi there! How can I help you today?
+            </div>
+          </div>
+          {chats.map((item, index) => (
+            <div key={index}>
+              <div className="flex justify-end mb-3">
+                <div className="ml-10 px-3 py-2 rounded-lg max-w-xs text-sm text-white bg-gradient-to-r from-purple to-pink">
+                  {item.prompt}
+                </div>
+              </div>
+              <div className="mr-10 flex justify-start items-start space-x-3">
+                <div className="w-12 h-12 flex-shrink-0">
+                  <Image
+                    src="/bot.png"
+                    alt="Bot avatar"
+                    width={48}
+                    height={48}
+                    className="object-cover rounded-full"
+                  />
+                </div>
+                <div className="px-3 py-2 rounded-lg text-sm bg-gray-100">
+                  {item.response}
+                </div>
               </div>
             </div>
-          </div>
-          {/* User Message */}
-          <div className="flex justify-end">
-            <div className="ml-10 px-3 py-2 rounded-lg max-w-xs text-sm text-white bg-gradient-to-r from-purple to-pink">
-              Can I change the date of my reservation?
-            </div>
-          </div>
-          {/* Bot Message */}
-          <div className="flex justify-start">
-            <div className="flex w-fit">
-              <Image
-                src="/bot.png"
-                alt="An example image"
-                width={50}
-                height={50}
-                className="p-1"
-              />
-              <div className="px-3 py-2 rounded-lg text-sm bg-gray-100 ">
-                Yes, you can change the date of your reservation upto seven days
-                in advance.
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
 
-        {/* Input Box */}
-        <div className="flex items-center p-3 bg-gray-100 border-t mt-2">
-          {" "}
-          {/* Added `mt-2` for gap */}
+        <div className="flex items-center p-3 mt-2">
           <input
             type="text"
             placeholder="Type your message..."
-            className="flex-1 px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-purple-500"
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            className="flex-1 px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-rose-500"
           />
-          <button className="ml-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500">
+          <button
+            onClick={handleGenerate}
+            className="ml-2 px-4 py-2 bg-rose-400 text-white rounded-lg hover:bg-rose-500"
+            disabled={loading}
+          >
             Send
           </button>
         </div>
