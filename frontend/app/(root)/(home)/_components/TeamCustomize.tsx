@@ -4,8 +4,13 @@ import Link from "next/link";
 import { useState } from "react";
 import AdvancedProps from "./AdvancedProps";
 import axios from "axios";
+import { Data } from "../contest/[id]/dreamteam/page";
 
-export default function Page() {
+export interface TeamCustomizeProps {
+  setPlayer?: React.Dispatch<React.SetStateAction<Data | null>>;
+}
+
+export default function Page({ setPlayer }: TeamCustomizeProps) {
   const [selectedOption, setSelectedOption] = useState("Beginner");
   const [country, setCountry] = useState("India");
 
@@ -89,7 +94,7 @@ export default function Page() {
             </div>
           </div>
         ) : (
-          <AdvancedProps />
+          <AdvancedProps setPlayer={setPlayer} />
         )}
       </div>
       {/* <Link

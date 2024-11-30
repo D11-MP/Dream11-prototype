@@ -5,8 +5,9 @@ import "../styles/toggleButton.css";
 import { useState } from "react";
 import { Slider } from "antd";
 import PlayerList from "./PlayerList";
+import { TeamCustomizeProps } from "./TeamCustomize";
 
-const AdvancedProps = () => {
+const AdvancedProps = ({setPlayer}:TeamCustomizeProps) => {
   const [toggleOptions, setToggleOptions] = useState({
     one: 0,
     two: 0,
@@ -297,7 +298,7 @@ const AdvancedProps = () => {
           <span className="slider round"></span>
         </label>
       </div>
-      {toggleOptions.four === 1 && <PlayerList />}
+      {toggleOptions.four === 1 && <PlayerList setPlayer={setPlayer} />}
     </>
   );
 };
