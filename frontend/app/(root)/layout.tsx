@@ -12,13 +12,13 @@ export default function RootLayout({
     <>
   
       <div className="min-h-screen">
-      <div  className="w-full">
+      <div  className="w-full fixed z-20">
         <Topnav/>
       </div>
       <div className="bg-page_bg_color w-full">
         <div className="min-h-screen w-[1222px] mx-auto my-0 flex justify-center">
           <div className="flex flex-col min-h-screen">
-            <div>
+            <div className="mt-[120px]">
               {children}
             </div>
           </div>
