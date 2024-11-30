@@ -1,17 +1,24 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { useState } from "react";
 import AdvancedProps from "./AdvancedProps";
 import axios from "axios";
 
 export default function Page() {
+  const router = useRouter();
+
   const [selectedOption, setSelectedOption] = useState("Beginner");
   const [country, setCountry] = useState("India");
 
   async function runModel() {
     const data = await axios.get("http://localhost:3000/api/model_runner");
     console.log(data);
+    const res = await axios.get("http://localhost:3000/api/parse_csv");
+    if(res.status===200){
+      router.push("/contest/123/dreamteam")
+    }
   }
 
   return (
@@ -97,11 +104,11 @@ export default function Page() {
         type="submit"
         className="w-full mb-5 bg-red-600 text-sm text-white py-3 px-4 rounded-md hover:bg-red-700 flex gap-2 justify-center items-center"
       > */}
-      <Link
-        href="/contest/123/dreamteam"
-        type="submit"
+      <div
+        // href="/contest/123/dreamteam"
+        // type="submit"
         onClick={runModel}
-        className="w-full mb-5 bg-red-600 text-sm text-white py-3 px-4 rounded-md hover:bg-red-700 flex gap-2 justify-center items-center"
+        className="w-full mb-5 bg-red-600 text-sm text-white py-3 px-4 rounded-md hover:bg-red-700 flex gap-2 justify-center items-center cursor-pointer"
       >
         <Image
           src="/Vector.png"
@@ -110,7 +117,7 @@ export default function Page() {
           height={20}
         />
         <div className="mt-1">Generate Team</div>
-      </Link>
+      </div>
       {/* </div> */}
     </div>
   );
