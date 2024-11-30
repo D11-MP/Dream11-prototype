@@ -16,14 +16,13 @@ const ChatSchema: Schema<Chat> = new Schema({
     {
       prompt: { type: String, required: true },
       response: { type: String, required: true },
-      timestamp: { type: Date, required: true, default: Date.now() },
+      timestamp: { type: Date, required: true, default: Date.now },
     },
   ],
-  createdAt: { type: Date, required: true, default: Date.now() },
+  createdAt: { type: Date, required: true, default: Date.now },
 });
 
 const ChatModel =
-  (mongoose.models.Chat as mongoose.Model<Chat>) ||
-  mongoose.model<Chat>("User", ChatSchema);
+  mongoose.models.Chat || mongoose.model<Chat>("Chat", ChatSchema);
 
 export default ChatModel;

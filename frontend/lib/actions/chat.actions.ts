@@ -19,15 +19,18 @@ async function handleGenerate(prompt: string): Promise<string | null> {
 export async function CreateChat() {
   try {
     await dbConnect();
+
     const chatCreated = new ChatModel({
       prompts: [],
       createdAt: Date.now(),
     });
+
     await chatCreated.save();
+
     return {
       message: "Chat created successfully",
       status: 201,
-      chat: chatCreated,
+      chat_id: chatCreated._id,
     };
   } catch (error) {
     console.error("Error creating chat:", error);
@@ -38,6 +41,8 @@ export async function CreateChat() {
   }
 }
 
+import mongoose from "mongoose";
+
 export async function GenerateChat(request: { id: string; prompt: string }) {
   try {
     if (!request?.id || !request?.prompt) {
@@ -46,33 +51,20 @@ export async function GenerateChat(request: { id: string; prompt: string }) {
 
     await dbConnect();
     const { id, prompt } = request;
-    const response = await handleGenerate(prompt);
+    const res = await handleGenerate(prompt);
 
-    if (!response) {
-      return { message: "Failed to generate response", status: 500 };
-    }
+    const objectId = new mongoose.Types.ObjectId(id);
 
-    let chat = await ChatModel.findOne({ id });
-
+    const chat = await ChatModel.findById(objectId);
     if (!chat) {
-      chat = new ChatModel({
-        id,
-        prompts: [
-          {
-            prompt,
-            response,
-            timestamp: new Date(),
-          },
-        ],
-        createdAt: Date.now(),
-      });
-    } else {
-      chat.prompts.push({
-        prompt,
-        response,
-        timestamp: new Date(),
-      });
+      return { message: "Chat not found", status: 404 };
     }
+
+    chat.prompts.push({
+      prompt,
+      response: res ?? "",
+      timestamp: new Date(),
+    });
 
     await chat.save();
     return { message: "Chat updated successfully", status: 200, chat };
