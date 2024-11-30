@@ -29,14 +29,14 @@ export default function Page({ params }: { params: Promise<Params> }) {
       {commentator && (
         <div
           style={{ width: "100vw", height: "100vh" }}
-          className="fixed left-0 top-0 flex justify-center items-center z-30"
+          className="fixed left-0 top-0 flex justify-center items-center z-30 "
         >
           <Commentator close={setCommentator} open={commentator} />
         </div>
       )}
 
       <div>
-        <h1 className="text-3xl font-medium text-center pt-8 pb-2">
+        <h1 className="text-3xl font-medium text-center pt-8 pb-2 ">
           Let{"'"}s Craft Your Perfect{" "}
           <span className="text-authButton">Dream</span> Squad!
         </h1>

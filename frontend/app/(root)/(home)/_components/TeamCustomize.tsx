@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import AdvancedProps from "./AdvancedProps";
 import axios from "axios";
@@ -16,13 +16,13 @@ export default function Page() {
     const data = await axios.get("http://localhost:3000/api/model_runner");
     console.log(data);
     const res = await axios.get("http://localhost:3000/api/parse_csv");
-    if(res.status===200){
-      router.push("/contest/123/dreamteam")
+    if (res.status === 200) {
+      router.push("/contest/123/dreamteam");
     }
   }
 
   return (
-    <div className="p-6 bg-white rounded-lg">
+    <div className="p-6 bg-white rounded-lg ">
       <h1 className="font-medium text-2xl mb-2">Customize your team</h1>
       <p className="text-sm text-gray-400 mb-4">
         Select inputs to help AI customize your dream team

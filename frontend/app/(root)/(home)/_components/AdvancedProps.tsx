@@ -32,7 +32,7 @@ const AdvancedProps = () => {
 
   return (
     <>
-      <div className="w-[100%] flex justify-between px-4 py-8 border-b-2 bg-[url('/bg.png')] bg-cover bg-center">
+      <div className="w-[100%] flex justify-between px-4 py-8 border-b-2">
         <p>Select Team Balance</p>
         <label className="switch">
           <input

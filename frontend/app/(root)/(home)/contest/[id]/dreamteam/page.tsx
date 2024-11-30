@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import final from "@/uploads/final.json"
+import final from "@/uploads/final.json";
 
 interface Data {
   name: string;
@@ -132,11 +132,11 @@ export default function Page() {
   const [selectedPlayer, setSelectedPlayer] = useState<Data | null>(null);
 
   const handlePlayerClick = (index: number) => {
-    jsonData[index].name = final[index].name
+    jsonData[index].name = final[index].name;
     setSelectedPlayer(jsonData[index]);
   };
   return (
-    <div className="flex flex-col w-full text-center pb-10">
+    <div className="flex flex-col w-full text-center pb-10 ">
       <div>
         <h1 className="text-3xl font-medium text-center pt-8 pb-2">
           Congratulation! We did a{" "}
