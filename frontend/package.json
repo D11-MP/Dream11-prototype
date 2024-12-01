@@ -15,6 +15,7 @@
     "axios": "^1.7.8",
     "bcryptjs": "^2.4.3",
     "gemini-api": "^2.0.4",
+    "chart.js": "^4.4.6",
     "mongoose": "^8.8.3",
     "next": "^15.0.3",
     "next-auth": "^4.24.10",
