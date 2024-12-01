@@ -252,7 +252,12 @@ const AdvancedProps = ({setPlayer}:TeamCustomizeProps) => {
           <input
             type="checkbox"
             value={toggleOptions.three}
-            onChange={() => setToggleOptions((prev) => ({ ...prev, three: 1 }))}
+            onChange={() =>
+                setToggleOptions((prev) => ({
+                  ...prev,
+                  three: toggleOptions.three === 0 ? 1 : 0,
+                }))
+              }
           />
           <span className="slider round"></span>
         </label>
@@ -287,18 +292,25 @@ const AdvancedProps = ({setPlayer}:TeamCustomizeProps) => {
           </div>
         </div>
       )}
-      <div className="w-[100%] flex justify-between px-4 py-8 border-t-2">
+      <div className="w-[100%] flex justify-between px-4 py-8 border-b-2">
         <p>Lock in/out players</p>
         <label className="switch">
           <input
             type="checkbox"
             value={toggleOptions.four}
-            onChange={() => setToggleOptions((prev) => ({ ...prev, four: 1 }))}
+            onChange={() =>
+                setToggleOptions((prev) => ({
+                  ...prev,
+                  four: toggleOptions.four === 0 ? 1 : 0,
+                }))
+              }
           />
           <span className="slider round"></span>
         </label>
       </div>
+       <div className="mx-[-28px]">
       {toggleOptions.four === 1 && <PlayerList setPlayer={setPlayer} />}
+        </div>
     </>
   );
 };

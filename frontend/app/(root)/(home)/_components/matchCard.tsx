@@ -141,13 +141,13 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match }) => {
             </p>
           </div>
           <div className="match-name" style={{ marginTop: "-8px" }}>
-            {match.teamA.slice(0, 3)}
+            {match.teamA.slice(0, 3).toUpperCase()}
           </div>
           <div style={{ marginTop: "-8px" }}>
             <Image width={20} height={20} alt="" src={vs.src} />
           </div>
           <div className="match-name" style={{ marginTop: "-8px" }}>
-            {match.teamB.slice(0, 3)}
+            {match.teamB.slice(0, 3).toUpperCase()}
           </div>
           <div className="match-logo flex flex-col justify-between items-center">
             <Image alt="" height={50} width={50} src={aus} />

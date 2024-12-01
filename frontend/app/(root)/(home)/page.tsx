@@ -18,19 +18,18 @@ export default function Home() {
   const session = useSession();
   const router = useRouter();
   return (
-    <div className="flex w-full justify-center gap-8 mt-10">
-      <div
-        className="flex-col w-[50%]"
-        onClick={() => {
-          console.log(session);
-          if (session.status !== "authenticated") router.replace("/login");
-        }}
-      >
-        <TopCarousel images={data2} />
-        <div className="flex-col mt-6">
-          <div className="matches-header flex justify-between items-center">
-            <p className="text-xl font-semibold">Upcoming Matches</p>
-            <div className="flex flex-row gap-2.5">
+
+  <div className="flex w-full py-3">
+    <div className="flex-col mx-8" onClick={()=>{
+      console.log(session)
+      if(session.status !== 'authenticated') router.replace('/login');
+    }}>
+      <TopCarousel images={data2} />
+      <div className="flex-col mt-6">
+        <div className="matches-header flex justify-between items-center">
+          <p className="text-xl font-semibold">Upcoming Matches</p>
+          <div className="flex flex-row gap-2.5">
+
               <input
                 type="text"
                 placeholder="Search Matches"

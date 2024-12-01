@@ -7,8 +7,8 @@ export const fetchNews = async (): Promise<Article[]> => {
     const today: Date = new Date();
     today.setDate(today.getDate() - 7);
     const year = today.getFullYear();
-    let month = today.getMonth() +1;
-    let day = today.getDate();
+    const month = today.getMonth() +1;
+    const day = today.getDate();
     const formattedMonth = month < 10 ? `0${month}` : `${month}`;
     const formattedDay = day < 10 ? `0${day}` : `${day}`; 
 
