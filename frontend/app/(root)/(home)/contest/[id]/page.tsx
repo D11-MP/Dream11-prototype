@@ -20,6 +20,8 @@ export default function Page({ params }: { params: Promise<Params> }) {
 
   const [commentator , setCommentator] = useState<boolean>(true);
 
+  const [clicked, setClicked] = React.useState<boolean>(false);
+
   
   useEffect(()=>{
   if(commentator) document.body.style.overflow = 'hidden';
@@ -45,18 +47,18 @@ export default function Page({ params }: { params: Promise<Params> }) {
         Our AI analyzes player stats and match data to quickly craft your
         perfect Dream11 team for you.
       </p>
-        <div className="flex ">
-            <div className="flex flex-col">
+        <div className="flex items-start w-[1222px] justify-center">
+            <div className="flex flex-col mx-3 w-[55%] ">
                 <div className="mt-8 border-t-8 w-full sticky top-[96px] z-10"  style={{borderTopColor:'#f6f6f9'}}>
                 <MatchCard2 match={matches[0]} />
                 </div>
                 <div className="mt-4 w-full">
-                <TeamCustomize setPlayer={setSelectedPlayer} />
+                <TeamCustomize setPlayer={setSelectedPlayer}  />
                 </div>
             </div>
             
-            {selectedPlayer && (
-                <div className="rounded-lg bg-white p-4 mt-8 w-[30%]">
+            {selectedPlayer  && (
+                <div className="rounded-lg bg-white p-4 mt-10 w-[45%]"style={{borderTopColor:'#f6f6f9'}}>
                 <PlayerStats player={selectedPlayer} />
             </div>
             )}

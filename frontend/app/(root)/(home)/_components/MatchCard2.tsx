@@ -95,7 +95,7 @@ export const MatchCard2: React.FC<MatchCardProps> = ({ match }) => {
   return (
     <div className="flex flex-col">
         
-    <div className="flex flex-col justify-between w-full bg-white rounded-lg shadow-md p-4 mb-3">
+    <div className="flex flex-col justify-between w-full bg-white rounded-lg shadow-md p-4 mb-1">
       <div className="flex justify-between items-center my-4">
         <div className="flex gap-2">
           <div className="flex flex-col items-center">

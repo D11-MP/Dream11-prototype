@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { useState } from "react";
 import AdvancedProps from "./AdvancedProps";
@@ -12,7 +11,7 @@ export interface TeamCustomizeProps {
   setPlayer?: React.Dispatch<React.SetStateAction<Data | null>>;
 }
 
-export default function Page({ setPlayer }: TeamCustomizeProps) {
+export default function Page({ setPlayer}: TeamCustomizeProps) {
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState("Beginner");
   const [country, setCountry] = useState("India");

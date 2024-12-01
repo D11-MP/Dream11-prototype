@@ -298,18 +298,20 @@ const AdvancedProps = ({setPlayer}:TeamCustomizeProps) => {
           <input
             type="checkbox"
             value={toggleOptions.four}
-            onChange={() =>
+            onChange={() =>{
+               
                 setToggleOptions((prev) => ({
                   ...prev,
                   four: toggleOptions.four === 0 ? 1 : 0,
-                }))
+                })) 
               }
+            }
           />
           <span className="slider round"></span>
         </label>
       </div>
        <div className="mx-[-28px]">
-      {toggleOptions.four === 1 && <PlayerList setPlayer={setPlayer} />}
+      {toggleOptions.four === 1 && <PlayerList setPlayer={setPlayer}/>}
         </div>
     </>
   );
