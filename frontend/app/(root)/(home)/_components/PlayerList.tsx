@@ -3,7 +3,7 @@ import PlayerCard from "./PlayerCard";
 import players from "./players";
 import { TeamCustomizeProps } from "./TeamCustomize";
 
-export default function Page({ setPlayer }: TeamCustomizeProps) {
+export default function Page({ setPlayer}: TeamCustomizeProps) {
   const team1 = players.slice(0, 10) as Data[];
   const team2 = players.slice(11, 21) as Data[];
   return (

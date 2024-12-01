@@ -12,16 +12,23 @@ type PlayerCardProps = {
   setPlayer?: React.Dispatch<React.SetStateAction<Data | null>>;
 };
 
-export default function PlayerCard({ player, setPlayer }: PlayerCardProps) {
+export default function PlayerCard({ player, setPlayer}: PlayerCardProps) {
+    const [clicked1, setClicked1] = React.useState<boolean>(true);
+    const handleClick = () =>{
+
+        setClicked1(!clicked1);
+
+        if(setPlayer){
+            setPlayer(clicked1 ? player : null);
+        }
+    }
   return (
-    <div className="flex items-center gap-3 justify-between my-2">
+    <div className="flex items-center justify-center mx-2 my-2 cursor-pointer" onClick={() => handleClick()}>
       <Image
         alt=""
         height={80}
         width={80}
         src={pic}
-        onClick={() => setPlayer && setPlayer(player)}
-        className="cursor-pointer"
       />
 
       <div className="flex flex-col items-start text-left w-full">
