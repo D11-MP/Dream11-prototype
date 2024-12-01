@@ -59,7 +59,7 @@ export default function Page({ params }: { params: Promise<Params> }) {
             
             {selectedPlayer  && (
                 <div className="rounded-lg bg-white p-4 mt-10 w-[45%]"style={{borderTopColor:'#f6f6f9'}}>
-                <PlayerStats player={selectedPlayer} />
+                <PlayerStats player={selectedPlayer} setSelectedPlayer={setSelectedPlayer}/>
             </div>
             )}
         </div>
