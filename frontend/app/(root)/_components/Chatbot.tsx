@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { CreateChat, GenerateChat } from "@/lib/actions/chat.actions";
+import { set } from "mongoose";
 
 interface ChatItem {
   prompt: string;
+  length: number;
   response: string;
 }
 
@@ -17,11 +19,13 @@ export default function Chatbot({
   const [chatId, setChatId] = useState("");
   const [prompt, setPrompt] = useState("");
   const [chats, setChats] = useState<ChatItem[]>([]);
-  const [loading, setLoading] = useState(false);
   const [recording, setRecording] = useState(false);
   const [audioURL, setAudioURL] = useState<string | null>(null);
+  const [length, setLength] = useState<number>(0);
+  const [file, setFile] = useState<File | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const initializeChat = async () => {
@@ -46,10 +50,9 @@ export default function Chatbot({
     if (e) e.preventDefault();
     if (!prompt) return;
 
-    const newChats = [...chats, { prompt, response: "Thinking..." }];
+    const newChats = [...chats, { prompt, response: "Thinking...", length: 0 }];
     setChats(newChats);
     setPrompt("");
-    setLoading(true);
 
     try {
       const res = await GenerateChat({ id: chatId, prompt });
@@ -64,14 +67,16 @@ export default function Chatbot({
         "An error occurred. Please try again.";
       setChats(updatedChats);
     } finally {
-      setLoading(false);
     }
   };
 
   const startRecording = async () => {
     try {
+      setPrompt("");
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mediaRecorder = new MediaRecorder(stream);
+      const mediaRecorder = new MediaRecorder(stream, {
+        mimeType: "audio/webm",
+      });
       mediaRecorderRef.current = mediaRecorder;
 
       const audioChunks: Blob[] = [];
@@ -83,10 +88,18 @@ export default function Chatbot({
         const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
         const audioUrl = URL.createObjectURL(audioBlob);
         setAudioURL(audioUrl);
+        const audioFile = new File([audioBlob], "audio.wav", {
+          type: "audio/wav",
+        });
+        setFile(audioFile);
       };
 
       mediaRecorder.start();
       setRecording(true);
+      setLength(0);
+      timerRef.current = setInterval(() => {
+        setLength((prev) => prev + 1);
+      }, 1000);
     } catch (err) {
       console.error("Error accessing microphone:", err);
     }
@@ -96,6 +109,51 @@ export default function Chatbot({
     if (mediaRecorderRef.current) {
       mediaRecorderRef.current.stop();
       setRecording(false);
+      if (audioURL) {
+        handleUpload(audioURL);
+      }
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+      setLength(0);
+    }
+  };
+
+  const handleUpload = async (audioUrl: string) => {
+    const formData = new FormData();
+
+    const newChats = [
+      ...chats,
+      { prompt: "None", response: "Thinking...", length: length },
+    ];
+    setChats(newChats);
+
+    if (file) {
+      formData.append("audio", file);
+    }
+    formData.append("id", chatId);
+
+    try {
+      const res = await fetch("/api/chatbot/GenerateChatWithAudio", {
+        method: "POST",
+        body: formData,
+      });
+      const updatedChats = [...newChats];
+      const responseJson = await res.json();
+      const responseText = responseJson.result.response;
+      updatedChats[updatedChats.length - 1].response =
+        responseText || "I'm sorry, I couldn't process that.";
+      setChats(updatedChats);
+
+      console.log(res);
+
+      if (res.ok) {
+        console.log("Audio uploaded successfully!");
+      } else {
+        console.error("Upload failed");
+      }
+    } catch (error) {
+      console.error("Error uploading audio:", error);
     }
   };
 
@@ -158,9 +216,13 @@ export default function Chatbot({
           {chats.map((item, index) => (
             <div key={index}>
               <div className="flex justify-end mb-3">
-                <div className="ml-10 px-3 py-2 rounded-lg max-w-xs text-sm text-white bg-gradient-to-r from-purple to-pink">
-                  {item.prompt}
-                </div>
+                {item.length === 0 ? (
+                  <div className="ml-10 px-3 py-2 rounded-lg max-w-xs text-sm text-white bg-gradient-to-r from-purple to-pink">
+                    {item.prompt}
+                  </div>
+                ) : (
+                  "Hi"
+                )}
               </div>
               <div className="mr-10 flex justify-start items-start space-x-3">
                 <div className="w-12 h-12 flex-shrink-0">
@@ -184,13 +246,19 @@ export default function Chatbot({
           onSubmit={(e) => handleGenerate(e)}
           className="flex relative items-center p-3 mt-2"
         >
-          <input
-            type="text"
-            placeholder="Type your message..."
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            className="flex-1 py-2 px-10 border rounded-lg outline-none focus:ring-2 focus:ring-rose-500"
-          />
+          {recording ? (
+            <div className="flex-1 py-2 px-10 border rounded-lg outline-none focus:ring-2 focus:ring-rose-500">
+              Recording...
+            </div>
+          ) : (
+            <input
+              type="text"
+              placeholder="Type your message..."
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              className="flex-1 py-2 px-10 border rounded-lg outline-none focus:ring-2 focus:ring-rose-500"
+            />
+          )}
           <svg
             onClick={handleRecordingToggle}
             xmlns="http://www.w3.org/2000/svg"
@@ -209,6 +277,7 @@ export default function Chatbot({
             )}
           </svg>
         </form>
+        {audioURL && <audio controls className="w-full" src={audioURL}></audio>}
       </div>
     </div>
   );
