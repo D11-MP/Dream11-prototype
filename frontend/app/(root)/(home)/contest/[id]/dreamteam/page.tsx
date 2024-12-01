@@ -1,18 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Image from "next/image";
+// <<<<<<< himank
+// import PlayerStats from "../../../_components/PlayerStats";
+// =======
 import final from "@/uploads/final.json"
+// >>>>>>> master
 
-interface Data {
-  name: string;
-  nationality: string;
-  role: string;
-  matchesPlayed: number;
-  dateOfBirth: string;
-  runsScored: number;
-  highestScore: number;
-  strikeRate: number;
+export interface Data {
+  name?: string;
+  nationality?: string;
+  role?: string;
+  matchesPlayed?: number;
+  dateOfBirth?: string;
+  runsScored?: number;
+  highestScore?: number;
+  strikeRate?: number;
+}
+
+export interface PlayerStatsProps {
+  player: Data | null;
 }
 
 const jsonData: Data[] = [
@@ -147,8 +155,8 @@ export default function Page() {
           perfect Dream11 team for you.
         </p>
       </div>
-      <div className="flex min-h-fit w-[80vw] mx-0 mt-8 gap-4">
-        <div className="w-[60%] h-screen bg-[url('/DreamTeam_BG.png')] bg-cover bg-center flex flex-col rounded-lg">
+      <div className="flex min-h-fit w-full mx-0 mt-8 gap-4 justify-center">
+        <div className="w-[50%] h-screen bg-[url('/DreamTeam_BG.png')] bg-cover bg-center flex flex-col rounded-lg">
           <div className="flex items-center justify-around">
             <div
               key={0}
@@ -390,33 +398,8 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <div className="w-[40%] rounded-lg bg-white p-4">
-          {selectedPlayer && (
-            <div>
-              <h2 className="text-xl font-bold">{selectedPlayer.name}</h2>
-              <p>
-                <strong>Role:</strong> {selectedPlayer.role}
-              </p>
-              <p>
-                <strong>Matches Played:</strong> {selectedPlayer.matchesPlayed}
-              </p>
-              <p>
-                <strong>Runs Scored:</strong> {selectedPlayer.runsScored}
-              </p>
-              <p>
-                <strong>Highest Score:</strong> {selectedPlayer.highestScore}
-              </p>
-              <p>
-                <strong>Strike Rate:</strong> {selectedPlayer.strikeRate}
-              </p>
-              <p>
-                <strong>Born:</strong> {selectedPlayer.dateOfBirth}
-              </p>
-              <p>
-                <strong>Nationality:</strong> {selectedPlayer.nationality}
-              </p>
-            </div>
-          )}
+        <div className="w-[30%] rounded-lg bg-white p-4">
+          {selectedPlayer && <PlayerStats player={selectedPlayer} />}
         </div>
       </div>
     </div>
