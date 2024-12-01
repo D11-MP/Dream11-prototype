@@ -22,6 +22,10 @@ export default function RootLayout({
             <div className="flex flex-col min-h-screen ">
               <div>{children}</div>
               <div className="bottom-6 right-6 fixed">
+                <Chatbot
+                  setShowChatbot={setShowChatbot}
+                  showChatbot={showChatbot}
+                />
                 {!showChatbot ? (
                   <Image
                     onClick={() => setShowChatbot(true)}
@@ -32,7 +36,7 @@ export default function RootLayout({
                     className="object-cover rounded-full"
                   />
                 ) : (
-                  <Chatbot setShowChatbot={setShowChatbot} />
+                  ""
                 )}
               </div>
             </div>

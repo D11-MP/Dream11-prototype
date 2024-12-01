@@ -11,8 +11,10 @@ interface ChatItem {
 
 export default function Chatbot({
   setShowChatbot,
+  showChatbot,
 }: {
   setShowChatbot: (show: boolean) => void;
+  showChatbot: boolean;
 }) {
   const [chatId, setChatId] = useState("");
   const [prompt, setPrompt] = useState("");
@@ -26,7 +28,7 @@ export default function Chatbot({
         const response = await CreateChat();
         setChatId(response.chat_id);
       } catch {
-        console.error("Invalid");
+        console.error("Error creating chat");
       }
     };
     initializeChat();
@@ -64,7 +66,10 @@ export default function Chatbot({
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div
+      className="flex items-center justify-center"
+      style={!showChatbot ? { display: "none" } : {}}
+    >
       <div className="w-full bg-white rounded-lg shadow-md flex flex-col min-h-[600px] max-h-[600px] min-w-[350px] max-w-[350px] relative">
         <div
           onClick={() => setShowChatbot(false)}
