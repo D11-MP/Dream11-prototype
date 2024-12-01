@@ -143,7 +143,7 @@ fs.createReadStream('./uploads/players-final.csv')
         playersJsContent += '];\n\nexport default players;';
 
         // Step 5: Write to players.js
-        fs.writeFile('./app/(root)/(home)/_components/players.js', playersJsContent, 'utf8', (err) => {
+        fs.writeFile('./uploads/admin/players.js', playersJsContent, 'utf8', (err) => {
           if (err) {
             console.error('Error writing players.js:', err);
           } else {
