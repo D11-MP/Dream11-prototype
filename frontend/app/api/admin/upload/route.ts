@@ -91,9 +91,7 @@ export async function POST(request: NextRequest) {
     const uploadsDir = path.join(process.cwd(), 'uploads', 'admin')
     await mkdir(uploadsDir, { recursive: true })
     
-    // Add timestamp to filename to prevent overwrites
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
-    const filename = `${timestamp}-${file.name}`
+    const filename = `Input_Format.csv`
     const filePath = path.join(uploadsDir, filename)
     
     await writeFile(filePath, buffer)

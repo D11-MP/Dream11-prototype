@@ -17,11 +17,13 @@ export default function Page({ setPlayer}: TeamCustomizeProps) {
   const [country, setCountry] = useState("India");
 
   async function runModel() {
-    const data = await axios.get("http://localhost:3000/api/model_runner");
+    const data = await axios.get("http://localhost:5000/predict");
     console.log(data);
-    const res = await axios.get("http://localhost:3000/api/parse_csv");
-    if(res.status===200){
-      router.push("/contest/123/dreamteam")
+    if(data.status === 200){
+      const res = await axios.get("http://localhost:3000/api/parse_csv");
+      if(res.status===200){
+        router.push("/contest/123/dreamteam")
+      }
     }
   }
 
