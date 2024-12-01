@@ -8,6 +8,7 @@ import axios from "axios";
 import c1 from '../assets/1.png'
 import c4 from '../assets/4.png'
 import c3 from '../assets/3.png'
+import c5 from '../../../../public/5.png'
 
 export default function Commentator({close,open}:{close:(value:boolean)=>void,open:boolean}){
     
@@ -19,7 +20,7 @@ export default function Commentator({close,open}:{close:(value:boolean)=>void,op
   const firstRender = useRef(true);
   const textRef = useRef<HTMLDivElement | null>(null);
   const firstRef = useRef(true);
-  const mascotImg:StaticImageData[] = [c1  , c3 , c4];
+  const mascotImg:StaticImageData[] = [c5];
   
   const pitchMap:any = {
     //this mapping will change based on the response received from the api
@@ -111,7 +112,7 @@ return (
           close(false)}}>Close</button>
 
         <div className="mascot-box absolute flex items-center w-full justify-center" style={{bottom:'0px',zIndex:'2'}}>
-            {mascotImg.length>0 && mascotImg[mascot] && <img src={mascotImg[mascot].src} alt="" style={{width:'40vw'}}/>}
+            {mascotImg.length>0 && mascotImg[mascot] && <img src={mascotImg[mascot].src} alt="" style={{width:'30vw'}}/>}
 
             <div ref={textRef} className="commentary-box w-1/2 p-3 border-2 rounded-lg border-white text-black mr-20 overflow-y-auto"
             style={{height:'fit-content' , background:'#ffc6a0' , maxHeight:'15vh'}}>  

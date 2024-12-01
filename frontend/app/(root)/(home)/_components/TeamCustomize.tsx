@@ -1,12 +1,10 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import AdvancedProps from "./AdvancedProps";
 import axios from "axios";
 import { Data } from "../contest/[id]/dreamteam/page";
-
 
 export interface TeamCustomizeProps {
   setPlayer?: React.Dispatch<React.SetStateAction<Data | null>>;
@@ -18,7 +16,7 @@ export default function Page({ setPlayer }: TeamCustomizeProps) {
   const [country, setCountry] = useState("India");
 
   async function runModel() {
-    const data = await axios.get("http://localhost:3000/api/model_runner");
+    const data = await axios.get("http://localhost:5000/predict");
     console.log(data);
     const res = await axios.get("http://localhost:3000/api/parse_csv");
     if (res.status === 200) {

@@ -20,6 +20,8 @@ export default function Page({ params }: { params: Promise<Params> }) {
 
   const [commentator, setCommentator] = useState<boolean>(true);
 
+  const [clicked, setClicked] = React.useState<boolean>(false);
+
   useEffect(() => {
     if (commentator) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "scroll";
@@ -63,7 +65,10 @@ export default function Page({ params }: { params: Promise<Params> }) {
 
           {selectedPlayer && (
             <div className="rounded-lg bg-white p-4 mt-8 w-[30%]">
-              <PlayerStats player={selectedPlayer} />
+              <PlayerStats
+                player={selectedPlayer}
+                setSelectedPlayer={setSelectedPlayer}
+              />
             </div>
           )}
         </div>

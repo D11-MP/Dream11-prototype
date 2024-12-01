@@ -1,8 +1,12 @@
 // app/admin/page.tsx
 'use client'
 import { useState } from 'react'
+import {useRouter} from 'next/navigation'
 
 export default function AdminUpload() {
+
+  const router = useRouter();
+
   const [status, setStatus] = useState('')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -16,6 +20,7 @@ export default function AdminUpload() {
       })
       if (res.ok) {
         setStatus('Upload successful')
+        router.push("/");
       } else {
         const error = await res.json()
         setStatus(error.message || 'Upload failed')

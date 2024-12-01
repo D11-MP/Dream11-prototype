@@ -1,31 +1,49 @@
 import fs from 'fs';
 import path from "path";
+import csv from "csv-parser";
 
-export function GET(){
-console.log(process.cwd())
-  const outputPath = path.join(process.cwd(), 'uploads', 'output.json');
-  const selectorPath = path.join(process.cwd(), 'uploads', 'selector.json');
+export function GET() {
+  console.log(process.cwd());
+  const finalCsvPath = path.join(process.cwd(), 'uploads', 'final.csv');
   const finalJsonPath = path.join(process.cwd(), 'uploads', 'final.json');
 
   try {
-    // Read and parse output.json
-    const outputData = JSON.parse(fs.readFileSync(outputPath, 'utf8'));
-    const players = [...outputData[0].playerA, ...outputData[0].playerB]; // Combine both player arrays
+    // Check if the CSV file exists
+    if (!fs.existsSync(finalCsvPath)) {
+      console.error("CSV file not found");
+      return Response.json({ status: "error", message: "CSV file not found" });
+    }
 
-    // Read and parse selector.json
-    const selectorData = JSON.parse(fs.readFileSync(selectorPath, 'utf8'));
+    const finalData = <any>[];
 
-    // Filter selector.json for the required players
-    const finalData = selectorData.filter((player:any) => players.includes(player.unique_name));
-
-    // Write final.json
-    fs.writeFileSync(finalJsonPath, JSON.stringify(finalData, null, 2));
-
-    // res.status(200).json({ message: 'final.json created successfully!', data: finalData });
-    return Response.json({"status": "success", "data": finalData})
-  } catch (error) {
+    // Read and parse the CSV file
+    return new Promise((resolve, reject) => {
+      fs.createReadStream(finalCsvPath)
+        .pipe(csv())
+        .on('data', (row) => {
+          // Transform the row by renaming fields
+          const transformedRow = {
+            name: row["Player Name"],
+            date_playing: row["Match Date"],
+            team: row["Squad"],
+            match_type: row["Format"],
+            predicted_points: row["Player Score"],
+          };
+          finalData.push(transformedRow); // Add the transformed row to finalData
+        })
+        .on('end', () => {
+          // Write the transformed data to the final.json file
+          fs.writeFileSync(finalJsonPath, JSON.stringify(finalData, null, 2));
+          console.log('final.json created successfully!');
+          resolve(Response.json({ status: "success", data: finalData }));
+        })
+        .on('error', (error) => {
+          console.error(error);
+          reject(Response.error());
+        });
+    });
+  } catch (error:any) {
     console.error(error);
-    return Response.error()
+    return Response.error();
   }
-
 }

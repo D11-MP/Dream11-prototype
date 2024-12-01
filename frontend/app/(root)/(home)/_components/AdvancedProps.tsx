@@ -7,7 +7,7 @@ import { Slider } from "antd";
 import PlayerList from "./PlayerList";
 import { TeamCustomizeProps } from "./TeamCustomize";
 
-const AdvancedProps = ({setPlayer}:TeamCustomizeProps) => {
+const AdvancedProps = ({ setPlayer }: TeamCustomizeProps) => {
   const [toggleOptions, setToggleOptions] = useState({
     one: 0,
     two: 0,
@@ -298,19 +298,19 @@ const AdvancedProps = ({setPlayer}:TeamCustomizeProps) => {
           <input
             type="checkbox"
             value={toggleOptions.four}
-            onChange={() =>
+            onChange={() => {
               setToggleOptions((prev) => ({
                 ...prev,
                 four: toggleOptions.four === 0 ? 1 : 0,
-              }))
-            }
+              }));
+            }}
           />
           <span className="slider round"></span>
         </label>
       </div>
-       <div className="mx-[-28px]">
-      {toggleOptions.four === 1 && <PlayerList setPlayer={setPlayer} />}
-        </div>
+      <div className="mx-[-28px]">
+        {toggleOptions.four === 1 && <PlayerList setPlayer={setPlayer} />}
+      </div>
     </>
   );
 };
