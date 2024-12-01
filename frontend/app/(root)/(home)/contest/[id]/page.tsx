@@ -30,37 +30,44 @@ export default function Page({ params }: { params: Promise<Params> }) {
 
   return (
     <>
-   { commentator &&
-    <div style={{width:'100vw',height:'100vh'}} className="fixed left-0 top-0 flex justify-center items-center z-30">
-    <Commentator close={setCommentator} open={commentator}/>
-    </div>}
-    
-    <div className="w-full">
-      <h1 className="text-3xl font-medium text-center pt-8 pb-2">
-        Let{"'"}s Craft Your Perfect{" "}
-        <span className="text-authButton">Dream</span> Squad!
-      </h1>
-      <p className="text-gray-400 text-center">
-        Our AI analyzes player stats and match data to quickly craft your
-        perfect Dream11 team for you.
-      </p>
-      <div className="flex gap-4 w-full justify-center">
-        <div className="w-[50%]">
-          <div className="mt-8 border-t-8 w-full sticky top-[96px] z-10" style={{borderTopColor:'#f6f6f9'}}>
-            <MatchCard2 match={matches[0]} />
-          </div>
-          <div className="mt-4 w-full">
-            <TeamCustomize setPlayer={setSelectedPlayer} />
-          </div>
+      {commentator && (
+        <div
+          style={{ width: "100vw", height: "100vh" }}
+          className="fixed left-0 top-0 flex justify-center items-center z-30"
+        >
+          <Commentator close={setCommentator} open={commentator} />
         </div>
+      )}
 
-        {selectedPlayer && (
-          <div className="rounded-lg bg-white p-4 mt-8 w-[30%]">
-            <PlayerStats player={selectedPlayer} />
+      <div className="w-full">
+        <h1 className="text-3xl font-medium text-center pt-8 pb-2">
+          Let{"'"}s Craft Your Perfect{" "}
+          <span className="text-authButton">Dream</span> Squad!
+        </h1>
+        <p className="text-gray-400 text-center">
+          Our AI analyzes player stats and match data to quickly craft your
+          perfect Dream11 team for you.
+        </p>
+        <div className="flex ">
+          <div className="flex flex-col">
+            <div
+              className="mt-8 border-t-8 w-full sticky top-[96px] z-10"
+              style={{ borderTopColor: "#f6f6f9" }}
+            >
+              <MatchCard2 match={matches[0]} />
+            </div>
+            <div className="mt-4 w-full">
+              <TeamCustomize setPlayer={setSelectedPlayer} />
+            </div>
           </div>
-        )}
+
+          {selectedPlayer && (
+            <div className="rounded-lg bg-white p-4 mt-8 w-[30%]">
+              <PlayerStats player={selectedPlayer} />
+            </div>
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 }

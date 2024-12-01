@@ -95,7 +95,7 @@ export const MatchCard2: React.FC<MatchCardProps> = ({ match }) => {
   return (
     <div className="flex flex-col">
         
-    <div className="flex flex-col justify-between w-full bg-white rounded-lg shadow-md p-4 my-3">
+    <div className="flex flex-col justify-between w-full bg-white rounded-lg shadow-md p-4 mb-3">
       <div className="flex justify-between items-center my-4">
         <div className="flex gap-2">
           <div className="flex flex-col items-center">
@@ -105,7 +105,7 @@ export const MatchCard2: React.FC<MatchCardProps> = ({ match }) => {
           <p className="font-medium mt-3">{match.teamA.slice(0, 3).toUpperCase()}</p>
         </div>
 
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center " >
           <button onClick={() => setClicked(1 - clicked)} className="flex cursor-pointer text-red-500 bg-red-50 px-3 py-1 rounded-md transition-all duration-300 ease-in-out">
             {/* {daysLeft > 0 ? `${daysLeft} days left` : `${Math.abs(daysLeft)} days ago`} */}
             {clicked ? "Hide Lineup" : "Show Lineup"} 
