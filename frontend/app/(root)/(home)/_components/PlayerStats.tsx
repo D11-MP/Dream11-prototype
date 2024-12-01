@@ -2,10 +2,12 @@ import { useEffect, useLayoutEffect } from "react";
 import Image from "next/image";
 import pic from "../../../../public/Player_Pic.png";
 import india from "../../../../public/india.png";
+import gola from '../../../../public/gola.png'
 import { Chart } from "chart.js/auto";
 import { PlayerStatsProps } from "../contest/[id]/dreamteam/page";
 
-const PlayerStats = ({ player }: PlayerStatsProps) => {
+const PlayerStats = ({ player , setSelectedPlayer }: PlayerStatsProps) => {
+
   useLayoutEffect(() => {
     const ctx = document.getElementById("myChart") as HTMLCanvasElement;
     const gctx = ctx.getContext("2d") as CanvasRenderingContext2D;
@@ -50,6 +52,16 @@ const PlayerStats = ({ player }: PlayerStatsProps) => {
 
   return (
     <>
+      <div className="flex justify-between w-[100%] h-[8%] px-4 py-5" 
+      style={{background:'linear-gradient(to left , #5C5CFE , #E94986)',borderTopLeftRadius:'1.25rem',borderTopRightRadius:'1.25rem'}}>
+        <Image src={gola} alt="" width={50} height={50}/>
+        <span className="w-[20px] h-[20px]" onClick={()=>setSelectedPlayer(null)}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="white" className="size-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+        </span>
+      </div>
+      <div className="p-4">
       <div className="flex justify-between gap-4 items-center p-2 mb-4">
         <div className="flex gap-2">
           <Image alt="" height={60} width={60} src={pic} />
@@ -128,11 +140,11 @@ const PlayerStats = ({ player }: PlayerStatsProps) => {
         <div className="flex-col shadow-md rounded-xl">
           <div className="flex justify-between px-4 py-4 text-md bg-[#F6F6F6] rounded-t-xl">
             <p className="text-gray-500">30+ Runs Scored</p>
-            <p className="text-authGradient2">20</p>
+            <p className="text-authGradient2">{player?.run30plus}</p>
           </div>
           <div className="flex justify-between px-4 py-4 text-md">
             <p className="text-gray-500">No. of Centuries and Half-Centuries</p>
-            <p className="text-authGradient2">24</p>
+            <p className="text-authGradient2">{player?.noOfCentHalfCent}</p>
           </div>
           <div className="flex justify-between px-4 py-4 text-md bg-[#F6F6F6] ">
             <p className="text-gray-500">Strike Rate</p>
@@ -140,11 +152,11 @@ const PlayerStats = ({ player }: PlayerStatsProps) => {
           </div>
           <div className="flex justify-between px-4 py-4 text-md">
             <p className="text-gray-500">Boundaries %</p>
-            <p className="text-authGradient2">65 %</p>
+            <p className="text-authGradient2">{player?.boundariesPercent} %</p>
           </div>
           <div className="flex justify-between px-4 py-4 text-md bg-[#F6F6F6] ">
             <p className="text-gray-500">Top Score%</p>
-            <p className="text-authGradient2">55 %</p>
+            <p className="text-authGradient2">{player?.topScorePercent} %</p>
           </div>
         </div>
       </div>
@@ -162,6 +174,7 @@ const PlayerStats = ({ player }: PlayerStatsProps) => {
           </select>
         </div>
         <canvas id="myChart" width="100%" height="60%"></canvas>
+      </div>
       </div>
     </>
   );
