@@ -2,7 +2,7 @@ import { useLayoutEffect } from "react";
 import Image from "next/image";
 import pic from "@/public/Player_Pic.png";
 import india from "@/public/india.png";
-import gola from '@/public/gola.png'
+import gola from '@/public/gola.svg'
 import { Chart } from "chart.js/auto";
 import { PlayerStatsProps } from "../contest/[id]/dreamteam/page";
 
