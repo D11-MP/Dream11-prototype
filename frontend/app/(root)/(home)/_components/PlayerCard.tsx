@@ -17,12 +17,17 @@ export interface PlayerCardProps {
     setCountLockOut?: React.Dispatch<React.SetStateAction<number>>;
 }
 
+<<<<<<< HEAD
+export default function PlayerCard({ player, setPlayer}: PlayerCardProps) {
+    const [clicked1, setClicked1] = React.useState<boolean>(true);
+=======
 export const inPlayers: Data[] = [];
 export const outPlayers: Data[] = [];
 export default function PlayerCard({player, setPlayer,setCountLockIn,setCountLockOut,countLockIn,countLockOut}: PlayerCardProps) {
     const [clicked1, setClicked1] = React.useState<boolean>(true);
     const [clickIn, setClickIn] = React.useState<boolean>(false);
     const [clickOut, setClickOut] = React.useState<boolean>(false);
+>>>>>>> b4c26f6c9c13a3bd92bc42a5755687e995326603
     const handleClick = () =>{
 
         setClicked1(!clicked1);
@@ -31,6 +36,10 @@ export default function PlayerCard({player, setPlayer,setCountLockIn,setCountLoc
             setPlayer(clicked1 ? player : null);
         }
     }
+<<<<<<< HEAD
+  return (
+    <div className="flex items-center justify-center mx-2 my-2 cursor-pointer" onClick={() => handleClick()}>
+=======
     function handleLockIn() {
         if(setCountLockIn && countLockIn){
             if(countLockIn<=3){
@@ -60,6 +69,7 @@ export default function PlayerCard({player, setPlayer,setCountLockIn,setCountLoc
     }
   return (
     <div className={`flex items-center justify-center mx-2 my-2 cursor-pointer`} >
+>>>>>>> b4c26f6c9c13a3bd92bc42a5755687e995326603
       <Image
         alt=""
         height={80}

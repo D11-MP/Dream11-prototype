@@ -1,8 +1,14 @@
 import { useLayoutEffect } from "react";
 import Image from "next/image";
+<<<<<<< HEAD
+import pic from "../../../../public/Player_Pic.png";
+import india from "../../../../public/india.png";
+import gola from '../../../../public/gola.png'
+=======
 import pic from "@/public/Player_Pic.png";
 import india from "@/public/india.png";
 import gola from '@/public/gola.png'
+>>>>>>> b4c26f6c9c13a3bd92bc42a5755687e995326603
 import { Chart } from "chart.js/auto";
 import { PlayerStatsProps } from "../contest/[id]/dreamteam/page";
 
@@ -56,7 +62,11 @@ const PlayerStats = ({ player , setSelectedPlayer }: PlayerStatsProps) => {
       style={{background:'linear-gradient(to left , #5C5CFE , #E94986)',borderTopLeftRadius:'1.25rem',borderTopRightRadius:'1.25rem'}}>
         <Image src={gola} alt="" width={50} height={50}/>
         <span className="w-[20px] h-[20px]" onClick={()=>setSelectedPlayer(null)}>
+<<<<<<< HEAD
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="white" className="size-6">
+=======
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="white" className="size-6 cursor-pointer">
+>>>>>>> b4c26f6c9c13a3bd92bc42a5755687e995326603
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
         </svg>
         </span>

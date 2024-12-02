@@ -1,11 +1,14 @@
 "use client";
 import Image from "next/image";
+<<<<<<< HEAD
+import { useRouter } from "next/navigation";
+=======
 import { useRouter } from 'next/navigation';
+>>>>>>> b4c26f6c9c13a3bd92bc42a5755687e995326603
 import { useState } from "react";
 import AdvancedProps from "./AdvancedProps";
 import axios from "axios";
 import { Data } from "../contest/[id]/dreamteam/page";
-
 
 export interface TeamCustomizeProps {
   setPlayer?: React.Dispatch<React.SetStateAction<Data | null>>;
@@ -25,16 +28,22 @@ export default function Page({ setPlayer}: TeamCustomizeProps) {
   async function runModel() {
     const data = await axios.get("http://localhost:5000/predict");
     console.log(data);
+<<<<<<< HEAD
+    const res = await axios.get("http://localhost:3000/api/parse_csv");
+    if (res.status === 200) {
+      router.push("/contest/123/dreamteam");
+=======
     if(data.status === 200){
       const res = await axios.get("http://localhost:3000/api/parse_csv");
       if(res.status===200){
         router.push("/contest/123/dreamteam")
       }
+>>>>>>> b4c26f6c9c13a3bd92bc42a5755687e995326603
     }
   }
 
   return (
-    <div className="p-6 bg-white rounded-lg">
+    <div className="p-6 bg-white rounded-lg ">
       <h1 className="font-medium text-2xl mb-2">Customize your team</h1>
       <p className="text-sm text-gray-400 mb-4">
         Select inputs to help AI customize your dream team

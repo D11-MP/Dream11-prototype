@@ -2,7 +2,10 @@
 'use client'
 import { useState } from 'react'
 import {useRouter} from 'next/navigation'
+<<<<<<< HEAD
+=======
 import axios from 'axios';
+>>>>>>> b4c26f6c9c13a3bd92bc42a5755687e995326603
 
 export default function AdminUpload() {
 
@@ -20,11 +23,16 @@ export default function AdminUpload() {
         body: formData,
       })
       if (res.ok) {
+<<<<<<< HEAD
+        setStatus('Upload successful')
+        router.push("/");
+=======
         const res = await axios.get('/api/admin/stats');
         if(res.status === 200){
           setStatus('Upload successful')
           router.push("/");
         }
+>>>>>>> b4c26f6c9c13a3bd92bc42a5755687e995326603
       } else {
         const error = await res.json()
         setStatus(error.message || 'Upload failed')
