@@ -9,19 +9,20 @@ import { MatchCard } from "./_components/matchCard";
 import Trivia from "./_components/Trivia";
 import Leaderboard from "./_components/Leaderboard";
 import NewsCard from "./_components/NewsCard";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import NewsCardPlaceholder from "../_components/NewsCardPlaceholder";
 
 export default function Home() {
     const [matches, setMatches] = useState(data);
     const session = useSession();
     const router = useRouter();
     return (
-        <div className="w-screen bg-page_bg_color">
+        <div className="w-screen min-h-screen bg-page_bg_color">
 
             <div className="flex mx-auto w-fit py-3 ">
-                <div className="flex-col mx-8" onClick={() => {
+                <div className="flex-col mx-8 h-[964px]" onClick={() => {
                     // console.log(session)
                     if (session.status !== 'authenticated') router.replace('/login');
                 }}>
@@ -54,7 +55,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <div className="flex-col space-y-4 w-[30%]">
+                <div className="flex-col space-y-4 w-[365px]">
                     <Trivia />
                     <Leaderboard />
                     <NewsCard />
