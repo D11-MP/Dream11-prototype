@@ -106,12 +106,12 @@ const PlayerStats = ({ player , setSelectedPlayer }: PlayerStatsProps) => {
           </div>
           <div>
             <h2 className="text-xl text-left font-[500]">
-              {player?.avg_strike_rate.t20}
+              {player?.avg_strike_rate.t20.toFixed(2)}
             </h2>
             <p className="text-gray-500 font-[400]">S/R</p>
           </div>
           <div>
-            <h2 className="text-xl text-left font-[500]">{player?.avg_score.t20}</h2>
+            <h2 className="text-xl text-left font-[500]">{player?.avg_score.t20.toFixed(2)}</h2>
             <p className="text-gray-500 font-[400]">Avg</p>
           </div>
           <div>
@@ -119,7 +119,7 @@ const PlayerStats = ({ player , setSelectedPlayer }: PlayerStatsProps) => {
             <p className="text-gray-500 font-[400]">W</p>
           </div>
           <div>
-            <h2 className="text-xl text-left font-[500]">{player?.avg_economy.t20}</h2>
+            <h2 className="text-xl text-left font-[500]">{player?.avg_economy.t20.toFixed(2)}</h2>
             <p className="text-gray-500 font-[400]">E/R</p>
           </div>
         </div>
@@ -137,26 +137,27 @@ const PlayerStats = ({ player , setSelectedPlayer }: PlayerStatsProps) => {
             <option value="odi">ODI</option>
           </select>
         </div>
+        
         <div className="flex-col shadow-md rounded-xl">
           <div className="flex justify-between px-4 py-4 text-md bg-[#F6F6F6] rounded-t-xl">
-            <p className="text-gray-500">30+ Runs Scored</p>
+            <p className="text-gray-500">Half Centuries</p>
             <p className="text-authGradient2">{player?.total_50s.t20}</p>
           </div>
           <div className="flex justify-between px-4 py-4 text-md">
-            <p className="text-gray-500">No. of Centuries and Half-Centuries</p>
+            <p className="text-gray-500">No. of Centuries</p>
             <p className="text-authGradient2">{player?.total_100s.t20}</p>
           </div>
           <div className="flex justify-between px-4 py-4 text-md bg-[#F6F6F6] ">
-            <p className="text-gray-500">Strike Rate</p>
+            <p className="text-gray-500">5 wicket hauls</p>
             <p className="text-authGradient2">{player?.total_5_wicket_hauls.t20}</p>
           </div>
           <div className="flex justify-between px-4 py-4 text-md">
-            <p className="text-gray-500">Boundaries %</p>
-            <p className="text-authGradient2">{player?.total_overs_bowled.t20} %</p>
+            <p className="text-gray-500">Total Overs</p>
+            <p className="text-authGradient2">{player?.total_overs_bowled.t20} </p>
           </div>
           <div className="flex justify-between px-4 py-4 text-md bg-[#F6F6F6] ">
-            <p className="text-gray-500">Top Score%</p>
-            <p className="text-authGradient2">{player?.total_maiden_overs.t20} %</p>
+            <p className="text-gray-500">Total Maiden Overs</p>
+            <p className="text-authGradient2">{player?.total_maiden_overs.t20} </p>
           </div>
         </div>
       </div>
