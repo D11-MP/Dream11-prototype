@@ -70,12 +70,12 @@ export default function PlayerCard({player, setPlayer,setCountLockIn,setCountLoc
       <div className="flex flex-col items-start text-left w-full" onClick={() => handleClick()}>
         <div className="font-medium">{player.name}</div>
         <div className="flex items-center gap-5 px-2">
-          {player.nationality === "India" ? (
+          {player.role === "Batsman" ? (
             <Image src={bat} height={20} width={20} alt="" />
           ) : (
             <Image src={ball} height={20} width={20} alt="" />
           )}
-          {player.role === "Batsman" ? (
+          {player.nationality === "India" ? (
             <Image src={ind} height={20} width={20} alt="" />
           ) : (
             <Image src={aus} height={20} width={20} alt="" />
@@ -106,7 +106,7 @@ export default function PlayerCard({player, setPlayer,setCountLockIn,setCountLoc
             -
             </button>
             :
-            <button className={`px-4 py-1 flex items-center justify-center bg-red-600 text-black rounded-md`} onClick={() => {
+            <button className={`px-4 py-1 flex items-center justify-center bg-[rgb(220,38,38)] text-black rounded-md`} onClick={() => {
                 setClickOut(false);
                 const index = outPlayers.findIndex(p => p.name === player.name);
                 if (index !== -1) {

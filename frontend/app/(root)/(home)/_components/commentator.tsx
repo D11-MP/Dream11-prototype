@@ -100,28 +100,27 @@ export default function Commentator({close,open}:{close:(value:boolean)=>void,op
 
 return (
     <>
-
       <div className="fixed glassmorphism z-[-1]"
       style={{width:'100vw',height:'100vh',pointerEvents:'none'}}></div>  
 
-      <div style={{width:'60vw' , height:'60vh' , boxShadow:'0px 0px 15px black'}} className="relative rounded-lg">
+      <div style={{width:'60vw' , height:'60vh' , boxShadow:'10px 10px 15px gray'}} className="relative ">
 
         <button className="absolute right-0 top-0 bg-red-500 px-4 py-2 text-white" 
-        style={{zIndex:'100',borderTopRightRadius:'0.5rem',borderBottomLeftRadius:'0.5rem'}} onClick={()=>{
+        style={{zIndex:'100',borderTopRightRadius:'0.0rem',borderBottomLeftRadius:'0.0rem'}} onClick={()=>{
           if("speechSynthesis" in window) speechSynthesis.cancel();
           close(false)}}>Close</button>
 
         <div className="mascot-box absolute flex items-center w-full justify-center" style={{bottom:'0px',zIndex:'2'}}>
-            {mascotImg.length>0 && mascotImg[mascot] && <img src={mascotImg[mascot].src} alt="" style={{width:'30vw'}}/>}
+            {mascotImg.length>0 && mascotImg[mascot] && <Image src={mascotImg[mascot].src} alt="" width={250} height={250}/>}
 
-            <div ref={textRef} className="commentary-box w-1/2 p-3 border-2 rounded-lg border-white text-black mr-20 overflow-y-auto"
-            style={{height:'fit-content' , background:'#ffc6a0' , maxHeight:'15vh'}}>  
+            <div ref={textRef} className="bg-gray-200 commentary-box w-1/2 p-3 rounded-lg text-black mr-20 overflow-y-auto"
+            style={{height:'fit-content'  , maxHeight:'15vh'}}>  
                 {commentary===''?'...':speech}
             </div>
         </div>
 
         <div className="bg-pitch-image z-0 rounded-lg" style={{width:'60vw',height:'60vh'}}>
-            <img src={pitchMap[demo.condition].src} alt="" style={{width:'100%',height:'100%'}} className="rounded-lg"/>
+            <Image src={pitchMap[demo.condition].src} alt="" layout="fill" className="rounded-lg"/>
         </div>
       </div>
 

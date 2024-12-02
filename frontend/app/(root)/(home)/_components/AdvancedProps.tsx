@@ -29,6 +29,32 @@ const AdvancedProps = ({setPlayer,setCountLockIn,setCountLockOut,countLockIn,cou
       ...prevValues,
       [key]: value,
     }));
+    if (key === "slider1" && value + sliderValues.slider2 > 10) {
+        setSliderValues((prevValues) => ({
+          ...prevValues,
+          slider2: 11 - value,
+        }));
+    } else if (key === "slider2" && value + sliderValues.slider1 > 10) {
+        setSliderValues((prevValues) => ({
+          ...prevValues,
+          slider1: 11 - value,
+        }));
+    } else {
+        setSliderValues((prevValues) => ({
+          ...prevValues,
+          [key]: value,
+        }));
+    }
+    if (["slider3", "slider4", "slider5", "slider6"].includes(key)) {
+        const total = sliderValues.slider3 + sliderValues.slider4 + sliderValues.slider5 + sliderValues.slider6;
+        if (total > 11) {
+            const excess = total - 11;
+            setSliderValues((prevValues) => ({
+                ...prevValues,
+                [key]: value - excess,
+            }));
+        }
+    }
   };
 
   return (
@@ -76,13 +102,13 @@ const AdvancedProps = ({setPlayer,setCountLockIn,setCountLockOut,countLockIn,cou
               <Slider
                 defaultValue={4}
                 max={10}
-                min={0}
+                min={1}
                 value={sliderValues.slider1}
-                onChange={(value) => handleSliderChange("slider1", value)}
+                onChange={(value) => handleSliderChange("slider1", value)} dots={true}
               />
             </div>
             <div className="w-[100%] flex justify-between pb-4">
-              <p>0</p>
+              <p>1</p>
               <p>10</p>
             </div>
           </div>
@@ -109,13 +135,13 @@ const AdvancedProps = ({setPlayer,setCountLockIn,setCountLockOut,countLockIn,cou
               <Slider
                 defaultValue={6}
                 max={10}
-                min={0}
+                min={1}
                 value={sliderValues.slider2}
-                onChange={(value) => handleSliderChange("slider2", value)}
+                onChange={(value) => handleSliderChange("slider2", value)} dots={true}
               />
             </div>
             <div className="w-[100%] flex justify-between pb-4">
-              <p>0</p>
+              <p>1</p>
               <p>10</p>
             </div>
           </div>
@@ -154,15 +180,15 @@ const AdvancedProps = ({setPlayer,setCountLockIn,setCountLockOut,countLockIn,cou
             <div>
               <Slider
                 defaultValue={5}
-                max={10}
+                max={11}
                 min={0}
                 value={sliderValues.slider3}
-                onChange={(value) => handleSliderChange("slider3", value)}
+                onChange={(value) => handleSliderChange("slider3", value)} dots={true}
               />
             </div>
             <div className="w-[100%] flex justify-between pb-4">
               <p>0</p>
-              <p>10</p>
+              <p>11</p>
             </div>
           </div>
           <div className="w-[100%] gap-1">
@@ -180,15 +206,15 @@ const AdvancedProps = ({setPlayer,setCountLockIn,setCountLockOut,countLockIn,cou
             <div>
               <Slider
                 defaultValue={4}
-                max={10}
+                max={11}
                 min={0}
                 value={sliderValues.slider4}
-                onChange={(value) => handleSliderChange("slider4", value)}
+                onChange={(value) => handleSliderChange("slider4", value)} dots={true}
               />
             </div>
             <div className="w-[100%] flex justify-between pb-4">
               <p>0</p>
-              <p>10</p>
+              <p>11</p>
             </div>
           </div>
           <div className="w-[100%] gap-2">
@@ -206,15 +232,15 @@ const AdvancedProps = ({setPlayer,setCountLockIn,setCountLockOut,countLockIn,cou
             <div>
               <Slider
                 defaultValue={4}
-                max={10}
+                max={11}
                 min={0}
                 value={sliderValues.slider5}
-                onChange={(value) => handleSliderChange("slider5", value)}
+                onChange={(value) => handleSliderChange("slider5", value)} dots={true}
               />
             </div>
             <div className="w-[100%] flex justify-between pb-4">
               <p>0</p>
-              <p>10</p>
+              <p>11</p>
             </div>
           </div>
           <div className="w-[100%] gap-2">
@@ -232,15 +258,15 @@ const AdvancedProps = ({setPlayer,setCountLockIn,setCountLockOut,countLockIn,cou
             <div>
               <Slider
                 defaultValue={4}
-                max={10}
+                max={11}
                 min={0}
                 value={sliderValues.slider6}
-                onChange={(value) => handleSliderChange("slider6", value)}
+                onChange={(value) => handleSliderChange("slider6", value)} dots={true}
               />
             </div>
             <div className="w-[100%] flex justify-between pb-2">
               <p>0</p>
-              <p>10</p>
+              <p>11</p>
             </div>
           </div>
         </div>

@@ -13,17 +13,12 @@ import Link from "next/link";
 import { MatchCardProps } from "@/types";
 
 export const MatchCard: React.FC<MatchCardProps> = ({ match }) => {
-  // const [hoursLeft, setHoursLeft] = useState<number>(0);
-  // const [minLeft, setMinLeft] = useState<number>(0);
-  // const [secLeft, setSecLeft] = useState<number>(0);
   const [daysLeft, setDaysLeft] = useState(0);
-
-  // const currentDate = new Date().toJSON().slice(0, 10);
-  // console.log(currentDate); // "2022-06-17"
 
   useEffect(() => {
     const calculateDays = () => {
-      const target = new Date(match.matchDate);
+        const [day, month, year] = match.matchDate.split("-");
+        const target = new Date(`${year}-${month}-${day}`);
       target.setHours(0, 0, 0, 0);
 
       const today = new Date();
@@ -41,56 +36,6 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match }) => {
 
     return () => clearInterval(timer);
   }, [match.matchDate]);
-
-  // useEffect(() => {
-  //   const calculateTimeLeft = () => {
-  //     const now = new Date()
-  //     // const [targetHour, targetMinute, targetSecond] = match.time.split(":").map(Number)
-  //     const target = new Date()
-
-  //     // target.setHours(targetHour, targetMinute, targetSecond, 0)
-
-  //     if (target < now) {
-  //       target.setDate(target.getDate()+1)
-  //     }
-
-  //     const difference = target.getTime()-now.getTime()
-  //     const totalSeconds = Math.floor(difference/1000)
-
-  //     return {
-  //       hours: Math.floor(totalSeconds/3600),
-  //       minutes: Math.floor((totalSeconds%3600)/60),
-  //       seconds: totalSeconds%60,
-  //     };
-  //   };
-
-  //   const updateTimer = () => {
-  //     const { hours,minutes,seconds } = calculateTimeLeft()
-  //     setHoursLeft(hours)
-  //     setMinLeft(minutes)
-  //     setSecLeft(seconds)
-  //   }
-
-  //   updateTimer()
-
-  //   const interval = setInterval(() => {
-  //     setSecLeft((prevSec) => {
-  //       if (prevSec === 0) {
-  //         setMinLeft((prevMin) => {
-  //           if (prevMin === 0) {
-  //             setHoursLeft((prevHour) => (prevHour>0?prevHour-1:0))
-  //             return 59;
-  //           }
-  //           return prevMin-1
-  //         });
-  //         return 59;
-  //       }
-  //       return prevSec-1
-  //     });
-  //   }, 1000);
-
-  //   return () => clearInterval(interval)
-  // }, [match.time]);
 
   return (
     <div

@@ -117,14 +117,7 @@ export default function Page({ setPlayer}: TeamCustomizeProps) {
           />
         )}
       </div>
-      {/* <Link
-        href="/contest/123/dreamteam"
-        type="submit"
-        className="w-full mb-5 bg-red-600 text-sm text-white py-3 px-4 rounded-md hover:bg-red-700 flex gap-2 justify-center items-center"
-      > */}
       <div
-        // href="/contest/123/dreamteam"
-        // type="submit"
         onClick={runModel}
         className="w-full mb-5 bg-red-600 text-sm text-white py-3 px-4 rounded-md hover:bg-red-700 flex gap-2 justify-center items-center cursor-pointer"
       >
