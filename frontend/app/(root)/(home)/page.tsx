@@ -22,7 +22,7 @@ export default function Home() {
 
             <div className="flex mx-auto w-fit py-3 ">
                 <div className="flex-col mx-8" onClick={() => {
-                    console.log(session)
+                    // console.log(session)
                     if (session.status !== 'authenticated') router.replace('/login');
                 }}>
                     <TopCarousel images={data2} />

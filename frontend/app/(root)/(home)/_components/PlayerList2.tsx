@@ -1,5 +1,4 @@
 import React from 'react'
-import players from './players';
 import ind from '../assets/india.png';
 import aus from '../assets/australia.png';
 import Image from 'next/image';

@@ -57,7 +57,7 @@ export default function Commentator({close,open}:{close:(value:boolean)=>void,op
       )
       setCommentary(response.data.data);
       setTalking(true);
-      console.log(Date.now())
+      // console.log(Date.now())
     }
     if(firstRef.current){ 
       firstRef.current = false;
