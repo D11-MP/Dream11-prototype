@@ -179,10 +179,10 @@ const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
           <div className="flex justify-between py-4 px-2 rounded-t-xl">
             <h2 className="text-xl ml-2">Performance Stats</h2>
             <select
-              name="format"
-              id="format"
+              name="format2"
+              id="format2"
               className="px-2 py-1 focus:border-none rounded-md"
-              value={format}
+              value={format2}
               onChange={(e) => setFormat2(e.target.value)}
             >
               <option value="t20">T20</option>
@@ -248,10 +248,10 @@ const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
           <div className="flex justify-between py-4 px-2 rounded-t-xl">
             <h2 className="text-xl ml-2">Recent Performance</h2>
             <select
-              name="format"
-              id="format"
+              name="format3"
+              id="format3"
               className="px-2 py-1 focus:border-none rounded-md"
-              value={format}
+              value={format3}
               onChange={(e) => setFormat3(e.target.value)}
             >
               <option value="t20">T20</option>

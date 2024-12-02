@@ -4,8 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { fetchNews } from "./NewsFetcher";
 
-export default function NewsCard() {
-
+export default function NewsCard({ setNewsLoading }: { setNewsLoading: any }) {
   const [articles, setArticles] = useState<any[]>([]);
   useEffect(() => {
     const getNews = async () => {
@@ -17,10 +16,13 @@ export default function NewsCard() {
   }, []);
 
   if (articles.length === 0) return null;
-  
+
   return (
     <div className="bg-white rounded-lg shadow-md max-w-sm">
-      <Image src= {articles[0].urlToImage !== "" ? articles[0].urlToImage : "/ipl.png" } 
+      <Image
+        src={
+          articles[0].urlToImage !== "" ? articles[0].urlToImage : "/ipl.png"
+        }
         alt="Description of image"
         width={500}
         height={200}
