@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import PlayerStats from "../../../_components/PlayerStats";
 import final from "@/uploads/final.json"
@@ -9,18 +9,23 @@ import data from "@/uploads/output.json";
 import { inPlayers, outPlayers } from "../../../_components/PlayerCard";
 
 export interface Data {
+  player_id?: string;
   name?: string;
   nationality?: string;
   role?: string;
-  matchesPlayed?: number;
-  dateOfBirth?: string;
-  runsScored?: number;
-  highestScore?: number;
-  strikeRate?: number;
-  run30plus?:number;
-  noOfCentHalfCent?:number;
-  boundariesPercent?:number;
-  topScorePercent?:number;
+  total_100s?: any;
+  total_50s?: any;
+  total_runs?: any;
+  total_matches?: any;
+  total_wickets?: any;
+  avg_economy?:any;
+  total_overs_bowled?:any;
+  total_5_wicket_hauls?:any;
+  total_50?:any;
+  total_100?:any;
+  avg_strike_rate?:any;
+  avg_score?:any;
+  total_maiden_overs?:any;
 }
 
 export interface PlayerStatsProps {
@@ -28,12 +33,12 @@ export interface PlayerStatsProps {
   setSelectedPlayer: any;
 }
 
-const jsonData: Data[] = [
+const jsonData: any[] = [
   {
     name: "Virat Kohli",
     nationality: "India",
     role: "Batsman",
-    matchesPlayed: 500,
+    
     dateOfBirth: "1988-11-05",
     runsScored: 25000,
     highestScore: 254,
@@ -47,7 +52,7 @@ const jsonData: Data[] = [
     name: "Babar Azam",
     nationality: "Pakistan",
     role: "Batsman",
-    matchesPlayed: 250,
+    
     dateOfBirth: "1994-10-15",
     runsScored: 12000,
     highestScore: 158,
@@ -61,7 +66,7 @@ const jsonData: Data[] = [
     name: "Kane Williamson",
     nationality: "New Zealand",
     role: "Batsman",
-    matchesPlayed: 300,
+    
     dateOfBirth: "1990-08-08",
     runsScored: 18000,
     highestScore: 251,
@@ -75,7 +80,7 @@ const jsonData: Data[] = [
     name: "Steve Smith",
     nationality: "Australia",
     role: "Batsman",
-    matchesPlayed: 350,
+    
     dateOfBirth: "1989-06-02",
     runsScored: 17000,
     highestScore: 239,
@@ -89,7 +94,7 @@ const jsonData: Data[] = [
     name: "Ben Stokes",
     nationality: "England",
     role: "All-rounder",
-    matchesPlayed: 200,
+    
     dateOfBirth: "1991-06-04",
     runsScored: 10000,
     highestScore: 258,
@@ -103,7 +108,7 @@ const jsonData: Data[] = [
     name: "Rashid Khan",
     nationality: "Afghanistan",
     role: "Bowler (Spinner)",
-    matchesPlayed: 200,
+    
     dateOfBirth: "1998-09-20",
     runsScored: 1200,
     highestScore: 57,
@@ -117,7 +122,7 @@ const jsonData: Data[] = [
     name: "Jasprit Bumrah",
     nationality: "India",
     role: "Bowler (Pacer)",
-    matchesPlayed: 150,
+    
     dateOfBirth: "1993-12-06",
     runsScored: 200,
     highestScore: 34,
@@ -131,7 +136,7 @@ const jsonData: Data[] = [
     name: "Mitchell Starc",
     nationality: "Australia",
     role: "Bowler (Pacer)",
-    matchesPlayed: 200,
+    
     dateOfBirth: "1990-01-30",
     runsScored: 1000,
     highestScore: 84,
@@ -145,7 +150,7 @@ const jsonData: Data[] = [
     name: "Jos Buttler",
     nationality: "England",
     role: "Wicketkeeper",
-    matchesPlayed: 300,
+    
     dateOfBirth: "1990-09-08",
     runsScored: 13000,
     highestScore: 162,
@@ -159,7 +164,7 @@ const jsonData: Data[] = [
     name: "Shakib Al Hasan",
     nationality: "Bangladesh",
     role: "All-rounder",
-    matchesPlayed: 400,
+    
     dateOfBirth: "1987-03-24",
     runsScored: 15000,
     highestScore: 217,
@@ -173,7 +178,7 @@ const jsonData: Data[] = [
     name: "Trent Boult",
     nationality: "New Zealand",
     role: "Bowler (Pacer)",
-    matchesPlayed: 200,
+    
     dateOfBirth: "1989-07-22",
     runsScored: 700,
     highestScore: 52,

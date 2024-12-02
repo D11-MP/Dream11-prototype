@@ -35,7 +35,7 @@ export default async function RootLayout({
   const header = await headers();
   const cookie = header.get('cookie') ?? '';
   const session = await getSession(cookie);
-  console.log(session)
+  // console.log(session)
   return (
     <html lang="en" >
       <body className={poppins.variable}>
