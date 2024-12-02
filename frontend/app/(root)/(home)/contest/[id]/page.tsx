@@ -20,8 +20,6 @@ export default function Page({ params }: { params: Promise<Params> }) {
 
   const [commentator , setCommentator] = useState<boolean>(true);
 
-  const [clicked, setClicked] = React.useState<boolean>(false);
-
   
   useEffect(()=>{
   if(commentator) document.body.style.overflow = 'hidden';

@@ -9,11 +9,17 @@ import { Data } from "../contest/[id]/dreamteam/page";
 
 export interface TeamCustomizeProps {
   setPlayer?: React.Dispatch<React.SetStateAction<Data | null>>;
+  countLockIn?: number;
+    countLockOut?: number;
+    setCountLockIn?: React.Dispatch<React.SetStateAction<number>>;
+    setCountLockOut?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function Page({ setPlayer}: TeamCustomizeProps) {
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState("Beginner");
+  const [countLockIn, setCountLockIn] = useState(1);
+    const [countLockOut, setCountLockOut] = useState(1);
   const [country, setCountry] = useState("India");
 
   async function runModel() {
@@ -102,7 +108,13 @@ export default function Page({ setPlayer}: TeamCustomizeProps) {
             </div>
           </div>
         ) : (
-          <AdvancedProps setPlayer={setPlayer} />
+            <AdvancedProps
+            setPlayer={setPlayer}
+            countLockIn={countLockIn}
+            countLockOut={countLockOut}
+            setCountLockIn={setCountLockIn}
+            setCountLockOut={setCountLockOut}
+          />
         )}
       </div>
       {/* <Link

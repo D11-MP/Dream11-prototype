@@ -7,7 +7,7 @@ import { Slider } from "antd";
 import PlayerList from "./PlayerList";
 import { TeamCustomizeProps } from "./TeamCustomize";
 
-const AdvancedProps = ({setPlayer}:TeamCustomizeProps) => {
+const AdvancedProps = ({setPlayer,setCountLockIn,setCountLockOut,countLockIn,countLockOut}:TeamCustomizeProps) => {
   const [toggleOptions, setToggleOptions] = useState({
     one: 0,
     two: 0,
@@ -311,7 +311,15 @@ const AdvancedProps = ({setPlayer}:TeamCustomizeProps) => {
         </label>
       </div>
        <div className="mx-[-28px]">
-      {toggleOptions.four === 1 && <PlayerList setPlayer={setPlayer}/>}
+      {toggleOptions.four === 1 && 
+      <PlayerList
+      setPlayer={setPlayer}
+      countLockIn={countLockIn}
+      countLockOut={countLockOut}
+      setCountLockIn={setCountLockIn}
+      setCountLockOut={setCountLockOut}
+    />
+      }
         </div>
     </>
   );

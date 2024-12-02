@@ -1,11 +1,12 @@
 "use client";
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Image from "next/image";
 import PlayerStats from "../../../_components/PlayerStats";
 import final from "@/uploads/final.json"
 import { DreamTeamMatchCard } from "../../../_components/dreamTeamMatchCard";
 import data from "@/uploads/output.json";
+import { inPlayers, outPlayers } from "../../../_components/PlayerCard";
 
 export interface Data {
   name?: string;
@@ -187,11 +188,25 @@ const jsonData: Data[] = [
 export default function Page() {
   const [selectedPlayer, setSelectedPlayer] = useState<Data | null>(null);
   const match = data;
+  
+//   const filteredFinal = final.filter(player => !outPlayers.includes(player));
+let filteredFinal = final.filter((player: Data) => !outPlayers.some(outPlayer => outPlayer.name === player.name));
+filteredFinal = filteredFinal.filter((player: Data) => !inPlayers.some(outPlayer => outPlayer.name === player.name));
+let sortedFinal = filteredFinal.sort((a:any, b:any) => b.predicted_points - a.predicted_points);
+sortedFinal = sortedFinal.slice(0, 11-inPlayers.length);
 
+  const final1 = inPlayers.concat(sortedFinal);
+
+  console.log(filteredFinal);
+  console.log(sortedFinal);
+  console.log(final1);
   const handlePlayerClick = (index: number) => {
-    jsonData[index].name = final[index].name
+    jsonData[index].name = final1[index]?.name;
     setSelectedPlayer(jsonData[index]);
   };
+// inPlayers.length = 0;
+// outPlayers.length = 0;
+console.log(inPlayers,outPlayers)
   return (
     <div className="flex flex-col w-full text-center pb-10">
       <div>
@@ -227,7 +242,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{final[0].name}</p>
+                <p className="">{final1[0]?.name}</p>
               </div>
             </div>
           </div>
@@ -251,7 +266,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{final[1].name}</p>
+                <p className="">{final1[1]?.name}</p>
               </div>
             </div>
             <div
@@ -272,7 +287,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{final[2].name}</p>
+                <p className="">{final1[2]?.name}</p>
               </div>
             </div>
             <div
@@ -293,7 +308,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{final[3].name}</p>
+                <p className="">{final1[3]?.name}</p>
               </div>
             </div>
             <div
@@ -314,7 +329,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{final[4].name}</p>
+                <p className="">{final1[4]?.name}</p>
               </div>
             </div>
           </div>
@@ -337,7 +352,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{final[5].name}</p>
+                <p className="">{final1[5]?.name}</p>
               </div>
             </div>
             <div
@@ -358,7 +373,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{final[6].name}</p>
+                <p className="">{final1[6]?.name}</p>
               </div>
             </div>
           </div>
@@ -381,7 +396,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{final[7].name}</p>
+                <p className="">{final1[7]?.name}</p>
               </div>
             </div>
             <div
@@ -402,7 +417,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{final[8].name}</p>
+                <p className="">{final1[8]?.name}</p>
               </div>
             </div>
             <div
@@ -423,7 +438,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{final[9].name}</p>
+                <p className="">{final1[9]?.name}</p>
               </div>
             </div>
             <div
@@ -444,7 +459,7 @@ export default function Page() {
                   width={25}
                   height={25}
                 />
-                <p className="">{final[10].name}</p>
+                <p className="">{final1[10]?.name}</p>
               </div>
             </div>
           </div>

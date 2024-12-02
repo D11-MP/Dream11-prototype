@@ -6,14 +6,23 @@ import aus from "../assets/australia.png";
 import bat from "../../../../public/bat.png";
 import ball from "../../../../public/ball.png";
 import { Data } from "../contest/[id]/dreamteam/page";
+import { set } from "mongoose";
 
-type PlayerCardProps = {
-  player: Data;
-  setPlayer?: React.Dispatch<React.SetStateAction<Data | null>>;
-};
+export interface PlayerCardProps {
+    player: Data;
+    setPlayer?: React.Dispatch<React.SetStateAction<Data | null>>;
+    countLockIn?: number;
+    countLockOut?: number;
+    setCountLockIn?: React.Dispatch<React.SetStateAction<number>>;
+    setCountLockOut?: React.Dispatch<React.SetStateAction<number>>;
+}
 
-export default function PlayerCard({ player, setPlayer}: PlayerCardProps) {
+export const inPlayers: Data[] = [];
+export const outPlayers: Data[] = [];
+export default function PlayerCard({player, setPlayer,setCountLockIn,setCountLockOut,countLockIn,countLockOut}: PlayerCardProps) {
     const [clicked1, setClicked1] = React.useState<boolean>(true);
+    const [clickIn, setClickIn] = React.useState<boolean>(false);
+    const [clickOut, setClickOut] = React.useState<boolean>(false);
     const handleClick = () =>{
 
         setClicked1(!clicked1);
@@ -22,8 +31,35 @@ export default function PlayerCard({ player, setPlayer}: PlayerCardProps) {
             setPlayer(clicked1 ? player : null);
         }
     }
+    function handleLockIn() {
+        if(setCountLockIn && countLockIn){
+            if(countLockIn<=3){
+                setCountLockIn(countLockIn + 1);
+                inPlayers.push(player);
+                console.log(player.name, "added to inPlayers");
+            }
+        }
+    }
+    
+    function handleLockOut() {
+        if(setCountLockOut && countLockOut){
+            if(countLockOut<=3){
+                setCountLockOut(countLockOut + 1);
+                outPlayers.push(player);
+                console.log(player.name, "added to outPlayers");
+            }
+        }
+    }
+    function handleClick1() {
+        setClickIn(!clickIn);
+        handleLockIn();
+    }
+    function handleClick2() {
+        setClickOut(!clickOut);
+        handleLockOut();
+    }
   return (
-    <div className="flex items-center justify-center mx-2 my-2 cursor-pointer" onClick={() => handleClick()}>
+    <div className={`flex items-center justify-center mx-2 my-2 cursor-pointer`} >
       <Image
         alt=""
         height={80}
@@ -31,7 +67,7 @@ export default function PlayerCard({ player, setPlayer}: PlayerCardProps) {
         src={pic}
       />
 
-      <div className="flex flex-col items-start text-left w-full">
+      <div className="flex flex-col items-start text-left w-full" onClick={() => handleClick()}>
         <div className="font-medium">{player.name}</div>
         <div className="flex items-center gap-5 px-2">
           {player.nationality === "India" ? (
@@ -48,12 +84,40 @@ export default function PlayerCard({ player, setPlayer}: PlayerCardProps) {
       </div>
 
       <div className="flex gap-2">
-        <button className="px-4 py-1 flex items-center justify-center bg-plusButton text-black rounded-md hover:bg-green-300">
-          +
-        </button>
-        <button className="px-4 py-1 flex items-center justify-center bg-minusButton text-black rounded-md hover:bg-red-300">
-          -
-        </button>
+        {!clickIn ? 
+            <button className="px-4 py-1 flex items-center justify-center bg-plusButton text-black rounded-md hover:bg-green-300" onClick={handleClick1} disabled={clickOut}>
+            +
+            </button>
+            :
+            <button className="px-4 py-1 flex items-center justify-center bg-red-600 text-black rounded-md" onClick={() => {
+                setClickIn(false);
+                const index = inPlayers.findIndex(p => p.name === player.name);
+                if (index !== -1) {
+                    inPlayers.splice(index, 1);
+                    if (setCountLockIn && countLockIn) {
+                        setCountLockIn(countLockIn - 1);
+                    }
+                    console.log(player.name, "removed from inPlayers");
+                }
+            }}>x</button>
+        }
+        {!clickOut ? 
+            <button className="px-4 py-1 flex items-center justify-center bg-minusButton text-black rounded-md hover:bg-red-300" onClick={handleClick2}  disabled={clickIn} >
+            -
+            </button>
+            :
+            <button className={`px-4 py-1 flex items-center justify-center bg-red-600 text-black rounded-md`} onClick={() => {
+                setClickOut(false);
+                const index = outPlayers.findIndex(p => p.name === player.name);
+                if (index !== -1) {
+                    outPlayers.splice(index, 1);
+                    if (setCountLockOut && countLockOut) {
+                        setCountLockOut(countLockOut - 1);
+                    }
+                    console.log(player.name, "removed from outPlayers");
+                }
+            }}>x</button>
+        }
       </div>
     </div>
   );
