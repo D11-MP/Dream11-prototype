@@ -9,9 +9,10 @@ import { MatchCard } from "./_components/matchCard";
 import Trivia from "./_components/Trivia";
 import Leaderboard from "./_components/Leaderboard";
 import NewsCard from "./_components/NewsCard";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import NewsCardPlaceholder from "../_components/NewsCardPlaceholder";
 
 export default function Home() {
     const [matches, setMatches] = useState(data);
