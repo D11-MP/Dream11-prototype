@@ -20,10 +20,14 @@ export default function AdminUpload() {
         body: formData,
       })
       if (res.ok) {
-        const res = await axios.get("/api/admin/stats");
-        if(res.status === 200){
+        const res2 = await axios.get("/api/admin/stats");
+        if(res2.status === 200){
+          const res3 = await axios.get("api/admin/combine");
+          console.log(res3)
+          if(res3.status === 200){
             setStatus('Upload successful')
             router.push("/");
+          }
         }
       } else {
         const error = await res.json()
