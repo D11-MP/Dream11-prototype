@@ -7,7 +7,11 @@ import { Slider } from "antd";
 import PlayerList from "./PlayerList";
 import { TeamCustomizeProps } from "./TeamCustomize";
 
+<<<<<<< HEAD
 const AdvancedProps = ({ setPlayer }: TeamCustomizeProps) => {
+=======
+const AdvancedProps = ({setPlayer,setCountLockIn,setCountLockOut,countLockIn,countLockOut}:TeamCustomizeProps) => {
+>>>>>>> b4c26f6c9c13a3bd92bc42a5755687e995326603
   const [toggleOptions, setToggleOptions] = useState({
     one: 0,
     two: 0,
@@ -298,19 +302,44 @@ const AdvancedProps = ({ setPlayer }: TeamCustomizeProps) => {
           <input
             type="checkbox"
             value={toggleOptions.four}
+<<<<<<< HEAD
             onChange={() => {
               setToggleOptions((prev) => ({
                 ...prev,
                 four: toggleOptions.four === 0 ? 1 : 0,
               }));
             }}
+=======
+            onChange={() =>{
+               
+                setToggleOptions((prev) => ({
+                  ...prev,
+                  four: toggleOptions.four === 0 ? 1 : 0,
+                })) 
+              }
+            }
+>>>>>>> b4c26f6c9c13a3bd92bc42a5755687e995326603
           />
           <span className="slider round"></span>
         </label>
       </div>
+<<<<<<< HEAD
       <div className="mx-[-28px]">
         {toggleOptions.four === 1 && <PlayerList setPlayer={setPlayer} />}
       </div>
+=======
+       <div className="mx-[-28px]">
+      {toggleOptions.four === 1 && 
+      <PlayerList
+      setPlayer={setPlayer}
+      countLockIn={countLockIn}
+      countLockOut={countLockOut}
+      setCountLockIn={setCountLockIn}
+      setCountLockOut={setCountLockOut}
+    />
+      }
+        </div>
+>>>>>>> b4c26f6c9c13a3bd92bc42a5755687e995326603
     </>
   );
 };

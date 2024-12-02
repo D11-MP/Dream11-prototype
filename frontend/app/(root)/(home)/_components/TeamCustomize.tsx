@@ -1,6 +1,10 @@
 "use client";
 import Image from "next/image";
+<<<<<<< HEAD
 import { useRouter } from "next/navigation";
+=======
+import { useRouter } from 'next/navigation';
+>>>>>>> b4c26f6c9c13a3bd92bc42a5755687e995326603
 import { useState } from "react";
 import AdvancedProps from "./AdvancedProps";
 import axios from "axios";
@@ -8,19 +12,33 @@ import { Data } from "../contest/[id]/dreamteam/page";
 
 export interface TeamCustomizeProps {
   setPlayer?: React.Dispatch<React.SetStateAction<Data | null>>;
+  countLockIn?: number;
+    countLockOut?: number;
+    setCountLockIn?: React.Dispatch<React.SetStateAction<number>>;
+    setCountLockOut?: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function Page({ setPlayer }: TeamCustomizeProps) {
+export default function Page({ setPlayer}: TeamCustomizeProps) {
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState("Beginner");
+  const [countLockIn, setCountLockIn] = useState(1);
+    const [countLockOut, setCountLockOut] = useState(1);
   const [country, setCountry] = useState("India");
 
   async function runModel() {
     const data = await axios.get("http://localhost:5000/predict");
     console.log(data);
+<<<<<<< HEAD
     const res = await axios.get("http://localhost:3000/api/parse_csv");
     if (res.status === 200) {
       router.push("/contest/123/dreamteam");
+=======
+    if(data.status === 200){
+      const res = await axios.get("http://localhost:3000/api/parse_csv");
+      if(res.status===200){
+        router.push("/contest/123/dreamteam")
+      }
+>>>>>>> b4c26f6c9c13a3bd92bc42a5755687e995326603
     }
   }
 
@@ -99,7 +117,13 @@ export default function Page({ setPlayer }: TeamCustomizeProps) {
             </div>
           </div>
         ) : (
-          <AdvancedProps setPlayer={setPlayer} />
+            <AdvancedProps
+            setPlayer={setPlayer}
+            countLockIn={countLockIn}
+            countLockOut={countLockOut}
+            setCountLockIn={setCountLockIn}
+            setCountLockOut={setCountLockOut}
+          />
         )}
       </div>
       {/* <Link
