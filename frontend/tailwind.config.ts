@@ -60,6 +60,9 @@ export default {
       fontSize: {
         xxs: "0.625rem",
       },
+      width: {
+        "112": "28rem",
+      },
     },
   },
   plugins: [],
