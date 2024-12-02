@@ -53,7 +53,7 @@ export default function Page({ params }: { params: Promise<Params> }) {
         <div className="flex ">
           <div className="flex flex-col">
             <div
-              className="mt-8 border-t-8 w-full sticky top-[96px] z-10"
+              className="mt-8  w-full sticky top-[96px] z-10"
               style={{ borderTopColor: "#f6f6f9" }}
             >
               <MatchCard2 match={matches[0]} />

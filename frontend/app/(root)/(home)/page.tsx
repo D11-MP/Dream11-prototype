@@ -18,16 +18,19 @@ export default function Home() {
   const session = useSession();
   const router = useRouter();
   return (
-  <div className="flex w-full py-3">
-    <div className="flex-col mx-8" onClick={()=>{
-      console.log(session)
-      if(session.status !== 'authenticated') router.replace('/login');
-    }}>
-      <TopCarousel images={data2} />
-      <div className="flex-col mt-6">
-        <div className="matches-header flex justify-between items-center">
-          <p className="text-xl font-semibold">Upcoming Matches</p>
-          <div className="flex flex-row gap-2.5">
+    <div className="flex bg-white w-full py-3">
+      <div
+        className="flex-col mx-8"
+        onClick={() => {
+          console.log(session);
+          if (session.status !== "authenticated") router.replace("/login");
+        }}
+      >
+        <TopCarousel images={data2} />
+        <div className="flex-col mt-6">
+          <div className="matches-header flex justify-between items-center">
+            <p className="text-xl font-semibold">Upcoming Matches</p>
+            <div className="flex flex-row gap-2.5">
               <input
                 type="text"
                 placeholder="Search Matches"
@@ -40,22 +43,22 @@ export default function Home() {
                   setMatches(filteredMatches);
                 }}
               />
-            <Button img={down} text="Sort By" />
-            <Button img={filter} text="Filter" />
+              <Button img={down} text="Sort By" />
+              <Button img={filter} text="Filter" />
+            </div>
+          </div>
+          <div>
+            {matches.map((match, index) => {
+              return <MatchCard key={index} match={match}></MatchCard>;
+            })}
           </div>
         </div>
-        <div>
-          {matches.map((match, index) => {
-            return <MatchCard key={index} match={match}></MatchCard>;
-          })}
-        </div>
+      </div>
+      <div className="flex-col space-y-4 grow shrink mx-2">
+        <Trivia />
+        <Leaderboard />
+        <NewsCard />
       </div>
     </div>
-    <div className="flex-col space-y-4 grow shrink mx-2">
-      <Trivia />
-      <Leaderboard />
-      <NewsCard />
-    </div>
-  </div>
   );
 }
