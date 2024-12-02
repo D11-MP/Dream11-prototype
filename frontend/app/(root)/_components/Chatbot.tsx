@@ -148,7 +148,7 @@ export default function Chatbot({
         !showChatbot ? "hidden" : ""
       }`}
     >
-      <div className="w-full bg-white rounded-lg shadow-md flex flex-col min-h-[600px] max-h-[600px] min-w-[350px] max-w-[350px] relative">
+      <div className="w-full bg-white rounded-lg shadow-md flex flex-col h-[80vh] min-w-[350px] max-w-[350px] relative">
         <div
           onClick={() => setShowChatbot(false)}
           className="absolute top-1 right-2 text-2xl mx-2 my-1 font-medium text-gray-400 cursor-pointer"
