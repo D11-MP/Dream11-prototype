@@ -32,6 +32,7 @@ export function GET() {
           finalData.push(transformedRow); // Add the transformed row to finalData
         })
         .on('end', () => {
+            finalData.sort((a:any, b:any) => b.predicted_points - a.predicted_points); // Sort the data by predicted_points
           // Write the transformed data to the final.json file
           fs.writeFileSync(finalJsonPath, JSON.stringify(finalData, null, 2));
           console.log('final.json created successfully!');
