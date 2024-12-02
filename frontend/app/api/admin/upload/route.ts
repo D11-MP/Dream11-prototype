@@ -3,6 +3,7 @@ import { mkdir } from 'fs/promises'
 import { NextRequest, NextResponse } from 'next/server'
 import path from 'path'
 import fs from "fs";
+import csv from 'csv-parser';
 
 
 
@@ -97,14 +98,68 @@ export async function POST(request: NextRequest) {
     await writeFile(filePath, buffer)
     await extractData(filePath);
     
+
+
+    // Step 1: Parse player-data.csv to get roles
+const playerData = <any>{};
+
+fs.createReadStream('./uploads/players-final.csv')
+  .pipe(csv())
+  .on('data', (row) => {
+    // Assuming player-data.csv has columns: name, identifier, and role
+    playerData[row.name] = row.role;
+  })
+  .on('end', () => {
+    // Step 2: Parse Input_format.csv to get player names and squads (teams)
+    const finalData = <any>[];
+    
+    fs.createReadStream('./uploads/admin/Input_format.csv')
+      .pipe(csv())
+      .on('data', (row) => {
+        // Assuming Input_format.csv has columns: Player Name and Squad
+        finalData.push(row);
+      })
+      .on('end', () => {
+        // Step 3: Construct players.js array
+        const players = finalData.map((player:any) => {
+          const role = playerData[player['Player Name']] || 'Unknown'; // Default to 'Unknown' if no match found
+          return {
+            name: player['Player Name'],
+            nationality: player.Squad, // Renaming Squad to nationality
+            role: role
+          };
+        });
+
+        // Step 4: Manually create the JavaScript object without double quotes around field names
+        let playersJsContent = 'const players = [\n';
+        
+        players.forEach((player:any) => {
+          playersJsContent += `  { name: "${player.name}", nationality: "${player.nationality}", role: "${player.role}" },\n`;
+        });
+
+        // Remove the last comma and newline
+        playersJsContent = playersJsContent.slice(0, -2) + '\n';
+
+        playersJsContent += '];\n\nexport default players;';
+
+        // Step 5: Write to players.js
+        fs.writeFile('./uploads/admin/players.js', playersJsContent, 'utf8', (err) => {
+          if (err) {
+            console.error('Error writing players.js:', err);
+          } else {
+            console.log('players.js has been created!');
+          }
+        });
+      });
+  });
+
+
+
+
     return NextResponse.json({ 
       message: 'File uploaded successfully',
       filename: filename
     })
-
-
-
-
   } catch (error) {
     console.error('Upload error:', error)
     return NextResponse.json(

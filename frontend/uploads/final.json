@@ -7,11 +7,32 @@
     "predicted_points": "42.229425965428824"
   },
   {
-    "name": "S Tudorache",
+    "name": "R Musamali",
     "date_playing": "29-06-2024",
     "team": "India",
     "match_type": "T20",
-    "predicted_points": "26.05000458192106"
+    "predicted_points": "36.581309026179625"
+  },
+  {
+    "name": "Z Groenewald",
+    "date_playing": "29-06-2024",
+    "team": "SA",
+    "match_type": "T20",
+    "predicted_points": "30.203540484565913"
+  },
+  {
+    "name": "N Sitompul",
+    "date_playing": "29-06-2024",
+    "team": "India",
+    "match_type": "T20",
+    "predicted_points": "27.697261063724202"
+  },
+  {
+    "name": "GO Sopinho",
+    "date_playing": "29-06-2024",
+    "team": "SA",
+    "match_type": "T20",
+    "predicted_points": "27.41698315804183"
   },
   {
     "name": "K Mendon",
@@ -19,6 +40,27 @@
     "team": "India",
     "match_type": "T20",
     "predicted_points": "27.18839268260186"
+  },
+  {
+    "name": "S Kanankege",
+    "date_playing": "29-06-2024",
+    "team": "SA",
+    "match_type": "T20",
+    "predicted_points": "27.18839268260186"
+  },
+  {
+    "name": "M Gouws",
+    "date_playing": "29-06-2024",
+    "team": "SA",
+    "match_type": "T20",
+    "predicted_points": "26.865384026502632"
+  },
+  {
+    "name": "S Tudorache",
+    "date_playing": "29-06-2024",
+    "team": "India",
+    "match_type": "T20",
+    "predicted_points": "26.05000458192106"
   },
   {
     "name": "CL Green",
@@ -63,46 +105,11 @@
     "predicted_points": "26.05000458192106"
   },
   {
-    "name": "N Sitompul",
-    "date_playing": "29-06-2024",
-    "team": "India",
-    "match_type": "T20",
-    "predicted_points": "27.697261063724202"
-  },
-  {
-    "name": "R Musamali",
-    "date_playing": "29-06-2024",
-    "team": "India",
-    "match_type": "T20",
-    "predicted_points": "36.581309026179625"
-  },
-  {
     "name": "Amogh Desai",
     "date_playing": "29-06-2024",
     "team": "SA",
     "match_type": "T20",
     "predicted_points": "26.05000458192106"
-  },
-  {
-    "name": "Z Groenewald",
-    "date_playing": "29-06-2024",
-    "team": "SA",
-    "match_type": "T20",
-    "predicted_points": "30.203540484565913"
-  },
-  {
-    "name": "S Kanankege",
-    "date_playing": "29-06-2024",
-    "team": "SA",
-    "match_type": "T20",
-    "predicted_points": "27.18839268260186"
-  },
-  {
-    "name": "M Gouws",
-    "date_playing": "29-06-2024",
-    "team": "SA",
-    "match_type": "T20",
-    "predicted_points": "26.865384026502632"
   },
   {
     "name": "Shawaiz Irfan",
@@ -117,13 +124,6 @@
     "team": "SA",
     "match_type": "T20",
     "predicted_points": "26.05000458192106"
-  },
-  {
-    "name": "GO Sopinho",
-    "date_playing": "29-06-2024",
-    "team": "SA",
-    "match_type": "T20",
-    "predicted_points": "27.41698315804183"
   },
   {
     "name": "MD Taylor",

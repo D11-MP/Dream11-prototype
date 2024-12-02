@@ -33,6 +33,10 @@ export function GET() {
         })
         .on('end', () => {
           // Write the transformed data to the final.json file
+
+          finalData.sort((a:any,b:any)=>b.predicted_points-a.predicted_points)
+
+
           fs.writeFileSync(finalJsonPath, JSON.stringify(finalData, null, 2));
           console.log('final.json created successfully!');
           resolve(Response.json({ status: "success", data: finalData }));
