@@ -18,8 +18,8 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match }) => {
   // const [secLeft, setSecLeft] = useState<number>(0);
   const [daysLeft, setDaysLeft] = useState(0);
 
-  const currentDate = new Date().toJSON().slice(0, 10);
-  console.log(currentDate); // "2022-06-17"
+  // const currentDate = new Date().toJSON().slice(0, 10);
+  // console.log(currentDate); // "2022-06-17"
 
   useEffect(() => {
     const calculateDays = () => {

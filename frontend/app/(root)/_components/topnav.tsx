@@ -17,7 +17,7 @@ export default function Topnav() {
   const pathName = usePathname();
 
   return (
-    <div className="flex items-center justify-between bg-white h-[96px] px-[32px] w-full">
+    <div className="flex items-center justify-between bg-white h-[96px] px-[32px] w-full ">
       <h2 className="text-font_color font-bold text-2xl">DreamTeam</h2>
       <div className="flex flex-row gap-[60px]">
             <Link

@@ -160,7 +160,7 @@ export default function Chatbot({
           <div className="flex">
             <div className="w-12 h-12">
               <Image
-                src="/gola.png"
+                src="/gola.svg"
                 alt="Bot Avatar"
                 width={50}
                 height={50}
@@ -183,7 +183,7 @@ export default function Chatbot({
           <div className="mr-10 flex justify-start items-start space-x-3">
             <div className="w-12 h-12 flex-shrink-0">
               <Image
-                src="/gola.png"
+                src="/gola.svg"
                 alt="Bot avatar"
                 width={48}
                 height={48}
@@ -204,7 +204,7 @@ export default function Chatbot({
               <div className="mr-10 flex justify-start items-start space-x-3">
                 <div className="w-12 h-12 flex-shrink-0">
                   <Image
-                    src="/gola.png"
+                    src="/gola.svg"
                     alt="Bot avatar"
                     width={48}
                     height={48}

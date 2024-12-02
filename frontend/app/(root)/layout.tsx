@@ -14,10 +14,10 @@ export default function RootLayout({
   return (
     <>
       <div className="bg-[url('/bg.png')] bg-cover bg-center min-h-screen">
-        <div className="w-full">
+        <div className="w-full z-20 fixed top-0">
           <Topnav />
         </div>
-        <div className="  w-full">
+        <div className=" w-full pt-[100px]">
           <div className="min-h-screen w-[1222px] mx-auto my-0 flex justify-center">
             <div className="flex flex-col min-h-screen ">
               <div>{children}</div>
@@ -29,7 +29,7 @@ export default function RootLayout({
                 {!showChatbot ? (
                   <Image
                     onClick={() => setShowChatbot(true)}
-                    src="/gola.png"
+                    src="/gola.svg"
                     alt="Bot avatar"
                     width={60}
                     height={60}
