@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import pic from "../../../../public/Player_Pic.png";
 import Image from "next/image";
 import ind from "../assets/india.png";
@@ -6,6 +6,7 @@ import aus from "../assets/australia.png";
 import bat from "../../../../public/bat.png";
 import ball from "../../../../public/ball.png";
 import { Data } from "../contest/[id]/dreamteam/page";
+import { set } from "mongoose";
 
 export interface PlayerCardProps {
   player: Data;
@@ -30,7 +31,7 @@ export default function PlayerCard({
   const [clicked1, setClicked1] = React.useState<boolean>(true);
   const [clickIn, setClickIn] = React.useState<boolean>(false);
   const [clickOut, setClickOut] = React.useState<boolean>(false);
-
+  
   const handleClick = () => {
     setClicked1(!clicked1);
     if (setPlayer) {
@@ -102,7 +103,7 @@ export default function PlayerCard({
             <button
               className="px-4 py-1 flex items-center justify-center bg-plusButton text-black rounded-md hover:bg-green-300"
               onClick={handleClick1}
-              disabled={clickOut}
+              disabled={clickOut || countLockIn === 4}
             >
               +
             </button>
@@ -130,12 +131,13 @@ export default function PlayerCard({
             <button
               className="px-4 py-1 flex items-center justify-center bg-minusButton text-black rounded-md hover:bg-red-300"
               onClick={handleClick2}
-              disabled={clickIn}
+              disabled={clickIn || countLockOut === 4}
             >
               -
             </button>)
             :
-            <button className={`px-4 py-1 flex items-center justify-center bg-[rgb(220,38,38)] text-black rounded-md`} onClick={() => {
+            <button
+            className={`px-4 py-1 flex items-center justify-center bg-[rgb(220,38,38)] text-black rounded-md`} onClick={() => {
                 setClickOut(false);
                 const index = outPlayers.findIndex(
                   (p) => p.name === player.name

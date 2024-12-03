@@ -29,6 +29,8 @@ interface Player {
   total_100: PlayerStats;
   avg_strike_rate: PlayerStats;
   avg_score: PlayerStats;
+  boundary: PlayerStats;
+  past_points: PlayerStats;
 }
 
 export function GET(req: NextRequest) {
@@ -70,6 +72,9 @@ export function GET(req: NextRequest) {
           total_100: { t20: 0, odi: 0, test: 0 },
           avg_strike_rate: { t20: 0, odi: 0, test: 0 },
           avg_score: { t20: 0, odi: 0, test: 0 },
+          boundary: { t20: 0, odi: 0, test: 0 },
+          past_points: { t20: 0, odi: 0, test: 0 },
+
         };
         playersData.push(existingPlayer);
       }
@@ -88,6 +93,8 @@ export function GET(req: NextRequest) {
         existingPlayer.total_100.t20 = player.total_100;
         existingPlayer.avg_strike_rate.t20 = player.avg_strike_rate;
         existingPlayer.avg_score.t20 = player.avg_score;
+        existingPlayer.boundary.t20 = player.boundary;
+        existingPlayer.past_points.t20 = player.past_points;
       } else if (odiData.includes(player)) {
         existingPlayer.total_100s.odi = player.total_100s;
         existingPlayer.total_50s.odi = player.total_50s;
@@ -102,6 +109,8 @@ export function GET(req: NextRequest) {
         existingPlayer.total_100.odi = player.total_100;
         existingPlayer.avg_strike_rate.odi = player.avg_strike_rate;
         existingPlayer.avg_score.odi = player.avg_score;
+        existingPlayer.boundary.odi = player.boundary;
+        existingPlayer.past_points.odi = player.past_points;
       } else if (testData.includes(player)) {
         existingPlayer.total_100s.test = player.total_100s;
         existingPlayer.total_50s.test = player.total_50s;
@@ -116,6 +125,8 @@ export function GET(req: NextRequest) {
         existingPlayer.total_100.test = player.total_100;
         existingPlayer.avg_strike_rate.test = player.avg_strike_rate;
         existingPlayer.avg_score.test = player.avg_score;
+        existingPlayer.boundary.test = player.boundary;
+        existingPlayer.past_points.test = player.past_points;
       }
     });
 

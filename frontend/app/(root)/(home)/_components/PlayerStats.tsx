@@ -8,13 +8,20 @@ import finalData from "@/uploads/final.json";
 import last10t20 from "@/uploads/t20_10_matches.json";
 import last10test from "@/uploads/test_10_matches.json";
 import last10odi from "@/uploads/odi_10_matches.json";
+import { newExplanation } from "./TeamCustomize";
 
 const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
     const [format, setFormat] = useState<string>("t20");
     const [format2, setFormat2] = useState<string>("t20");
     const [format3, setFormat3] = useState<string>("t20");
 
-    const predictedPoints = finalData.find(p => p.name === player?.name)?.predicted_points || 0;
+    // const predictedPoints = finalData.find(p => p.name === player?.name)?.predicted_points || 0;
+    // const predictedPoints ={format1 === "t20"
+    //     ? player?.past_points?.t20
+    //     : format2 === "test"
+    //         ? player?.past_points?.test
+    //         : player?.past_points?.odi};
+
     useLayoutEffect(() => {
         const ctx = document.getElementById("myChart") as HTMLCanvasElement;
         const gctx = ctx.getContext("2d") as CanvasRenderingContext2D;
@@ -63,38 +70,43 @@ const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
         const ChartInstance = new Chart(ctx, {
             type: "line",
             data: {
-                labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-                datasets: [
-                    {
-                        data: runsData,
-                        fill: "origin",
-                        backgroundColor: createGradient(gctx),
-                        borderColor: "rgba(127, 31, 36, 1)",
-                        tension: 0.3,
-                        label: "Runs",
-                    },
-                    {
-                        data: wicketsData,
-                        fill: "origin",
-                        backgroundColor: "rgba(0, 0, 255, 0.2)",
-                        borderColor: "rgba(0, 0, 255, 1)",
-                        tension: 0.3,
-                        label: "Wickets",
-                    },
-                ],
+            labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+            datasets: [
+                {
+                data: runsData,
+                fill: "origin",
+                backgroundColor: createGradient(gctx),
+                borderColor: "rgba(127, 31, 36, 1)",
+                tension: 0.3,
+                label: "Runs",
+                },
+                {
+                data: wicketsData,
+                fill: "origin",
+                backgroundColor: "rgba(0, 0, 255, 0.2)",
+                borderColor: "rgba(0, 0, 255, 1)",
+                tension: 0.3,
+                label: "Wickets",
+                },
+            ],
             },
-            
             options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                    },
+            scales: {
+                x: {
+                title: {
+                    display: true,
+                    text: "Matches",
                 },
-                plugins: {
-                    legend: {
-                        display: false,
-                    },
                 },
+                y: {
+                beginAtZero: true,
+                },
+            },
+            plugins: {
+                legend: {
+                display: false,
+                },
+            },
             },
         });
 
@@ -161,10 +173,23 @@ const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
                         </div>
                     </div>
                     {window.location.pathname==="/contest/123/dreamteam" && <div className="flex-col bg-gradient-to-r from-authGradient1 to-authGradient2 p-3 rounded-xl text-white">
-                        <h3>Fantasy Pts</h3>
-                        <h2 className="text-xl font-semibold">{predictedPoints?parseFloat(predictedPoints).toFixed(2):0}</h2>
+                        <h3>Recent Pts</h3>
+                        <h2 className="text-xl font-semibold">{format === "t20"
+                            ? player?.past_points?.t20?.toFixed(2)
+                            : format === "test"
+                                ? player?.past_points?.test?.toFixed(2)
+                                : player?.past_points?.odi?.toFixed(2)}</h2>
                     </div>}
                 </div>
+                
+                {window.location.pathname=="/contest/123/dreamteam" &&
+                <div className="bg-[#F6F6F6] px-2 py-1 rounded-lg my-2 text-sm text-left flex gap-1 relative">
+                    <Image src={"/ai-sparkle.png"} alt="" width={20} height={20} className="absolute left-1 top-1"/>
+                    <p className="ml-4">
+                        {newExplanation &&player?.name && newExplanation[player?.name] ? newExplanation[player?.name] : "Thinking..."}
+                    </p>
+                </div>
+                }
                 <div className="flex-col shadow-md rounded-b-xl mb-4">
                     <div className="flex justify-between bg-[#ED000017] py-4 px-2 rounded-t-xl">
                         <h2 className="text-authGradient2 text-xl ml-2">All Time Stats</h2>
@@ -209,7 +234,7 @@ const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
                                         ? player?.avg_score?.test.toFixed(2)
                                         : player?.avg_score?.odi.toFixed(2)}
                             </h2>
-                            <p className="text-gray-500 font-[400]">Avg</p>
+                            <p className="text-gray-500 font-[400]">Bat Avg</p>
                         </div>
                         <div>
                             <h2 className="text-xl text-left font-[500]">
@@ -281,7 +306,7 @@ const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
                             </p>
                         </div>
                         <div className="flex justify-between px-4 py-4 text-md">
-                            <p className="text-gray-500">Total Overs</p>
+                            <p className="text-gray-500">Total Overs Bowled</p>
                             <p className="text-authGradient2">
                                 {format2 === "t20"
                                     ? player?.total_overs_bowled?.t20.toFixed(0)
@@ -291,13 +316,13 @@ const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
                             </p>
                         </div>
                         <div className="flex justify-between px-4 py-4 text-md bg-[#F6F6F6] ">
-                            <p className="text-gray-500">Total Maiden Overs</p>
+                            <p className="text-gray-500">Boundary Score %</p>
                             <p className="text-authGradient2">
                                 {format2 === "t20"
-                                    ? player?.total_maiden_overs?.t20
+                                    ? player?.boundary?.t20.toFixed(2)
                                     : format2 === "test"
-                                        ? player?.total_maiden_overs?.test
-                                        : player?.total_maiden_overs?.odi}{" "}
+                                        ? player?.boundary?.test.toFixed(2)
+                                        : player?.boundary?.odi.toFixed(2)}{" "}
                             </p>
                         </div>
                     </div>
@@ -316,6 +341,16 @@ const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
                             <option value="test">Test</option>
                             <option value="odi">ODI</option>
                         </select>
+                    </div>
+                    <div className="flex gap-2 m-auto">
+                        <div className="flex justify-center items-center">
+                            <div className="h-3 w-3 rounded-sm mx-1" style={{backgroundColor:"rgba(127, 31, 36, 1)"}}></div>
+                            <p>Runs</p>
+                        </div>
+                        <div className="flex justify-center items-center">
+                            <div className="h-3 w-3 rounded-sm mx-1" style={{backgroundColor:"rgba(0, 0, 255, 1)"}}></div>
+                            <p>Wickets</p>
+                        </div>
                     </div>
                     <canvas id="myChart" width="100%" height="60%"></canvas>
                 </div>

@@ -77,6 +77,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    console.log(file.name)
+
     if (!file.name.endsWith('.csv')) {
       return NextResponse.json(
         { message: 'Only CSV files are allowed' },

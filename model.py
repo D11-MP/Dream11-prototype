@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+# from flask import Flask, request, jsonify
 
 
 import pandas as pd
@@ -12,10 +12,16 @@ from sklearn.metrics import mean_absolute_error
 import pandas as pd
 
 
-app = Flask(__name__)
-from flask_cors import CORS
-CORS(app)
+# app = Flask(__name__)
+# from flask_cors import CORS
+# CORS(app)
 
+
+# avg_total_runs_made_last_1_matches, avg_total_runs_made_last_2_matches, avg_total_runs_made_last_5_matches, avg_total_runs_made_last_10_matches, avg_total_runs_made_last_15_matches, avg_total_balls_faced_last_1_matches, avg_total_balls_faced_last_2_matches, avg_total_balls_faced_last_5_matches, avg_total_balls_faced_last_10_matches, avg_total_balls_faced_last_15_matches, avg_total_sixes_last_1_matches, avg_total_sixes_last_2_matches, avg_total_sixes_last_5_matches, avg_total_sixes_last_10_matches, avg_total_sixes_last_15_matches, avg_total_fours_last_1_matches, avg_total_fours_last_2_matches, avg_total_fours_last_5_matches, avg_total_fours_last_10_matches, avg_total_fours_last_15_matches, avg_total_runs_points_last_1_matches, avg_total_runs_points_last_2_matches, avg_total_runs_points_last_5_matches, avg_total_runs_points_last_10_matches, avg_total_runs_points_last_15_matches, avg_run_6_points_last_1_matches, avg_run_6_points_last_2_matches, avg_run_6_points_last_5_matches, avg_run_6_points_last_10_matches, avg_run_6_points_last_15_matches, avg_run_bonus_points_last_1_matches, avg_run_bonus_points_last_2_matches, avg_run_bonus_points_last_5_matches, avg_run_bonus_points_last_10_matches, avg_run_bonus_points_last_15_matches, avg_strike_rate_last_1_matches, avg_strike_rate_last_2_matches, avg_strike_rate_last_5_matches, avg_strike_rate_last_10_matches, avg_strike_rate_last_15_matches, avg_strike_rate_points_last_1_matches, avg_strike_rate_points_last_2_matches, avg_strike_rate_points_last_5_matches
+
+
+
+# avg_total_runs_given_last_1_matches, avg_total_runs_given_last_2_matches, avg_total_runs_given_last_5_matches, avg_total_runs_given_last_10_matches, avg_total_runs_given_last_15_matches, avg_total_balls_bowled_last_1_matches, avg_total_balls_bowled_last_2_matches, avg_total_balls_bowled_last_5_matches, avg_total_balls_bowled_last_10_matches, avg_total_balls_bowled_last_15_matches, avg_total_extras_last_1_matches, avg_total_extras_last_2_matches, avg_total_extras_last_5_matches, avg_total_extras_last_10_matches, avg_total_extras_last_15_matches, avg_total_wickets_last_1_matches, avg_total_wickets_last_2_matches, avg_total_wickets_last_5_matches, avg_total_wickets_last_10_matches, avg_total_wickets_last_15_matches, avg_lbw_wickets_last_1_matches, avg_lbw_wickets_last_2_matches, avg_lbw_wickets_last_5_matches, avg_lbw_wickets_last_10_matches, avg_lbw_wickets_last_15_matches, avg_bowled_wickets_last_1_matches, avg_bowled_wickets_last_2_matches, avg_bowled_wickets_last_5_matches, avg_bowled_wickets_last_10_matches, avg_bowled_wickets_last_15_matches, avg_maidens_last_1_matches, avg_maidens_last_2_matches, avg_maidens_last_5_matches, avg_maidens_last_10_matches, avg_maidens_last_15_matches, avg_economy_rate_last_1_matches, avg_economy_rate_last_2_matches, avg_economy_rate_last_5_matches, avg_economy_rate_last_10_matches, avg_economy_rate_last_15_matches, avg_total_wickets_points_last_1_matches, avg_total_wickets_points_last_2_matches
 
 
 class PlayerPointsModel:
@@ -61,7 +67,7 @@ class PlayerPointsModel:
         self.model.fit(X_train, y_train)
 
         # Save the trained model to a .pkl file
-        with open('trained_model.pkl', 'wb') as f:
+        with open('trained_model2.pkl', 'wb') as f:
             pickle.dump(self.model, f)
 
         # Make predictions on the testing set
@@ -128,13 +134,13 @@ def product_ui(pickle_file, latest_stats_file ):
 
 
 
-@app.route("/predict", methods=["GET"])
-def predict():
-  pickle_file = "trained_model.pkl"
-  latest_stats_file = "latest_stats1.pkl"
+# @app.route("/predict", methods=["GET"])
+# def predict():
+#   pickle_file = "trained_model2.pkl"
+#   latest_stats_file = "latest_stats1.pkl"
 
-  product_ui(pickle_file, latest_stats_file )
-  return jsonify({"status": "success"})
+#   product_ui(pickle_file, latest_stats_file )
+#   return jsonify({"status": "success"})
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+#   app.run(debug=True)
