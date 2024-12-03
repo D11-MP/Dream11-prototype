@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import shap
 import google.generativeai as genai
-from sklearn.model_selection import train_test_split
 
 api_key = "AIzaSyC_vDuBg6FBefSWjkhHlM-JrUOHoiKdNDo"
 

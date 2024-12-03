@@ -33,12 +33,6 @@ interface Player {
 }
 
 export function GET(req: NextRequest) {
-  // Load JavaScript files as modules
-  function loadJS(fileName) {
-    const filePath = path.resolve(fileName);
-    return require(filePath);
-  }
-
   // Merge player statistics from T20, ODI, and Test formats
   function mergePlayerStats(
     t20Data,
