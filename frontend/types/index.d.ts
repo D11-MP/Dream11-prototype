@@ -51,6 +51,7 @@ export interface ButtonProps {
 
 export interface MatchCardProps {
     match: Match;
+    total_predicted_points: number;
   }
 
   export interface TopCarouselProps {

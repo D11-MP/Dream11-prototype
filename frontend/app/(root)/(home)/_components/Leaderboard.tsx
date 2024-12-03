@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Leaderboard() {
   return (
     <div className="bg-white rounded-lg p-4 shadow-md max-w-sm">
@@ -5,12 +7,14 @@ export default function Leaderboard() {
       <div className="flex justify-evenly items-end mt-2">
         <div className="flex flex-col w-1/3 px-2">
           <div className="flex flex-col items-center">
-            <img
-              src="https://via.placeholder.com/50"
+            <Image
+            height={50}
+            width={50}
+              src={"/profile.png"}
               alt="avatar"
               className="rounded-full"
             />
-            <div>Name</div>
+            <div>Deecey</div>
           </div>
           <div className="h-20 rounded-t-2xl bg-gradient-to-t from-grayGradient2 to-grayGradient w-full mt-auto text-center pt-4">
             <strong className="text-lg text-gray-600">2nd</strong>
@@ -20,12 +24,14 @@ export default function Leaderboard() {
 
         <div className="flex flex-col w-1/3 px-2">
           <div className="flex flex-col items-center">
-            <img
-              src="https://via.placeholder.com/50"
+            <Image
+            height={50}
+            width={50}
+            src={"/profile.png"}
               alt="avatar"
               className="rounded-full"
             />
-            <div>Name</div>
+            <div>Rohit</div>
           </div>
           <div className="h-24 rounded-t-2xl bg-gradient-to-t from-yellowGradient to-yellowGradient2 w-full mt-auto text-center pt-6">
             <strong className="text-lg text-yellow-600">1st</strong>
@@ -35,12 +41,14 @@ export default function Leaderboard() {
 
         <div className="flex flex-col w-1/3 px-2">
           <div className="flex flex-col items-center">
-            <img
-              src="https://via.placeholder.com/50"
+            <Image
+            height={50}
+            width={50}
+            src={"/profile.png"}
               alt="avatar"
               className="rounded-full"
             />
-            <div>Name</div>
+            <div>Virat</div>
           </div>
           <div className="h-16 rounded-t-2xl bg-gradient-to-t from-redGradient to-redGradient2 w-full mt-auto text-center pt-2">
             <strong className="text-lg text-red-700">3rd</strong>

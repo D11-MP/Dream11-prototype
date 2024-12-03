@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { MatchCardProps } from "@/types";
 import "../styles/matchCard.css";
 import Image from "next/image";
