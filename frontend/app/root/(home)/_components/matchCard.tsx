@@ -17,8 +17,8 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match }) => {
 
   useEffect(() => {
     const calculateDays = () => {
-        const [day, month, year] = match.matchDate.split("-");
-        const target = new Date(`${year}-${month}-${day}`);
+      const [day, month, year] = match.matchDate.split("-");
+      const target = new Date(`${year}-${month}-${day}`);
       target.setHours(0, 0, 0, 0);
 
       const today = new Date();
@@ -113,7 +113,9 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match }) => {
               borderRadius: "5px",
             }}
           >
-            {daysLeft > 0 ? `${daysLeft} days left` : `${Math.abs(daysLeft)} days ago`}
+            {daysLeft > 0
+              ? `${daysLeft} days left`
+              : `${Math.abs(daysLeft)} days ago`}
           </div>
           <div className="time-match-card" style={{ color: "gray" }}>
             {match.matchDate}
@@ -122,7 +124,7 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match }) => {
 
         <div>
           <Link
-            href={`/contest/123`}
+            href={`/root/contest/123`}
             className="bg-play_btn_clr play-btn w-[144px] h-[44px] flex items-center justify-center"
             style={{ borderRadius: "5px", color: "white" }}
           >

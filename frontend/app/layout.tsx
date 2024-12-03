@@ -4,13 +4,15 @@ import "./globals.css";
 import { Session } from "next-auth";
 import AuthProvider from "@/context/authProvider";
 import { headers } from "next/headers";
+import { Suspense } from "react";
+import Loading from "./Loading";
 
 async function getSession(cookie: string): Promise<Session> {
   const response = await fetch(`http:localhost:3000/api/auth/session`, {
     headers: {
       cookie,
     },
-  }); 
+  });
   const session = await response.json();
   return Object.keys(session).length > 0 ? session : null;
 }
@@ -33,15 +35,15 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const header = await headers();
-  const cookie = header.get('cookie') ?? '';
+  const cookie = header.get("cookie") ?? "";
   const session = await getSession(cookie);
   // console.log(session)
   return (
-    <html lang="en" >
+    <html lang="en">
       <body className={poppins.variable}>
-        <AuthProvider session={session}>
-          {children}
-        </AuthProvider>
+        <Suspense fallback={<Loading />}>
+          <AuthProvider session={session}>{children}</AuthProvider>
+        </Suspense>
       </body>
     </html>
   );

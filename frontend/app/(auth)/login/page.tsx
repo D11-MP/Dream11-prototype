@@ -1,35 +1,34 @@
-"use client"
+"use client";
 
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
-import React, {ChangeEvent, useState } from "react";
-
+import { useRouter } from "next/navigation";
+import React, { ChangeEvent, useState } from "react";
 
 export default function Login() {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [errorMsg, setErrorMsg] = useState<string>("");
+  const router = useRouter();
 
-  const [email , setEmail] = useState<string>('');
-  const [password , setPassword] = useState<string>('');
-  const [errorMsg , setErrorMsg] = useState<string>('');
-  const router =  useRouter();
-
-  async function handleLogin(e:React.FormEvent) {
+  async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
-    if(email.trim() === '' || password.trim() === '') return;
-      try {
-        const result = await signIn('credentials',{
-          redirect:false,
-          identifier:email,
-          password:password
-        });
-        if(result?.error) throw new Error('Could not Login due to wrong credentials');
-        if(result?.url) router.replace('/');
-      } catch (error:any) {
-        setErrorMsg(error.message);
-        setTimeout(()=>{
-          setErrorMsg('')
-        },5000)
-      }
+    if (email.trim() === "" || password.trim() === "") return;
+    try {
+      const result = await signIn("credentials", {
+        redirect: false,
+        identifier: email,
+        password: password,
+      });
+      if (result?.error)
+        throw new Error("Could not Login due to wrong credentials");
+      if (result?.url) router.replace("/root/");
+    } catch (error: any) {
+      setErrorMsg(error.message);
+      setTimeout(() => {
+        setErrorMsg("");
+      }, 5000);
+    }
   }
 
   return (
@@ -50,7 +49,9 @@ export default function Login() {
               name="identifier"
               placeholder="Enter email"
               required
-              onChange={(e:ChangeEvent<HTMLInputElement>)=>{setEmail(e.target.value)}}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                setEmail(e.target.value);
+              }}
               className="mt-1 w-full text-sm pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-red-400"
             />
             <svg
@@ -81,7 +82,9 @@ export default function Login() {
               name="password"
               placeholder="Enter your password"
               required
-              onChange={(e:ChangeEvent<HTMLInputElement>)=>{setPassword(e.target.value)}}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                setPassword(e.target.value);
+              }}
               className="mt-1 w-full text-sm pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-red-400"
             />
             <svg
@@ -128,10 +131,7 @@ export default function Login() {
           </Link>
         </div>
       </form>
-      <div className="flex mt-2 text-red-500 text-sm font-bold">
-        {errorMsg}
-      </div>
+      <div className="flex mt-2 text-red-500 text-sm font-bold">{errorMsg}</div>
     </div>
-
   );
 }

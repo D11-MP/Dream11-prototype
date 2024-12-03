@@ -1,34 +1,33 @@
 "use client";
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import AdvancedProps from "./AdvancedProps";
 import axios from "axios";
 import { Data } from "../contest/[id]/dreamteam/page";
 
-
 export interface TeamCustomizeProps {
   setPlayer?: React.Dispatch<React.SetStateAction<Data | null>>;
   countLockIn?: number;
-    countLockOut?: number;
-    setCountLockIn?: React.Dispatch<React.SetStateAction<number>>;
-    setCountLockOut?: React.Dispatch<React.SetStateAction<number>>;
+  countLockOut?: number;
+  setCountLockIn?: React.Dispatch<React.SetStateAction<number>>;
+  setCountLockOut?: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function Page({ setPlayer}: TeamCustomizeProps) {
+export default function Page({ setPlayer }: TeamCustomizeProps) {
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState("Beginner");
   const [countLockIn, setCountLockIn] = useState(1);
-    const [countLockOut, setCountLockOut] = useState(1);
+  const [countLockOut, setCountLockOut] = useState(1);
   const [country, setCountry] = useState("India");
 
   async function runModel() {
     const data = await axios.get("http://localhost:5000/predict");
     console.log(data);
-    if(data.status === 200){
+    if (data.status === 200) {
       const res = await axios.get("http://localhost:3000/api/parse_csv");
-      if(res.status===200){
-        router.push("/contest/123/dreamteam")
+      if (res.status === 200) {
+        router.push("/root/contest/123/dreamteam");
       }
     }
   }
@@ -108,7 +107,7 @@ export default function Page({ setPlayer}: TeamCustomizeProps) {
             </div>
           </div>
         ) : (
-            <AdvancedProps
+          <AdvancedProps
             setPlayer={setPlayer}
             countLockIn={countLockIn}
             countLockOut={countLockOut}
