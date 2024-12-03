@@ -5,6 +5,9 @@ import gola from "@/public/gola.svg";
 import { Chart } from "chart.js/auto";
 import { PlayerStatsProps } from "../contest/[id]/dreamteam/page";
 import finalData from "@/uploads/final.json";
+import last10t20 from "@/uploads/t20_10_matches.json";
+import last10test from "@/uploads/test_10_matches.json";
+import last10odi from "@/uploads/odi_10_matches.json";
 
 const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
     const [format, setFormat] = useState<string>("t20");
@@ -21,20 +24,66 @@ const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
             gradient.addColorStop(1, "rgba(217, 217, 217, 0)");
             return gradient;
         };
+        let playerData: any;
+        if (format3 === "t20") 
+           playerData  = last10t20.find(p => p.name === player?.name);
+        else if (format3 === "test") 
+            playerData = last10test.find(p => p.name === player?.name);
+        else 
+            playerData = last10odi.find(p => p.name === player?.name);
+        
+        const runsData = playerData
+            ? [
+                playerData.runs_last_1,
+                playerData.runs_last_2,
+                playerData.runs_last_3,
+                playerData.runs_last_4,
+                playerData.runs_last_5,
+                playerData.runs_last_6,
+                playerData.runs_last_7,
+                playerData.runs_last_8,
+                playerData.runs_last_9,
+                playerData.runs_last_10,
+            ]
+            : [];
+        const wicketsData = playerData
+            ? [
+                playerData.wickets_last_1,
+                playerData.wickets_last_2,
+                playerData.wickets_last_3,
+                playerData.wickets_last_4,
+                playerData.wickets_last_5,
+                playerData.wickets_last_6,
+                playerData.wickets_last_7,
+                playerData.wickets_last_8,
+                playerData.wickets_last_9,
+                playerData.wickets_last_10,
+            ]
+            : [];
         const ChartInstance = new Chart(ctx, {
             type: "line",
             data: {
                 labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
                 datasets: [
                     {
-                        data: [0.1, 0.9, 0.8, 1.6, 1.9, 3.6, 5.1, 7.4, 9.1, 8.5],
+                        data: runsData,
                         fill: "origin",
                         backgroundColor: createGradient(gctx),
                         borderColor: "rgba(127, 31, 36, 1)",
                         tension: 0.3,
+                        label: "Runs",
+                    },
+                    {
+                        data: wicketsData,
+                        fill: "origin",
+                        backgroundColor: "rgba(0, 0, 255, 0.2)",
+                        borderColor: "rgba(0, 0, 255, 1)",
+                        tension: 0.3,
+                        label: "Wickets",
                     },
                 ],
             },
+            
             options: {
                 scales: {
                     y: {
@@ -52,7 +101,7 @@ const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
         return () => {
             ChartInstance.destroy();
         };
-    }, []);
+    }, [setFormat3, format3, player]);
 
     return (
         <>
@@ -111,10 +160,10 @@ const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex-col bg-gradient-to-r from-authGradient1 to-authGradient2 p-3 rounded-xl text-white">
+                    {window.location.pathname==="/contest/123/dreamteam" && <div className="flex-col bg-gradient-to-r from-authGradient1 to-authGradient2 p-3 rounded-xl text-white">
                         <h3>Fantasy Pts</h3>
                         <h2 className="text-xl font-semibold">{predictedPoints?parseFloat(predictedPoints).toFixed(2):0}</h2>
-                    </div>
+                    </div>}
                 </div>
                 <div className="flex-col shadow-md rounded-b-xl mb-4">
                     <div className="flex justify-between bg-[#ED000017] py-4 px-2 rounded-t-xl">
