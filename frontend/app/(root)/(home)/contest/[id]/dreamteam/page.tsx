@@ -36,6 +36,8 @@ export interface PlayerStatsProps {
   predicted_points?: number;
 }
 
+export let final1: Data[] = [];
+
 export default function Page() {
   const [selectedPlayer, setSelectedPlayer] = useState<Data | null>(null);
   const match = data;
@@ -48,7 +50,7 @@ export default function Page() {
     sortedFinal = sortedFinal.slice(0, 11-inPlayers.length);
 
 
-  const final1 = inPlayers.concat(sortedFinal);
+   final1 = inPlayers.concat(sortedFinal);
     const totalPredictedPoints = final1.reduce((sum, player) => {
         const playerData = predData.find(p => p.name === player.name);
         return sum + (playerData ? parseFloat(playerData.predicted_points) : 0);

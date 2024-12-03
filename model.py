@@ -109,7 +109,7 @@ def product_ui(pickle_file, latest_stats_file ):
   playerpointsmodel = PlayerPointsModel(weight_file = pickle_file)
   with open(latest_stats_file, 'rb') as f:
     latest_stats = pickle.load(f)
-
+#   print(latest_stats["ba607b88"].head())
   inp = pd.read_csv("./frontend/uploads/admin/Input_Format.csv")
   inp["Player_id" ] = inp["Player Name"].apply(lambda x : player_name_to_identifier[x])
 
@@ -131,7 +131,7 @@ def product_ui(pickle_file, latest_stats_file ):
 @app.route("/predict", methods=["GET"])
 def predict():
   pickle_file = "trained_model.pkl"
-  latest_stats_file = "latest_stats.pkl"
+  latest_stats_file = "latest_stats1.pkl"
 
   product_ui(pickle_file, latest_stats_file )
   return jsonify({"status": "success"})

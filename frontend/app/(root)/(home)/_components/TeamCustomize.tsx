@@ -28,7 +28,8 @@ export default function Page({ setPlayer}: TeamCustomizeProps) {
     if(data.status === 200){
       const res = await axios.get("http://localhost:3000/api/parse_csv");
       if(res.status===200){
-        router.push("/contest/123/dreamteam")
+        router.push("/contest/123/dreamteam");
+        const res2=await axios.post("http://localhost:5000/shap");
       }
     }
   }
