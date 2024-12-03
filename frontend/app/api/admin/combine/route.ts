@@ -1,5 +1,4 @@
 import fs from "fs";
-import path from "path";
 import players_t20 from "@/uploads/admin/players_t20";
 import players_odi from "@/uploads/admin/players_odi";
 import players_test from "@/uploads/admin/players_test";
@@ -13,7 +12,7 @@ interface PlayerStats {
 }
 
 interface Player {
-  player_id: string | number;
+  player_id: string ;
   name: string;
   nationality: string;
   role: string;
@@ -33,12 +32,7 @@ interface Player {
 }
 
 export function GET(req: NextRequest) {
-  // Load JavaScript files as modules
-  function loadJS(fileName) {
-    const filePath = path.resolve(fileName);
-    return require(filePath);
-  }
-
+  
   // Merge player statistics from T20, ODI, and Test formats
   function mergePlayerStats(
     t20Data,

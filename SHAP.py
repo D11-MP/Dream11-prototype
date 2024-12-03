@@ -7,19 +7,23 @@ from sklearn.model_selection import train_test_split
 api_key = "AIzaSyC_vDuBg6FBefSWjkhHlM-JrUOHoiKdNDo"
 
 class SHAPAnalyzer:
-    def __init__(self):
+    # def configure_genai(self, api_key):
+    #     """
+    #     Configure the Google Generative AI client with the provided API key.
+    #     """
+    #     self.api_key = api_key
+    #     genai.configure(api_key=api_key)
+
+    def __init__(self, model):
         # Initialize SHAP's JavaScript visualization support
         shap.initjs()
-        
-
-    def configure_genai(self, api_key):
-        """
-        Configure the Google Generative AI client with the provided API key.
-        """
         self.api_key = api_key
         genai.configure(api_key=api_key)
+        self.model = model 
+        
 
-    def generate_top_features(self, X, model, num_features=5):
+    
+    def generate_top_features(self, X,  num_features=5):
         """
         Generate the top N features based on SHAP values.
 
@@ -31,7 +35,7 @@ class SHAPAnalyzer:
         Returns:
             str: A string representation of the top features and their SHAP values.
         """
-        explainer = shap.TreeExplainer(model)
+        explainer = shap.TreeExplainer(self.model)
         shap_values = explainer.shap_values(X)
 
         # Calculate mean absolute SHAP values

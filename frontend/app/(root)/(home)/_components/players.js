@@ -139,7 +139,7 @@ const players = [
     total_maiden_overs: { t20: 0, odi: 0, test: 0 },
     total_50: { t20: 22, odi: 22, test: 22 },
     total_100: { t20: 1, odi: 1, test: 1 },
-    avg_strike_rate: { t20: null, odi: null, test: null },
+    avg_strike_rate: { t20: 0, odi: 0, test: 0 },
     avg_score: { t20: 0, odi: 0, test: 0 },
   },
   {
@@ -174,7 +174,7 @@ const players = [
     },
   },
   {
-    player_id: 1679383,
+    player_id: "1679383",
     name: "DB Loic",
     nationality: "India",
     role: "Batsman",
@@ -290,7 +290,7 @@ const players = [
     total_maiden_overs: { t20: 2, odi: 2, test: 2 },
     total_50: { t20: 22, odi: 22, test: 22 },
     total_100: { t20: 1, odi: 1, test: 1 },
-    avg_strike_rate: { t20: null, odi: null, test: null },
+    avg_strike_rate: { t20: 0, odi: 0, test: 0 },
     avg_score: { t20: 0, odi: 0, test: 0 },
   },
   {
@@ -491,7 +491,7 @@ const players = [
     total_maiden_overs: { t20: 0, odi: 0, test: 0 },
     total_50: { t20: 22, odi: 22, test: 22 },
     total_100: { t20: 1, odi: 1, test: 1 },
-    avg_strike_rate: { t20: null, odi: null, test: null },
+    avg_strike_rate: { t20: 0, odi: 0, test: 0 },
     avg_score: { t20: 0, odi: 0, test: 0 },
   },
   {

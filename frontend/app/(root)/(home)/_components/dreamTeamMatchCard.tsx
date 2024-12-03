@@ -3,12 +3,8 @@ import "../styles/matchCard.css";
 import Image from "next/image";
 import ind from "../assets/india.png";
 import aus from "../assets/australia.png";
-import { useState } from "react";
 
-export const DreamTeamMatchCard:React.FC<MatchCardProps> = ({match})=> {
-
-    const [fanstasyPts , setFantasyPts] = useState<number|string>(110)
-    {/* hardcoding for now, actual data will be taken from ml model - srinjoy */}
+export const DreamTeamMatchCard:React.FC<MatchCardProps> = ({match,total_predicted_points})=> {
 
     return(
         <>
@@ -26,7 +22,7 @@ export const DreamTeamMatchCard:React.FC<MatchCardProps> = ({match})=> {
 
             <div className="flex flex-col items-center justify-between">
                 <p className="text-gray-500 text-xs">Fantasy Pts</p>
-                <div className="text-red-500 text-2xl font-medium">{fanstasyPts}</div>
+                <div className="text-red-500 text-2xl font-medium">{total_predicted_points.toFixed(2)}</div>
             </div>
     
             <div className="flex gap-2 items-center">

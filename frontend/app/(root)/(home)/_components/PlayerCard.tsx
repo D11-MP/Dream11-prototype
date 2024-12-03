@@ -133,7 +133,7 @@ export default function PlayerCard({
               disabled={clickIn}
             >
               -
-            </button>
+            </button>)
             :
             <button className={`px-4 py-1 flex items-center justify-center bg-[rgb(220,38,38)] text-black rounded-md`} onClick={() => {
                 setClickOut(false);
@@ -151,7 +151,7 @@ export default function PlayerCard({
             >
               x
             </button>
-          )}
+          }
         </div>
       </div>
     </>
