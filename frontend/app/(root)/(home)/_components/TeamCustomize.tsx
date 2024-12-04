@@ -18,13 +18,14 @@ export interface TeamCustomizeProps {
 
 export let playerResponse: any ;
 export let newExplanation: any;
-
+export let country: string | null = null;
+export let setCountry: React.Dispatch<React.SetStateAction<string | null>> = () => {};
 export default function Page({ setPlayer }: TeamCustomizeProps) {
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState("Beginner");
   const [countLockIn, setCountLockIn] = useState(1);
   const [countLockOut, setCountLockOut] = useState(1);
-  const [country, setCountry] = useState<string | null>(null);
+  [country, setCountry] = useState<string | null>(null);
   const [toggle, setToggle] = useState<boolean>(true);
 // console.log(final1);
 

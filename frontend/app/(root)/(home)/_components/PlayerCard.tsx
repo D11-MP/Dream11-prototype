@@ -71,7 +71,7 @@ export default function PlayerCard({
 
   return (
     <>
-      <div className="flex items-center justify-center mx-2 my-2 cursor-pointer group relative">
+      <div className="flex gap-1 items-center justify-center mx-2 my-2 cursor-pointer group relative">
         {/* Entire card is the hover area */}
         <div className="flex items-center justify-center">
           <Image alt="" height={80} width={80} src={"/"+player.name+".png"} className="rounded-full object-cover" />

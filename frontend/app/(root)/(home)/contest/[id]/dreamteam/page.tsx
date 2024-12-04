@@ -9,7 +9,8 @@ import { DreamTeamMatchCard } from "../../../_components/dreamTeamMatchCard";
 import data from "@/uploads/output.json";
 import { inPlayers, outPlayers } from "../../../_components/PlayerCard";
 import predData from "@/uploads/final.json"
-import {playerResponse} from "../../../_components/TeamCustomize";
+import {playerResponse,country} from "../../../_components/TeamCustomize";
+
 export interface Data {
     player_id?: string;
     name?: string;
@@ -48,8 +49,8 @@ export default function Page() {
 
     let filteredFinal = final.filter((player: Data) => !outPlayers.some(outPlayer => outPlayer.name === player.name));
     filteredFinal = filteredFinal.filter((player: Data) => !inPlayers.some(outPlayer => outPlayer.name === player.name));
-    const sortedFinal = filteredFinal.sort((a: any, b: any) => b.predicted_points - a.predicted_points);
-    // sortedFinal = sortedFinal.slice(0, 11 - inPlayers.length);
+    let sortedFinal = filteredFinal.sort((a: any, b: any) => b.predicted_points - a.predicted_points);
+    sortedFinal = sortedFinal.slice(0, 22);
 
 
     final1 = inPlayers.concat(sortedFinal.slice(0, 11 - inPlayers.length));
@@ -63,6 +64,21 @@ export default function Page() {
     if (allSameNationality) {
         final1.pop();
         final1.push(sortedFinal[11 - inPlayers.length]);
+    }
+
+    const countryPlayerCount = final1.filter(player => player.nationality === country).length;
+    if (countryPlayerCount < 6) {
+        const countryPlayers = sortedFinal.filter(player => player.nationality === country);
+        // const countryPlayerInFinal = final1.filter(player => player.nationality === country);
+        // final1 = [
+        //     ...countryPlayersInFinal.filter(player => !final1.some(finalPlayer => finalPlayer.name === player.name)),
+        //     ...final1.filter(player => player.nationality !== country)
+        // ];
+        // console.log(countryPlayersInFinal);
+        // console.log(sortedFinal);
+        // const playersToAdd = countryPlayers.filter(player => !final1.some(finalPlayer => finalPlayer.name === player.name)).slice(0, 6 - countryPlayerCount);
+        const playersToAdd = countryPlayers.slice(0, 6 - countryPlayerCount);
+        final1 = final1.slice(0, final1.length - playersToAdd.length).concat(playersToAdd);
     }
     // console.log(final1);
     const handlePlayerClick = (index: number) => {

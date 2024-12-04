@@ -8,7 +8,7 @@ export default function BeginnerProps({ country, setCountry, toggle, setToggle }
 
   const teams = [
     { name: "India", img: "/india.png" },
-    { name: "Australia", img: "/aus.png" },
+    { name: "SA", img: "/aus.png" },
   ];
 
   const handleToggle = () => {
@@ -34,6 +34,7 @@ export default function BeginnerProps({ country, setCountry, toggle, setToggle }
     setCountry(teamName);
     setToggle(false);
     setIsOpen(false);
+    
   };
   return (
     <div className="flex-col w-full space-y-4">
@@ -69,6 +70,7 @@ export default function BeginnerProps({ country, setCountry, toggle, setToggle }
                   alt={`${country} Flag`}
                   width={30}
                   height={30}
+                  className="rounded-full"
                 />
                 <span>{country}</span>
               </div>
@@ -111,6 +113,7 @@ export default function BeginnerProps({ country, setCountry, toggle, setToggle }
                     alt={`${team.name} Flag`}
                     width={30}
                     height={30}
+                    className="rounded-full"
                   />
                   <span>{team.name}</span>
                 </li>
