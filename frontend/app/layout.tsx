@@ -6,7 +6,7 @@ import AuthProvider from "@/context/authProvider";
 import { headers } from "next/headers";
 import {GlobalProvider} from "@/context/GlobalContext"
 async function getSession(cookie: string): Promise<Session> {
-  const response = await fetch(`http:localhost:3000/api/auth/session`, {
+  const response = await fetch(`https://dreamteam-sage.vercel.app/api/auth/session`, {
     headers: {
       cookie,
     },

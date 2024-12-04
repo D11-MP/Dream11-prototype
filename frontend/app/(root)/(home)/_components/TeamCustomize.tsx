@@ -35,7 +35,7 @@ export default function Page({ setPlayer }: TeamCustomizeProps) {
         const data = await axios.get("http://localhost:5000/predict");
         console.log(data);
         if (data.status === 200) {
-          const res = await axios.get("http://localhost:3000/api/parse_csv");
+          const res = await axios.get("https://dreamteam-sage.vercel.app/api/parse_csv");
           if (res.status === 200) {
             router.push("/contest/123/dreamteam");
 
