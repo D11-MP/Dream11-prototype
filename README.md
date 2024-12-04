@@ -193,4 +193,3 @@ The Model UI is used to run the model between a start and end date for both trai
 - **Real-time Match Updates**: Integrate real-time match data, such as live scores and player performance.
 - **Social Sharing**: Allow users to share their Dream11 teams on social media platforms.
 - **Mobile App**: Create a mobile application version of the platform for iOS and Android.
-```
