@@ -220,8 +220,9 @@ pip __main__.py
 ```
 Now the server is running on localhost:5000
 
-```markdown
+
 ## How to Run the UI Locally
+```markdown
 
 1. **Navigate to the Frontend Directory**  
    Open a terminal and navigate to the `frontend` directory.  
