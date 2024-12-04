@@ -1,21 +1,12 @@
-import React, { useEffect } from "react";
-import pic from "../../../../public/Player_Pic.png";
+import React from "react";
 import Image from "next/image";
 import ind from "../assets/india.png";
 import aus from "../assets/australia.png";
 import bat from "../../../../public/bat.png";
 import ball from "../../../../public/ball.png";
-import { Data } from "../contest/[id]/dreamteam/page";
-import { set } from "mongoose";
+import { Data } from "@/types/index";
+import {PlayerCardProps} from "@/types/index";
 
-export interface PlayerCardProps {
-  player: Data;
-  setPlayer?: React.Dispatch<React.SetStateAction<Data | null>>;
-  countLockIn?: number;
-  countLockOut?: number;
-  setCountLockIn?: React.Dispatch<React.SetStateAction<number>>;
-  setCountLockOut?: React.Dispatch<React.SetStateAction<number>>;
-}
 
 export const inPlayers: Data[] = [];
 export const outPlayers: Data[] = [];

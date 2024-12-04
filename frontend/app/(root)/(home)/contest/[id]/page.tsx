@@ -1,7 +1,7 @@
 "use client";
 
 import PlayerStats from "../../_components/PlayerStats";
-import { Data } from "./dreamteam/page";
+import { Data } from "@/types/index";
 
 import React, { use, useEffect, useState } from "react";
 import TeamCustomize from "../../_components/TeamCustomize";

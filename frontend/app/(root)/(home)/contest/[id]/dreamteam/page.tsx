@@ -3,84 +3,17 @@
 import { useState } from "react";
 import Image from "next/image";
 import PlayerStats from "../../../_components/PlayerStats";
-import final from "@/app/(root)/(home)/_components/players"
-// import final from "@/uploads/final.json"
 import { DreamTeamMatchCard } from "../../../_components/dreamTeamMatchCard";
 import data from "@/uploads/output.json";
-import { inPlayers, outPlayers } from "../../../_components/PlayerCard";
-import predData from "@/uploads/final.json"
-import {playerResponse,country} from "../../../_components/TeamCustomize";
+import { Data } from "@/types/index";
+import {useGlobalContext} from "@/context/GlobalContext";
 
-export interface Data {
-    player_id?: string;
-    name?: string;
-    nationality?: string;
-    role?: string;
-    total_100s?: any;
-    total_50s?: any;
-    total_runs?: any;
-    total_matches?: any;
-    total_wickets?: any;
-    avg_economy?: any;
-    total_overs_bowled?: any;
-    total_5_wicket_hauls?: any;
-    total_50?: any;
-    total_100?: any;
-    avg_strike_rate?: any;
-    avg_score?: any;
-    total_maiden_overs?: any;
-    boundary?: any;
-    past_points?: any;
-}
-
-export interface PlayerStatsProps {
-    player: Data | null;
-    setSelectedPlayer: any;
-    predicted_points?: number;
-}
-
-export let final1: Data[] = [];
 
 export default function Page() {
     const [selectedPlayer, setSelectedPlayer] = useState<Data | null>(null);
     const match = data;
-
-
-
-    let filteredFinal = final.filter((player: Data) => !outPlayers.some(outPlayer => outPlayer.name === player.name));
-    filteredFinal = filteredFinal.filter((player: Data) => !inPlayers.some(outPlayer => outPlayer.name === player.name));
-    let sortedFinal = filteredFinal.sort((a: any, b: any) => b.predicted_points - a.predicted_points);
-    sortedFinal = sortedFinal.slice(0, 22);
-
-
-    final1 = inPlayers.concat(sortedFinal.slice(0, 11 - inPlayers.length));
-
-    const totalPredictedPoints = final1.reduce((sum, player) => {
-        const playerData = predData.find(p => p.name === player.name);
-        return sum + (playerData ? parseFloat(playerData.predicted_points) : 0);
-    }, 0);
-    const allSameNationality = final1.every(player => player.nationality === final1[0].nationality);
-
-    if (allSameNationality) {
-        final1.pop();
-        final1.push(sortedFinal[11 - inPlayers.length]);
-    }
-
-    const countryPlayerCount = final1.filter(player => player.nationality === country).length;
-    if (countryPlayerCount < 6) {
-        const countryPlayers = sortedFinal.filter(player => player.nationality === country);
-        // const countryPlayerInFinal = final1.filter(player => player.nationality === country);
-        // final1 = [
-        //     ...countryPlayersInFinal.filter(player => !final1.some(finalPlayer => finalPlayer.name === player.name)),
-        //     ...final1.filter(player => player.nationality !== country)
-        // ];
-        // console.log(countryPlayersInFinal);
-        // console.log(sortedFinal);
-        // const playersToAdd = countryPlayers.filter(player => !final1.some(finalPlayer => finalPlayer.name === player.name)).slice(0, 6 - countryPlayerCount);
-        const playersToAdd = countryPlayers.slice(0, 6 - countryPlayerCount);
-        final1 = final1.slice(0, final1.length - playersToAdd.length).concat(playersToAdd);
-    }
-    // console.log(final1);
+    const {final2, setFinal2, totalPredictedPoints}=useGlobalContext();
+    const final1: Data[]=final2;
     const handlePlayerClick = (index: number) => {
         setSelectedPlayer(final1[index]);
     };
@@ -344,7 +277,7 @@ export default function Page() {
                 </div>
                 {selectedPlayer &&
                     <div className="w-[40%] rounded-lg bg-white">
-                        {selectedPlayer && <PlayerStats player={selectedPlayer} setSelectedPlayer={setSelectedPlayer} playerResponse={playerResponse} />}
+                        {selectedPlayer && <PlayerStats player={selectedPlayer} setSelectedPlayer={setSelectedPlayer}/>}
                     </div>}
             </div>
         </div>

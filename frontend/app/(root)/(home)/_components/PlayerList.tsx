@@ -1,11 +1,7 @@
-import { useState } from "react";
-import { Data } from "../contest/[id]/dreamteam/page";
+import { Data } from "@/types/index";
 import PlayerCard from "./PlayerCard";
-// import players_t20 from "@/uploads/admin/players_t20";
-// import players_odi from "@/uploads/admin/players_odi";
-// import players_test from "@/uploads/admin/players_test";
-import players from "./players";
-import { TeamCustomizeProps } from "./TeamCustomize";
+import players from "@/uploads/admin/players";
+import { TeamCustomizeProps } from "@/types/index";
 
 export default function Page({
   setPlayer,

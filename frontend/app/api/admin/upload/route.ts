@@ -16,8 +16,8 @@ export async function POST(request: NextRequest) {
   
       let teamA = "";
       let teamB = "";
-      let playerA = [];
-      let playerB = [];
+      let playerA =<any> [];
+      let playerB =<any> [];
       let matchDate = "";
       let format = "";
   
@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
       obj["playerB"] = playerB;
       obj["lineupsRelease"] = true;
   
-      let results = [];
+      let results =<any> [];
       results.push(obj);
       let json = JSON.stringify(results);
       // console.log(json);

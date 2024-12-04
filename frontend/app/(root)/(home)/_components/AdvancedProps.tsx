@@ -5,7 +5,7 @@ import "../styles/toggleButton.css";
 import { useState } from "react";
 import { Slider } from "antd";
 import PlayerList from "./PlayerList";
-import { TeamCustomizeProps } from "./TeamCustomize";
+import { TeamCustomizeProps } from "@/types/index";
 import Tooltip from "./Tooltip";
 
 const AdvancedProps = ({
@@ -156,14 +156,14 @@ const AdvancedProps = ({
           </div>
           <div className="w-[100%] gap-2">
             <div className="w-[100%] flex py-4 gap-2 justify-between items-center">
-              <p className="w-[70%] text-gray-400">Minimum Players from Aus</p>
+              <p className="w-[70%] text-gray-400">Minimum Players from SA</p>
               <div className="flex gap-4">
                 <Image
                   src="/aus.png"
                   alt="An example image"
                   width={40}
                   height={40}
-                  className="p-1"
+                  className="p-1 rounded-full"
                 />
                 <input
                   type="text"

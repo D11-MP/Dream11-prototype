@@ -1,14 +1,12 @@
 import { useLayoutEffect, useState } from "react";
 import Image from "next/image";
-import pic from "@/public/Player_Pic.png";
 import gola from "@/public/gola.svg";
 import { Chart } from "chart.js/auto";
-import { PlayerStatsProps } from "../contest/[id]/dreamteam/page";
-import finalData from "@/uploads/final.json";
 import last10t20 from "@/uploads/t20_10_matches.json";
 import last10test from "@/uploads/test_10_matches.json";
 import last10odi from "@/uploads/odi_10_matches.json";
 import { newExplanation } from "./TeamCustomize";
+import { PlayerStatsProps } from "@/types";
 
 const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
     const [format, setFormat] = useState<string>("t20");

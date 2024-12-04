@@ -9,7 +9,7 @@ export default function Trivia() {
     question: "Who will score a century?",
     options: [
       { id: "virat", name: "Virat Kohli", votes: 30 },
-      { id: "steven", name: "Steven Smith", votes: 20 },
+      { id: "steven", name: "AB de Villiers", votes: 20 },
     ],
   });
 

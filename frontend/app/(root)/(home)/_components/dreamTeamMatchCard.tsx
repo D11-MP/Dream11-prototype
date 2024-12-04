@@ -1,10 +1,10 @@
-import { MatchCardProps } from "@/types";
+import { DreamTeamMatchCardProps } from "@/types";
 import "../styles/matchCard.css";
 import Image from "next/image";
 import ind from "../assets/india.png";
 import aus from "../assets/australia.png";
 
-export const DreamTeamMatchCard:React.FC<MatchCardProps> = ({match,total_predicted_points})=> {
+export const DreamTeamMatchCard:React.FC<DreamTeamMatchCardProps> = ({match,total_predicted_points})=> {
 
     return(
         <>

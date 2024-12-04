@@ -3,35 +3,9 @@ import players_t20 from "@/uploads/admin/players_t20";
 import players_odi from "@/uploads/admin/players_odi";
 import players_test from "@/uploads/admin/players_test";
 import { NextRequest, NextResponse } from "next/server";
-
+import {Player} from "@/types/index"
 // Define the interface for a player
-interface PlayerStats {
-  t20: number;
-  odi: number;
-  test: number;
-}
 
-interface Player {
-  player_id: string ;
-  name: string;
-  nationality: string;
-  role: string;
-  total_100s: PlayerStats;
-  total_50s: PlayerStats;
-  total_runs: PlayerStats;
-  total_matches: PlayerStats;
-  total_wickets: PlayerStats;
-  avg_economy: PlayerStats;
-  total_overs_bowled: PlayerStats;
-  total_5_wicket_hauls: PlayerStats;
-  total_maiden_overs: PlayerStats;
-  total_50: PlayerStats;
-  total_100: PlayerStats;
-  avg_strike_rate: PlayerStats;
-  avg_score: PlayerStats;
-  boundary: PlayerStats;
-  past_points: PlayerStats;
-}
 
 export function GET(req: NextRequest) {
   
@@ -165,7 +139,7 @@ export function GET(req: NextRequest) {
   const mergedData = mergePlayerStats(t20Data, odiData, testData);
 
   // Save the merged data to a new file
-  saveMergedData(mergedData, "./app/(root)/(home)/_components/players.js");
+  saveMergedData(mergedData, "./uploads/final/players.js");
 
   return NextResponse.json({ status: "success" });
 }

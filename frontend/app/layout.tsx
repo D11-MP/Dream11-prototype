@@ -4,7 +4,7 @@ import "./globals.css";
 import { Session } from "next-auth";
 import AuthProvider from "@/context/authProvider";
 import { headers } from "next/headers";
-
+import {GlobalProvider} from "@/context/GlobalContext"
 async function getSession(cookie: string): Promise<Session> {
   const response = await fetch(`http:localhost:3000/api/auth/session`, {
     headers: {
@@ -40,7 +40,9 @@ export default async function RootLayout({
     <html lang="en" >
       <body className={poppins.variable}>
         <AuthProvider session={session}>
-          {children}
+            <GlobalProvider>
+                {children}
+            </GlobalProvider>
         </AuthProvider>
       </body>
     </html>

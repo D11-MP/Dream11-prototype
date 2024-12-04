@@ -1,5 +1,4 @@
 import fs from "fs"
-import path from 'path';
 import players from "@/uploads/admin/players"
 import { NextRequest, NextResponse } from "next/server";
 

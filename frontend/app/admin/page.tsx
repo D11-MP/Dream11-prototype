@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios';
-import Loading from './Loading';
+import Loading from './loading';
 
 export default function AdminUpload() {
 

@@ -4,18 +4,16 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import AdvancedProps from "./AdvancedProps";
 import axios from "axios";
-import { Data } from "../contest/[id]/dreamteam/page";
 import BeginnerProps from "./BeginnerProps";
-import {final1} from "../contest/[id]/dreamteam/page";
+import {TeamCustomizeProps} from "@/types/index";
+import {useGlobalContext} from "@/context/GlobalContext"
+import final from "@/uploads/final/players"
+import {inPlayers,outPlayers} from "./PlayerCard";
+import predData from "@/uploads/final.json"
+import {Data} from "@/types/index"
 
-export interface TeamCustomizeProps {
-  setPlayer?: React.Dispatch<React.SetStateAction<Data | null>>;
-  countLockIn?: number;
-  countLockOut?: number;
-  setCountLockIn?: React.Dispatch<React.SetStateAction<number>>;
-  setCountLockOut?: React.Dispatch<React.SetStateAction<number>>;
-}
-
+let final1: Data[] = [] as Data[];
+export let totalPredPoints;
 export let playerResponse: any ;
 export let newExplanation: any;
 export let country: string | null = null;
@@ -27,6 +25,9 @@ export default function Page({ setPlayer }: TeamCustomizeProps) {
   const [countLockOut, setCountLockOut] = useState(1);
   [country, setCountry] = useState<string | null>(null);
   const [toggle, setToggle] = useState<boolean>(true);
+
+
+  const {final2, setFinal2, totalPredictedPoints, setTotalPredictedPoints}=useGlobalContext();
 // console.log(final1);
 
   async function runModel() {
@@ -37,6 +38,44 @@ export default function Page({ setPlayer }: TeamCustomizeProps) {
           const res = await axios.get("http://localhost:3000/api/parse_csv");
           if (res.status === 200) {
             router.push("/contest/123/dreamteam");
+
+
+            let filteredFinal = final.filter((player: Data) => !outPlayers.some(outPlayer => outPlayer.name === player.name));
+            filteredFinal = filteredFinal.filter((player: Data) => !inPlayers.some(outPlayer => outPlayer.name === player.name));
+            let sortedFinal = filteredFinal.sort((a: any, b: any) => b.predicted_points - a.predicted_points);
+            sortedFinal = sortedFinal.slice(0, 22);
+
+
+            let intermediate = inPlayers.concat(sortedFinal.slice(0, 11 - inPlayers.length));
+
+            const allSameNationality = intermediate.every(player => player.nationality === intermediate[0].nationality);
+            
+            if (allSameNationality) {
+                intermediate.pop();
+                intermediate.push(sortedFinal[11 - inPlayers.length]);
+            }
+            
+            const countryPlayerCount = intermediate.filter(player => player.nationality === country).length;
+            if (countryPlayerCount < 6 && country) {
+                const toAdd=6-countryPlayerCount;
+                const a = intermediate.filter(player => player.nationality !== country);
+                const b = intermediate.filter(player => player.nationality === country);
+                const c = sortedFinal.filter(player => player.nationality === country);
+                const d=c.filter(player => !b.includes(player));
+                intermediate=b.concat(d.slice(0,toAdd));
+                intermediate=intermediate.concat(a.slice(0,11-toAdd-b.length));
+            }
+            final1=intermediate;
+            totalPredPoints = final1.reduce((sum, player) => {
+                const playerData = predData.find(p => p.name === player.name);
+                return sum + (playerData ? parseFloat(playerData.predicted_points) : 0);
+            }, 0);
+
+            console.log(final1);
+            setFinal2(final1)
+            setTotalPredictedPoints(totalPredPoints);
+
+
             const data2 = await axios.post("http://localhost:5000/shap",{final1});
             playerResponse=data2.data.data;
             console.log(playerResponse);

@@ -17,7 +17,7 @@ export default function Page() {
     getNews();
   }, []);
 
-  const feeds = [];
+  const feeds:any = [];
 
   for (let i = 0; i < 50; i++) {
     const alignment = i % 2 === 0 ? "left" : "right"; 

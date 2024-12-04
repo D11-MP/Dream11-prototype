@@ -95,7 +95,7 @@ export const MatchCard: React.FC<MatchCardProps> = ({ match }) => {
             {match.teamB.slice(0, 3).toUpperCase()}
           </div>
           <div className="match-logo flex flex-col justify-between items-center">
-            <Image alt="" height={50} width={50} src={aus} />
+            <Image alt="" height={50} width={50} src={aus} className="rounded-full" />
             <p className="match-logo-name" style={{ color: "gray" }}>
               {match.teamB}
             </p>

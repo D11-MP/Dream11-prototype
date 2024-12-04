@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { fetchNews } from "./NewsFetcher";
 
-export default function NewsCard({ setNewsLoading }: { setNewsLoading: any }) {
+export default function NewsCard() {
   const [articles, setArticles] = useState<any[]>([]);
   useEffect(() => {
     const getNews = async () => {

@@ -20,7 +20,7 @@ export async function signup(request:any) {
         return {message:'User created successfully',status:201}
         // return Response.json({message:'User created successfully'},{status:201})
     }catch(error){
-        console.log('Some error occured while signing up new user');
+        console.log(error);
         return {message:'Some error occured while signing up new user',status:500}
         // return Response.json({error:error,message:'Some error occured while signing up new user'},{status:500})
     }
