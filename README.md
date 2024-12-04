@@ -61,7 +61,7 @@ This application has been developed to serve as a part of the **Inter IIT Mid Pr
 ---
 
 ## Folder Structure
-`
+```
 ├── README.md                   <- Project overview and usage instructions
 
 
@@ -103,7 +103,7 @@ This application has been developed to serve as a part of the **Inter IIT Mid Pr
 ├── rest                        <- Contains functions for miscellaneous requirements for Product UI.
 
 └── UI                          <- All files related to the user interface 
-`
+```
 
 
 ## Tech Stack
