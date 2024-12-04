@@ -1,4 +1,3 @@
-```markdown
 # Dream Team11 Prediction Platform
 
 ## Overview
