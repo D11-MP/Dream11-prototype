@@ -19,7 +19,7 @@ export default function RootLayout({
           <Image
             src={login_screen}
             alt="none"
-            className="absolute top-[52%] right-[-4.4%] translate-y-[-50%] scale-[0.9]"
+            className="absolute top-[54%] right-[-10%] translate-y-[-50%] scale-[0.8]"
           />
         </div>
       </div>
