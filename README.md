@@ -1,3 +1,4 @@
+```markdown
 # Dream Team11 Prediction Platform
 
 ## Overview
@@ -72,17 +73,22 @@ This application has been developed to serve as a part of the **Inter IIT Mid Pr
   - **Python (ML model)**: The backend hosts the AI model, which is responsible for predicting the Dream11 team based on the data input from the frontend.
 
 - **Database**:
- The platform uses **MongoDB** as its database to store:
+  - **MongoDB**: To store:
+    - **User Information**: User authentication details, preferences, and settings are securely stored for personalized experiences.
+    - **Chat History**: Interaction logs with the AI chatbot ("Dream") are saved, enabling continuity in conversations and allowing users to revisit past suggestions and recommendations.
 
-  - **User Information**: User authentication details, preferences, and settings are securely stored for personalized experiences.
-  - **Chat History**: Interaction logs with the AI chatbot ("Dream") are saved, enabling continuity in conversations and allowing users to revisit past suggestions and recommendations.
 - **External APIs**:
   - **Cricket News API**: To fetch the latest cricket news.
+
 ---
 
 ## Installation & Setup
 
-### Prerequisites
+The Product UI and Model UI cannot be run simultaneously on the same machine. Use two different machines if you wish to run both at the same time.
+
+### Product UI:
+
+#### Prerequisites
 
 Before you start, ensure that you have the following installed on your local machine:
 
@@ -92,7 +98,7 @@ Before you start, ensure that you have the following installed on your local mac
 - **Flask**
 - **Virtual Environment (for Python)**
 
-### Frontend Setup (Next.js)
+#### Frontend Setup (Next.js)
 
 1. Clone the repository:
    ```bash
@@ -112,7 +118,7 @@ Before you start, ensure that you have the following installed on your local mac
 
    The frontend will be available at `http://localhost:3000`.
 
-### Backend Setup (Flask)
+#### Backend Setup (Flask)
 
 1. Navigate to the backend folder:
    ```bash
@@ -137,20 +143,48 @@ Before you start, ensure that you have the following installed on your local mac
 
    The backend will be available at `http://localhost:5000`.
 
-### Integration Between Frontend and Backend
+---
 
-- The Next.js frontend communicates with the Flask backend using RESTful APIs for fetching data and interacting with the machine learning model.
-- The backend processes user input, runs predictions using the trained AI model, and returns the results to the frontend.
+### Model UI:
+
+The Model UI is used to run the model between a start and end date for both training and testing for the Dream11 players. It provides a downloadable CSV along with metrics visualized using graphs.
+
+#### Prerequisites
+
+1. **Node.js**: Install from [here](https://nodejs.org/en/download/package-manager).
+2. **WandB Account**: Sign up and obtain an API key from [here](https://wandb.ai).
+3. **Python**: Install from [here](https://www.python.org/downloads/).
+4. Create a `.env` file in the same directory as `__main__.py`. Follow the `.env.sample` file for reference.
+
+#### Running the Flask Server (Model Backend)
+
+1. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   venv/Scripts/activate  # Use `source venv/bin/activate` on Unix-based systems
+   ```
+
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Start the Flask server:
+   ```bash
+   python __main__.py
+   ```
+
+   The server will run on `localhost:5000`.
 
 ---
 
 ## Usage
 
 1. **Login**: Users can log in or sign up using the NextAuth.js authentication system.
-2. **Upload CSV**: The admin can upload a CSV file containing the match data. The file should follow the predefined format.
-3. **Navigate to Matches**: After login, users can view available matches, along with player lineups, and interact with the platform’s features.
+2. **Upload CSV**: Admins can upload a CSV file containing the match data. The file should follow the predefined format.
+3. **Navigate to Matches**: Users can view available matches, along with player lineups, and interact with the platform’s features.
 4. **Build Your Dream11 Team**: Users can create their team by following the beginner or advanced paths, using AI suggestions, or customizing based on their preferences.
-5. **Generate Team**: When ready, click the "Generate Team" button to get the final playing 11, which includes AI-generated reasons for each player’s selection.
+5. **Generate Team**: Click the "Generate Team" button to get the final playing 11, including AI-generated reasons for each player’s selection.
 
 ---
 
@@ -160,5 +194,4 @@ Before you start, ensure that you have the following installed on your local mac
 - **Real-time Match Updates**: Integrate real-time match data, such as live scores and player performance.
 - **Social Sharing**: Allow users to share their Dream11 teams on social media platforms.
 - **Mobile App**: Create a mobile application version of the platform for iOS and Android.
-
----
+```
