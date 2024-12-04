@@ -222,7 +222,6 @@ Now the server is running on localhost:5000
 
 
 ## How to Run the UI Locally
-```markdown
 
 1. **Navigate to the Frontend Directory**  
    Open a terminal and navigate to the `frontend` directory.  
