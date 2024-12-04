@@ -1,4 +1,4 @@
-# Dream Team11 Prediction Platform - README
+# Dream Team11 Prediction Platform
 
 ## Overview
 
