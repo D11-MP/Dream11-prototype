@@ -44,7 +44,7 @@ export const MatchCard2: React.FC<MatchCardProps> = ({ match }) => {
         <div className="flex gap-2">
         <p className="font-medium mt-3">{match.teamB.slice(0, 3).toUpperCase()}</p>
           <div className="flex flex-col items-center">
-            <Image alt="Away Team Logo" height={50} width={50} src={aus} />
+            <Image alt="Away Team Logo" height={50} width={50} src={aus} className="rounded-full object-cover" />
             <p className="text-sm mt-2 text-gray-500">{match.teamB}</p>
           </div>
         </div>
