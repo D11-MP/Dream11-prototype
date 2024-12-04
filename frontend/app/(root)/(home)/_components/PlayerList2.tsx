@@ -20,7 +20,7 @@ const PlayerList2 = () => {
                 
                     <div className='flex flex-col gap-2 justify-center mx-auto text-xs items-center font-semibold w-10 text-start ' key={player}>
                         <Image alt="" height={50} width={50} src={pic} />
-                        {player.split(" ")[1].slice(0,6)}
+                        {player.split(" ").pop()?.slice(0,6)}
                     </div>
                  ))}
             </div>
@@ -35,7 +35,7 @@ const PlayerList2 = () => {
                 {team2.map((player) => (
                     <div className='flex flex-col gap-2 justify-center mx-auto text-xs items-center font-semibold w-10 text-start' key={player}>
                         <Image alt="" height={50} width={50} src={pic} />
-                        {player.split(" ")[1].slice(0,6)}
+                        {player.split(" ").pop()?.slice(0,6)}
                     </div>
                 ))}
             </div>
