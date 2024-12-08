@@ -5,20 +5,14 @@ import { Chart } from "chart.js/auto";
 import last10t20 from "@/uploads/t20_10_matches.json";
 import last10test from "@/uploads/test_10_matches.json";
 import last10odi from "@/uploads/odi_10_matches.json";
-import { newExplanation } from "./TeamCustomize";
+import { newExplanation } from "../contest/[id]/dreamteam/page";
+// import { newExplanation } from "./TeamCustomize";
 import { PlayerStatsProps } from "@/types";
 
 const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
     const [format, setFormat] = useState<string>("t20");
     const [format2, setFormat2] = useState<string>("t20");
     const [format3, setFormat3] = useState<string>("t20");
-
-    // const predictedPoints = finalData.find(p => p.name === player?.name)?.predicted_points || 0;
-    // const predictedPoints ={format1 === "t20"
-    //     ? player?.past_points?.t20
-    //     : format2 === "test"
-    //         ? player?.past_points?.test
-    //         : player?.past_points?.odi};
 
     useLayoutEffect(() => {
         const ctx = document.getElementById("myChart") as HTMLCanvasElement;

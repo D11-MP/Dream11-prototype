@@ -64,7 +64,7 @@ export interface DreamTeamMatchCardProps{
 }
 
 export interface Data {
-    player_id?: string | number;
+    player_id?: string | number ;
     name?: string;
     nationality?: string;
     role?: string;
@@ -97,6 +97,8 @@ export interface TeamCustomizeProps {
     countLockOut?: number;
     setCountLockIn?: React.Dispatch<React.SetStateAction<number>>;
     setCountLockOut?: React.Dispatch<React.SetStateAction<number>>;
+    sliderValues?: any;
+    setSliderValues?: React.Dispatch<React.SetStateAction<any>>;
   }
 
   export interface PlayerCardProps {

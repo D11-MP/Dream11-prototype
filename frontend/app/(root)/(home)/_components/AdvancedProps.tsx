@@ -14,23 +14,19 @@ const AdvancedProps = ({
   setCountLockOut,
   countLockIn,
   countLockOut,
+  sliderValues,
+  setSliderValues,
 }: TeamCustomizeProps) => {
+  if (!setSliderValues) {
+    throw new Error("setSliderValues is undefined");
+  }
   const [toggleOptions, setToggleOptions] = useState({
     one: 0,
     two: 0,
     three: 0,
     four: 0,
   });
-  const [sliderValues, setSliderValues] = useState({
-    slider1: 5,
-    slider2: 5,
-    slider3: 5,
-    slider4: 3,
-    slider5: 1,
-    slider6: 2,
-    slider7: 4,
-  });
-
+  
   const handleSliderChange = (key: string, value: number) => {
     setSliderValues((prevValues) => ({
       ...prevValues,

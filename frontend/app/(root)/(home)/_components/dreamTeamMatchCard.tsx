@@ -28,7 +28,7 @@ export const DreamTeamMatchCard:React.FC<DreamTeamMatchCardProps> = ({match,tota
             <div className="flex gap-2 items-center">
             <p className="font-medium">{match.teamB.slice(0, 3).toUpperCase()}</p>
               <div className="flex flex-col items-center">
-                <Image alt="Away Team Logo" height={60} width={60} src={aus} />
+                <Image alt="Away Team Logo" height={60} width={60} src={aus} className="rounded-full"/>
                 {/* <p className="text-sm mt-2 text-gray-500">{match.teamB}</p> */}
               </div>
             </div>

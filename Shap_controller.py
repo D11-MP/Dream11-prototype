@@ -2,7 +2,8 @@ from sklearn.model_selection import train_test_split
 from SHAP import *
 from model import player_name_to_identifier, PlayerPointsModel
 import pickle
-api_key = "AIzaSyC_vDuBg6FBefSWjkhHlM-JrUOHoiKdNDo"
+api_key = "AIzaSyDHdzlQyG6k0uHLvcsElnldJYZr7Ut-Tjc"
+# api_key = "AIzaSyCHRmQlM-0NnatRV-umtgANQFBdAMifyoU"
 
 
 player_role_df = pd.read_csv('player_role.csv')
