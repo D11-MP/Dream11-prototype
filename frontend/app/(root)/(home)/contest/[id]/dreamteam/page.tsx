@@ -13,9 +13,7 @@ import { useSearchParams } from "next/navigation";
 import {inPlayers,outPlayers} from "../../../_components/PlayerCard";
 import axios from "axios";
 
-export let totalPredPoints;
-export let playerResponse: any ;
-export let newExplanation: any;
+let newExplanation = {};
 export default function Page() {
     const [selectedPlayer, setSelectedPlayer] = useState<Data | null>(null);
     const match = data;
@@ -95,10 +93,10 @@ export default function Page() {
             console.log(intermediate.current);
             final1.current=intermediate.current;
             const data2 = await axios.post("http://localhost:5000/shap",{intermediate});
-            playerResponse=data2.data.data;
+            const playerResponse=data2.data.data;
             console.log(intermediate.current)
             console.log(playerResponse);
-            newExplanation={}
+            // newExplanation={}
             if (playerResponse) {
                 playerResponse.forEach(p => {
                     newExplanation[p[0]] = p[1];
@@ -387,7 +385,7 @@ export default function Page() {
                 </div>
                 {selectedPlayer &&
                     <div className="w-[40%] rounded-lg bg-white">
-                        {selectedPlayer && <PlayerStats player={selectedPlayer} setSelectedPlayer={setSelectedPlayer}/>}
+                        {selectedPlayer && <PlayerStats player={selectedPlayer} setSelectedPlayer={setSelectedPlayer} newExplanation={newExplanation}/>}
                     </div>}
             </div>
         </div>

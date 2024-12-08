@@ -5,11 +5,11 @@ import { Chart } from "chart.js/auto";
 import last10t20 from "@/uploads/t20_10_matches.json";
 import last10test from "@/uploads/test_10_matches.json";
 import last10odi from "@/uploads/odi_10_matches.json";
-import { newExplanation } from "../contest/[id]/dreamteam/page";
+// import { newExplanation } from "../contest/[id]/dreamteam/page";
 // import { newExplanation } from "./TeamCustomize";
 import { PlayerStatsProps } from "@/types";
 
-const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
+const PlayerStats = ({ player, setSelectedPlayer, newExplanation }: PlayerStatsProps) => {
     const [format, setFormat] = useState<string>("t20");
     const [format2, setFormat2] = useState<string>("t20");
     const [format3, setFormat3] = useState<string>("t20");
@@ -155,9 +155,9 @@ const PlayerStats = ({ player, setSelectedPlayer }: PlayerStatsProps) => {
                                 </div>
                                 <div className="flex gap-1 text-gray-500 items-center">
                                     {player?.role === "Batsman" ? (
-                                        <Image src={"/bat.png"} height={20} width={20} alt="" />
+                                        <Image src={"/Bat.png"} height={20} width={20} alt="" />
                                     ) : (
-                                        <Image src={"/ball.png"} height={20} width={20} alt="" />
+                                        <Image src={"/Ball.png"} height={20} width={20} alt="" />
                                     )}
                                     <p>{player?.role}</p>
                                 </div>

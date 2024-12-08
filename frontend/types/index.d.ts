@@ -89,6 +89,7 @@ export interface PlayerStatsProps {
     player: Data | null;
     setSelectedPlayer: any;
     predicted_points?: number;
+    newExplanation?: any;
 }
 
 export interface TeamCustomizeProps {
