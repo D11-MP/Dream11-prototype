@@ -2,8 +2,8 @@ import React from "react";
 import Image from "next/image";
 import ind from "../assets/india.png";
 import aus from "../assets/australia.png";
-import bat from "../../../../public/bat.png";
-import ball from "../../../../public/ball.png";
+import bat from "@/public/Bat.png";
+import ball from "@/public/Ball.png";
 import { Data } from "@/types/index";
 import {PlayerCardProps} from "@/types/index";
 

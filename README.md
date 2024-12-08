@@ -60,6 +60,52 @@ This application has been developed to serve as a part of the **Inter IIT Mid Pr
 
 ---
 
+## Folder Structure
+```
+├── README.md                   <- Project overview and usage instructions
+
+
+├── docs                        <- Documentation and project demo
+│   └── video_demo              <- Walk-through video, covering setup, UI, and functionality
+
+
+├── src                         
+
+
+├── data                        <- Data folder with all stages of data
+│   ├── processed               <- Finalized datasets ready for modeling and generated training datasets
+│   └── raw                     <- Original data as downloaded
+│       ├── cricksheet          <- Raw data from Cricksheet
+│       └── additional          <- GenAI Augmented data
+
+
+
+├── data_processing             <- Scripts to process data
+│   ├── data_download.py        <- Download all project data using this script. All raw data sources are processed here before further use.
+│   └── feature_engineering.py  <- Handles all data manipulation and feature engineering for the project.
+│   └── SHAP_controller.py      <- Runner code for SHAP explanations.
+│   └── SHAP.py                 <- Contains the SHAP class.
+
+
+
+├── model                       <- Modeling scripts for training and prediction
+│   ├── teampointsmodel.py      <- Predicts Dream Team total points.
+│   └── playerpointsmodel.py    <- Predicts individual points for each player (Product UI).
+│   └── playerpointsmodel2.py   <- Predicts individual points for each player (Model UI).
+
+
+
+├── model_artifacts             <- Storage for trained models
+│                             (Includes pre-trained model for Product UI and generated model weight files from Model UI)
+
+
+
+├── rest                        <- Contains functions for miscellaneous requirements for Product UI.
+
+└── UI                          <- All files related to the user interface 
+```
+
+
 ## Tech Stack
 
 - **Frontend**: 
@@ -81,7 +127,9 @@ This application has been developed to serve as a part of the **Inter IIT Mid Pr
 ---
 
 ## Installation & Setup
+The product UI and ModelUI cannot be run at the same time on a SAME machine. Kindly use two different machines to run them at the same time. 
 
+## Product UI:
 ### Prerequisites
 
 Before you start, ensure that you have the following installed on your local machine:
@@ -141,6 +189,64 @@ Before you start, ensure that you have the following installed on your local mac
 
 - The Next.js frontend communicates with the Flask backend using RESTful APIs for fetching data and interacting with the machine learning model.
 - The backend processes user input, runs predictions using the trained AI model, and returns the results to the frontend.
+
+
+## Model UI:
+
+The Model-UI is used to run the model between a start and end date for both- Training and Testing for the Dream-11 players and provide the downloadable csv along with the metric visualized using graphs
+
+### Prerequisites
+ 1. NodeJS should be installed in your local system(Download from [here](https://nodejs.org/en/download/package-manager))
+ 2. You should have a Account in WanDB for visalizing the graphs and must get a API key. [Click here](https://wandb.ai)
+ 3. Python must be installed and it's path must be set up in your local system. Download it from [here](https://www.python.org/downloads/)
+ 4. Set up a .env folder in the same directory as __main__.py. Follow the .env.sample file there
+
+
+### How to start the Flask Server(this where the model runs)
+ 1. Create and Start a virtual enviroment in inside the directory where __main__.py exists. follow the below in the terminal
+```
+python -m venv venv
+```
+```
+venv/Scripts/activate
+```
+ 2.  Set the requriements.txt file by this - 
+```
+python -m pip install requirements.txt
+``` 
+ 3. Start the Flask server by running the below code in same directory as __main__.py where the virtual enviroment is running(make sure the port 5000 on your localhost is free) 
+```
+pip __main__.py
+```
+Now the server is running on localhost:5000
+
+
+## How to Run the UI Locally
+
+1. **Navigate to the Frontend Directory**  
+   Open a terminal and navigate to the `frontend` directory.  
+
+2. **Install Dependencies**  
+   Run the following command to install all the necessary dependencies:  
+   ```bash
+   npm install
+   ```
+
+3. **Start the Development Server**  
+   After the dependencies are installed, run:  
+   ```bash
+   npm run dev
+   ```  
+
+4. **Access the UI**  
+   - The UI will start on `localhost:3000`.  
+   - Ensure that port 3000 is free; otherwise, the application will start on a different port (e.g., 3001).  
+   - Check the terminal output to confirm the port being used.  
+
+
+
+### User Flow
+ Enter the start and end date for the training and testing and click on generate. This will take you to the next page where it takes time to generate the response in the server. 
 
 ---
 

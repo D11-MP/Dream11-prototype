@@ -49,7 +49,7 @@ export default function Commentator({close,open}:{close:(value:boolean)=>void,op
 
   useEffect(()=>{
     async function getGenText() {
-      const response = await axios.post('http://localhost:3000/api/ai' , { weather: demo.weather,condition: demo.condition,},
+      const response = await axios.post('https://dreamteam-sage.vercel.app/api/ai' , { weather: demo.weather,condition: demo.condition,},
         {
             headers: {
               'Content-Type': 'application/json',
