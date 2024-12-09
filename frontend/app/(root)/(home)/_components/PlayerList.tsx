@@ -1,6 +1,6 @@
 import { Data } from "@/types/index";
 import PlayerCard from "./PlayerCard";
-import players from "@/uploads/admin/players";
+import players from "@/uploads/final/players";
 import { TeamCustomizeProps } from "@/types/index";
 
 export default function Page({
