@@ -141,7 +141,7 @@ const PlayerStats = ({ player, setSelectedPlayer, newExplanation }: PlayerStatsP
             <div className="p-4">
                 <div className="flex justify-between gap-4 items-center p-2 mb-4">
                     <div className="flex gap-2">
-                        <Image alt="" height={60} width={60} src={"/"+player?.name+".png"} className="rounded-full object-cover" />
+                        <Image alt="" height={60} width={60} src={"/profile.png"} className="rounded-full object-cover" />
                         <div className="flex-col items-start justify-start gap-2">
                             <h1 className="text-2xl text-left font-[600] ">{player?.name}</h1>
                             <div className="flex justify-evenly items-center gap-2 text-sm">

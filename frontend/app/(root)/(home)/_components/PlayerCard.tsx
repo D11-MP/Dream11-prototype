@@ -65,7 +65,7 @@ export default function PlayerCard({
       <div className="flex gap-1 items-center justify-center mx-2 my-2 cursor-pointer group relative">
         {/* Entire card is the hover area */}
         <div className="flex items-center justify-center">
-          <Image alt="" height={80} width={80} src={"/"+player.name+".png"} className="rounded-full object-cover" />
+          <Image alt="" height={80} width={80} src={"/profile.png"} className="rounded-full object-cover" />
         </div>
 
         <div className="absolute z-10 invisible group-hover:visible inline-block px-2 py-1 text-xs font-medium text-black bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 bottom-[-35px] left-1/2 transform -translate-x-1/2">

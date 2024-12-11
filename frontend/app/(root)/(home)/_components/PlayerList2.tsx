@@ -18,7 +18,7 @@ const PlayerList2 = () => {
                 {team1.map((player) => (
                 
                     <div className='flex flex-col gap-3 justify-center mx-auto text-xs items-center font-semibold w-10 text-start ' key={player}>
-                        <Image alt="" height={50} width={50} src={"/"+player+".png"} className='object-cover rounded-full h-8' style={{background: "transparent"}} />
+                        <Image alt="" height={50} width={50} src={"/profile.png"} className='object-cover rounded-full h-8' style={{background: "transparent"}} />
                         {player.split(" ").pop()?.slice(0,6)}
                     </div>
                  ))}
@@ -33,7 +33,7 @@ const PlayerList2 = () => {
             <div className='flex justify-center gap-2 grow ' >
                 {team2.map((player) => (
                     <div className='flex flex-col gap-2 justify-center mx-auto text-xs items-center font-semibold w-10 text-start' key={player}>
-                        <Image alt="" height={50} width={50} src={"/"+player+".png"} className='object-cover rounded-full h-8' />
+                        <Image alt="" height={50} width={50} src={"/profile.png"} className='object-cover rounded-full h-8' />
                         {player.split(" ").pop()?.slice(0,6)}
                     </div>
                 ))}

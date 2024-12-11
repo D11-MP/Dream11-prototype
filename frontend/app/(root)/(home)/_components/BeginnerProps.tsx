@@ -63,10 +63,11 @@ export default function BeginnerProps({ country, setCountry, toggle, setToggle }
             {country ? (
               <div className="flex items-center gap-2 px-4">
                 <Image
-                  src={
-                    teams.find((team) => team.name === country)?.img ||
-                    "/default.png"
-                  }
+                //   src={
+                //     teams.find((team) => team.name === country)?.img ||
+                //     "/default.png"
+                //   }
+                src={"/india.png"}
                   alt={`${country} Flag`}
                   width={30}
                   height={30}
@@ -109,7 +110,8 @@ export default function BeginnerProps({ country, setCountry, toggle, setToggle }
                   role="menuitem"
                 >
                   <Image
-                    src={team.img}
+                    src={"/aus.png"}
+                    // src={team.img}
                     alt={`${team.name} Flag`}
                     width={30}
                     height={30}
